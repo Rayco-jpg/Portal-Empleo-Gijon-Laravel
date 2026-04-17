@@ -143,9 +143,22 @@ window.exportarPDF = function (tituloDoc, contenido, descripcionLarga) {
     doc.save(`${tituloDoc.replace(/\s+/g, "_")}.pdf`);
 };
 
-const API_TOKEN = "TU_TOKEN_AQUI";
+const hfToken = document.querySelector('meta[name="hf-token"]').content;
 
-// --- 1. FUNCIÓN DE LA IA (SIN FETCH EXTERNO) ---
+async function llamarALaIA(datos) {
+    const respuesta = await fetch(
+        "https://api-inference.huggingface.co/models/TU_MODELO",
+        {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${hfToken}`, 
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(datos),
+        },
+    );
+}
+
 window.iniciarAnalisisIA = function () {
     const btn = document.getElementById("btn-ia");
     const resDiv = document.getElementById("resultado-ia");

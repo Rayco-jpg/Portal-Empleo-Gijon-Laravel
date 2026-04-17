@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Restablecer Contraseña - Portal Empleo</title>
+    <meta name="hf-token" content="{{ env('HF_API_TOKEN') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/acceso.css') }}">
 </head>
