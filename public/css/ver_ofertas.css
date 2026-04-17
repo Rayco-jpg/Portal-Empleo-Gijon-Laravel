@@ -1,0 +1,433 @@
+.body-detalle-oferta {
+    background-color: var(--bg-body); 
+    margin: 0;
+    padding: 0;
+}
+
+.vista-centrada {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+
+.detalle-oferta.tarjeta-blanca {
+    background: var(--bg-tarjeta); 
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    width: 100%;
+    max-width: 1000px;
+    border: 1px solid var(--borde-input);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.cabecera-detalle {
+    background: var(--bg-tarjeta);
+    padding: 40px 50px 20px 50px;
+    border-bottom: 1px solid var(--borde-input);
+}
+
+.enlace-volver {
+    color: var(--color-texto-secundario);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.enlace-volver:hover {
+    color: #3498db;
+}
+
+.nombre-puesto {
+    font-size: 2.4rem;
+    color: var(--color-texto); 
+    margin: 15px 0 5px 0;
+    font-weight: 800;
+}
+
+.badge-categoria {
+    background: #e1f5fe;
+    color: #039be5;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.grid-informacion-oferta {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 50px;
+    padding: 40px 50px;
+}
+
+.columna-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tarjeta-dato {
+    background: var(--bg-input);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--borde-input);
+    transition: 0.3s;
+}
+
+.tarjeta-dato:hover {
+    border-color: #3498db;
+    background: var(--bg-tarjeta);
+}
+
+.tarjeta-dato i {
+    color: #3498db;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.tarjeta-dato strong {
+    color: var(--color-texto-secundario);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.tarjeta-dato span {
+    color: var(--color-texto);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.subtitulo-seccion {
+    color: var(--color-texto); 
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+}
+
+.subtitulo-seccion::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: #3498db;
+    margin-top: 8px;
+    border-radius: 2px;
+}
+
+.texto-descripcion {
+    line-height: 1.8;
+    color: var(--color-texto);
+    font-size: 1.1rem;
+}
+
+.pie-acciones-oferta {
+    padding: 40px;
+    background: var(--bg-input);
+    border-top: 1px solid var(--borde-input);
+    text-align: center;
+}
+
+.boton-primario-accion {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 18px 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(52, 152, 219, 0.4);
+    transition: 0.3s;
+}
+
+.boton-primario-accion:hover {
+    background: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6);
+}
+
+.contenedor-estado-inscripcion {
+    background: var(--bg-tarjeta);
+    padding: 25px 40px;
+    border-radius: 16px;
+    border: 1px solid var(--borde-input);
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.mensaje-info-inscripcion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--color-texto);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.mensaje-info-inscripcion i {
+    font-size: 1.4rem;
+    color: #3498db; 
+}
+
+.badge-estado {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.estado-pendiente { 
+    background: #fffaf0; 
+    color: #dd6b20; 
+    border: 1px solid #fbd38d; 
+}
+
+.estado-aceptada, .estado-aceptado { 
+    background: #f0fff4; 
+    color: #2f855a; 
+    border: 1px solid #9ae6b4; 
+}
+
+.estado-rechazada, .estado-rechazado { 
+    background: #fff5f5; 
+    color: #c53030; 
+    border: 1px solid #feb2b2; 
+}
+
+.boton-secundario-borrar {
+    background: transparent;
+    color: var(--color-texto-secundario);
+    border: 1px solid var(--borde-input);
+    margin-top: 20px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.boton-secundario-borrar:hover {
+    background: #fff5f5;
+    color: #e74c3c;
+    border-color: #e74c3c;
+    transform: translateY(-2px);
+}
+
+.boton-pdf-lateral {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #c53030;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.boton-pdf-lateral:hover {
+    background-color: #e74c3c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.boton-pdf-lateral i {
+    font-size: 1.1rem;
+}
+
+.contenedor-ia-analisis {
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135px, #f5faff 0%, #ffffff 100%);
+    border: 2px dashed #3498db;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
+    transition: all 0.3s ease;
+}
+
+.contenedor-ia-analisis:hover {
+    border-style: solid;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.15);
+}
+
+.titulo-ia {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.titulo-ia i {
+    color: #3498db;
+    font-size: 1.4rem;
+}
+
+.descripcion-ia {
+    color: #5d6d7e;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.boton-ia-accion {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(41, 128, 185, 0.2);
+}
+
+.boton-ia-accion:hover {
+    background: linear-gradient(45deg, #2980b9, #2471a3);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(41, 128, 185, 0.3);
+}
+
+.boton-ia-accion:disabled {
+    background: #bdc3c7;
+    cursor: wait;
+    transform: none;
+}
+
+#resultado-ia {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e6ed;
+    display: none;
+}
+
+.mostrar-resultado {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Panel de Moderación en Ver Oferta */
+.panel-moderacion-admin {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff5f5;
+    border: 2px dashed #feb2b2;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.panel-moderacion-admin h3 {
+    color: #c53030;
+    margin: 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.panel-moderacion-admin p {
+    color: #742a2a;
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+}
+
+/* Botón de borrado específico del panel */
+.btn-admin-eliminar {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admin-eliminar:hover {
+    background-color: #c53030;
+    transform: scale(1.02);
+}
+
+@media print {
+    header, footer, .enlace-volver, .boton-pdf-lateral, .pie-acciones-oferta, .contenedor-ia-analisis {
+        display: none;
+    }
+
+    body, .body-detalle-oferta, .vista-centrada {
+        background: white;
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+    }
+
+    .detalle-oferta.tarjeta-blanca {
+        position: static;
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+        display: block;
+    }
+
+    .grid-informacion-oferta {
+        display: block; 
+        width: 100%;
+        padding: 0;
+    }
+
+    .columna-datos, .columna-descripcion {
+        width: 100%;
+        display: block;
+        position: static;
+    }
+
+    .texto-descripcion {
+        overflow: visible;
+        height: auto;
+        max-height: none;
+        display: block;
+        page-break-inside: auto; 
+    }
+
+    h1, h2, h3, .subtitulo-seccion {
+        page-break-after: avoid;
+    }
+}

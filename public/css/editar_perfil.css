@@ -1,0 +1,182 @@
+.contenedor-editar-perfil {
+    max-width: 600px;
+    margin: 40px auto;
+    background: var(--bg-tarjeta); 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.titulo-editar {
+    color: var(--color-texto);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.grupo-input {
+    margin-bottom: 20px;
+}
+
+.grupo-input textarea {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--bg-input);
+    color: var(--color-texto);
+    border: 1.5px solid var(--borde-input);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+}
+
+.grupo-input textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    background-color: var(--bg-tarjeta);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-texto);
+    font-weight: 600;
+}
+
+.grupo-input input, 
+.grupo-input select {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-input); 
+    color: var(--color-texto);         
+    border: 1px solid var(--borde-input);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.grupo-input input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.seccion-foto-edicion {
+    text-align: center;
+    margin-bottom: 25px;
+    background: var(--bg-input); 
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.preview-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #3498db;
+}
+
+.preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-cambiar-foto {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.botones-form {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-guardar {
+    flex: 2;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-cancelar {
+    flex: 1;
+    background-color: #95a5a6;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-guardar:hover { background-color: #219150; }
+.btn-cancelar:hover { background-color: #ad1706; }
+
+.ayuda-input {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #3498db;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ayuda-input::before {
+    content: "\f05a";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.seccion-habilidades-perfil {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: 12px;
+    border: 1px solid var(--borde-input);
+}
+
+.contenedor-tags-habilidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.tag-habilidad {
+    background-color: var(--bg-tarjeta);
+    color: #3498db;
+    border: 1.5px solid #3498db;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tag-habilidad:hover {
+    background-color: #3498db;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(52, 152, 219, 0.3);
+}

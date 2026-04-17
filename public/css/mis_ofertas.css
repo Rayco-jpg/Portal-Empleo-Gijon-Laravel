@@ -1,0 +1,208 @@
+/* ==========================================================================
+    PANEL DE GESTIÓN DE OFERTAS 
+    ========================================================================== */
+.seccion-panel {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 2rem;
+    background: var(--bg-tarjeta); 
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--borde-input);
+}
+
+.cabecera-panel {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    border-bottom: 2px solid var(--borde-input); 
+    padding-bottom: 1.5rem;
+}
+
+.cabecera-panel .titulo-pagina {
+    color: var(--color-texto); 
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: center;
+}
+
+.cabecera-panel .subtitulo-pagina {
+    color: var(--color-texto-secundario); 
+    font-size: 1.1rem;
+    text-align: center;
+    display: block;
+}
+
+.panel-estadisticas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tarjeta-est {
+    background: var(--bg-input); 
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--borde-input);
+}
+
+.icono-est {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.icono-est.azul { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+.icono-est.rojo { background: rgba(231, 76, 60, 0.1); color: #e74c3c; }
+.icono-est.verde { background: rgba(39, 174, 96, 0.1); color: #2ecc71; }
+
+.cifra-est {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-texto); 
+    line-height: 1;
+}
+
+.etiqueta-est {
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario); 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.zona-filtros {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.buscador-caja {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.buscador-caja i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #3498db;
+}
+
+.buscador-caja input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    background-color: var(--bg-input);
+    color: var(--color-texto); 
+    border: 2px solid var(--borde-input); 
+    border-radius: 8px;
+    outline: none;
+}
+
+.buscador-caja input:focus {
+    border-color: #3498db;
+}
+
+.tabla-gestion {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-tarjeta);
+    color: var(--color-texto);
+}
+
+.tabla-gestion th {
+    background: var(--bg-input);
+    color: var(--color-texto-secundario);
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid var(--borde-input);
+}
+
+.tabla-gestion td {
+    padding: 15px;
+    border-bottom: 1px solid var(--borde-input);
+    background: var(--bg-tarjeta); 
+}
+
+.info-puesto .nombre-puesto {
+    display: block;
+    color: var(--color-texto);
+    font-size: 1.1rem;
+}
+
+.info-puesto .fecha-publicacion {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+.badge-contador {
+    background: var(--bg-input);
+    color: var(--celeste-gijon);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid var(--borde-input);
+}
+
+.btn-ver-candidatos {
+    background: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-ver-candidatos:hover { background: #2980b9; }
+
+.grupo-acciones {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-borrar-oferta {
+    color: #e74c3c;
+    font-size: 1.1rem;
+    padding: 8px;
+    transition: 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-borrar-oferta:hover {
+    color: #c0392b;
+    transform: scale(1.1);
+}
+
+[data-tema="oscuro"] .seccion-panel {
+    background-color: var(--bg-tarjeta);
+}
+
+[data-tema="oscuro"] .tabla-gestion,
+[data-tema="oscuro"] .tabla-gestion td {
+    background-color: var(--bg-tarjeta);
+    color: var(--color-texto);
+}
+
+[data-tema="oscuro"] .tabla-gestion th {
+    background-color: var(--bg-input);
+    color: var(--color-texto-secundario);
+}
+
+[data-tema="oscuro"] .titulo-pagina,
+[data-tema="oscuro"] .subtitulo-pagina {
+    color: var(--color-texto);
+}

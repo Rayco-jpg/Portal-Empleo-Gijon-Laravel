@@ -1,0 +1,133 @@
+/* ==========================================================================
+   SECCIÓN DE MIS FAVORITOS
+   ========================================================================== */
+.seccion-favoritos {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    min-height: 80vh;
+}
+
+.seccion-favoritos .cabecera-vistas {
+    background-color: transparent; 
+    padding: 0;
+    border: none;
+    backdrop-filter: none;
+    margin-bottom: 2rem;
+    text-align: center; 
+}
+
+.seccion-favoritos .titulo-pagina {
+    color: var(--color-texto); 
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.seccion-favoritos .icono-favorito-titulo {
+    color: #e74c3c;
+    margin-right: 10px;
+}
+
+.seccion-favoritos .subtitulo-pagina {
+    color: var(--color-texto); 
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.seccion-favoritos .cuadricula-ofertas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.seccion-favoritos .tarjeta-oferta {
+    background: var(--bg-tarjeta); 
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--borde-input); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: fadeInSubida 0.5s ease forwards;
+}
+
+.seccion-favoritos .tarjeta-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.seccion-favoritos .tarjeta-link-wrapper:hover .tarjeta-oferta {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-color: var(--celeste-gijon);
+}
+
+.seccion-favoritos .icono-corazon-activo {
+    color: #e74c3c;
+    font-size: 1.2rem;
+}
+
+.seccion-favoritos .cuerpo-tarjeta {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.seccion-favoritos .pie-tarjeta {
+    background-color: rgba(0, 0, 0, 0.03); 
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--borde-input); 
+    text-align: right;
+}
+
+.seccion-favoritos .mensaje-vacio {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-tarjeta);
+    border-radius: 15px;
+    border: 2px dashed var(--borde-input); 
+}
+
+.seccion-favoritos .mensaje-vacio p {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario); 
+    margin-bottom: 1rem;
+}
+
+.seccion-favoritos .icono-vacio-grande {
+    color: var(--borde-input); 
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.seccion-favoritos .mensaje-vacio .boton-buscar-principal {
+    display: inline-block;
+    background-color: #27ae60;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.seccion-favoritos .mensaje-vacio .boton-buscar-principal:hover {
+    background-color: #2ecc71;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
+}

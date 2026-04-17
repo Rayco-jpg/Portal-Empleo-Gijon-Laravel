@@ -1,0 +1,322 @@
+/* ==========================================================================
+   SECCIÓN: PERFIL DE USUARIO
+   ========================================================================== */
+body {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.perfil-usuario {
+    max-width: 850px;
+    margin: 60px auto; 
+    background: var(--bg-tarjeta);
+    padding: 35px;
+    border-radius: 20px; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border: 1px solid var(--borde-input); 
+    transition: all 0.3s ease;
+}
+
+.cabecera-perfil-flexible {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid var(--borde-input);
+    text-align: center;
+}
+
+.contenedor-foto-perfil {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid #3498db;
+    overflow: hidden;
+    background-color: var(--bg-input);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.foto-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.titulo-perfil {
+    margin: 10px 0 0 0;
+    color: var(--color-texto); 
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.contenedor-info-basica {
+    display: grid;
+    gap: 10px;
+    background: var(--bg-input); 
+    border: 1px solid var(--borde-input);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.dato-perfil {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--borde-input);
+}
+
+.dato-perfil:last-child {
+    border-bottom: none;
+}
+
+.dato-perfil i {
+    width: 35px;
+    color: #3498db;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.dato-perfil strong {
+    width: 180px;
+    color: var(--color-texto-secundario); 
+    font-size: 1rem;
+}
+
+.dato-perfil span {
+    color: var(--color-texto); 
+    flex: 1;
+    font-size: 1rem;
+}
+
+.seccion-cv {
+    margin-top: 35px;
+    padding: 25px;
+    background: var(--bg-tarjeta); 
+    border: 2px dashed var(--borde-input);
+    border-radius: 12px;
+}
+
+.subtitulo-cv {
+    margin-top: 0;
+    color: var(--color-texto); 
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.cv-existente {
+    display: flex;
+    align-items: center;
+    gap: 25px; 
+    background: var(--bg-input);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--borde-input);
+}
+
+.enlace-pdf {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    transition: color 0.3s;
+}
+
+.enlace-pdf:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.boton-borrar {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.boton-borrar:hover {
+    background: rgba(231, 76, 60, 0.1);
+    color: #c0392b;
+}
+
+.formulario-subida-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.label-personalizado-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: var(--bg-input);
+    color: #3498db;
+    border: 1px solid #3498db;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.label-personalizado-cv:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.nombre-archivo-status {
+    margin: 5px 0 15px 0;
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    font-style: italic;
+}
+
+.boton-subir-verde-perfil {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(39, 174, 96, 0.2);
+    width: fit-content;
+}
+
+.boton-subir-verde-perfil:hover {
+    background-color: #219150;
+    transform: translateY(-2px);
+}
+
+.acciones-finales-perfil {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borde-input);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-editar {
+    text-decoration: none;
+    color: white;
+    background: #3498db;
+    padding: 12px 40px;
+    border-radius: 25px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.btn-editar:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.enlace-logout {
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.enlace-logout:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+}
+
+.seccion-habilidades-perfil {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(52, 152, 219, 0.05); 
+    border-radius: 12px;
+    border: 1px solid var(--borde-input);
+}
+
+.seccion-habilidades-perfil .subtitulo-cv {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2c3e50;
+    font-weight: 700;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+    width: fit-content;
+}
+
+.contenedor-tags-habilidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.tag-habilidad {
+    background-color: white;
+    color: #3498db;
+    border: 1.5px solid #3498db;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: default;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.tag-habilidad:hover {
+    background-color: #3498db;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(52, 152, 219, 0.3);
+}
+
+.texto-informativo {
+    color: var(--color-texto-secundario);
+    font-style: italic;
+    font-size: 0.95rem;
+    margin: 10px 0;
+}
+
+.seccion-alertas-perfil {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid var(--borde-input);
+    border-radius: 12px;
+}
+
+.select-personalizado {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #3498db;
+    background: white;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+}

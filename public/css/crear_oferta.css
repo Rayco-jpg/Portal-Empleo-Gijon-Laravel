@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Publicar oferta
+   ========================================================================== */
+.titulo-pagina {
+    color: var(--color-texto);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.seccion-panel {
+    background: var(--bg-tarjeta);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.cabecera-panel {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--borde-input);
+    padding-bottom: 1.5rem;
+}
+
+.subtitulo-pagina {
+    color: var(--color-texto-secundario);
+    font-size: 1rem;
+}
+
+.contenedor-tabla-gestion {
+    overflow-x: auto;
+}
+
+.tabla-gestion {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.tabla-gestion thead th {
+    background-color: var(--bg-input);
+    color: var(--color-texto);
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-bottom: 2px solid #3498db;
+    text-align: left;
+}
+
+.tabla-gestion tbody tr {
+    background-color: var(--bg-tarjeta);
+    transition: all 0.3s ease;
+}
+
+.tabla-gestion tbody tr:hover {
+    background-color: var(--bg-input);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.tabla-gestion td {
+    padding: 15px;
+    vertical-align: middle;
+    border-top: 1px solid var(--borde-input);
+    border-bottom: 1px solid var(--borde-input);
+    color: var(--color-texto);
+}
+
+.nombre-puesto { display: block; font-size: 1.1rem; color: #2980b9; }
+.fecha-publicacion { font-size: 0.8rem; color: var(--color-texto-secundario); }
+
+.badge-contador {
+    background: #e74c3c;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-ver-candidatos {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================================================================
+   2. FORMULARIO DE CREACIÓN 
+   ========================================================================== */
+.seccion-crear-oferta {
+    max-width: 850px;
+    margin: 40px auto;
+    background: var(--bg-tarjeta);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.cabecera-formulario {
+    background-color: var(--bg-input);
+    padding: 30px;
+    text-align: center;
+    border-bottom: 2px solid var(--borde-input);
+}
+
+.icono-cabecera-v {
+    font-size: 3.5rem;
+    color: #3498db;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.instrucciones { color: var(--color-texto-secundario); font-size: 0.95rem; }
+
+.contenedor-formulario-oferta { padding: 40px; }
+
+.form-estandar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grupo-entrada {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label-formulario {
+    font-weight: 700;
+    color: var(--color-texto);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.input-texto, .input-textarea, .select-estandar {
+    padding: 12px 15px;
+    background-color: var(--bg-input);
+    color: var(--color-texto);
+    border: 2px solid var(--borde-input);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-texto:focus, .input-textarea:focus, .select-estandar:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.fila-formulario {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.col-medio { flex: 1; min-width: 280px; }
+.col-tercio { flex: 1; min-width: 180px; }
+
+.acciones-formulario {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borde-input);
+}
+
+.boton-publicar {
+    flex: 2;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.boton-publicar:hover { background-color: #219150; }
+
+.boton-cancelar {
+    flex: 1;
+    background-color: #e74c3c;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.boton-cancelar:hover { background-color: #ad1706; }
+
+.panel-vacio {
+    text-align: center;
+    padding: 60px;
+    color: #bdc3c7;
+}
+
+.btn-primario {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+#mapa-seleccion {
+    height: 300px;
+    border-radius: 10px;
+    border: 1px solid var(--borde-input);
+    margin-bottom: 10px;
+    background-color: var(--bg-input);
+    z-index: 1;
+}
