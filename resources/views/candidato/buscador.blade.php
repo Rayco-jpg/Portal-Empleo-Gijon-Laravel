@@ -57,27 +57,48 @@
 
         {{-- Tarjetas de Estadísticas --}}
         <div class="contenedor-estadisticas">
-            <div class="tarjeta-stat">
-                <div class="icono-stat azul"><i class="fa-solid fa-file-signature"></i></div>
-                <div class="info-stat">
-                    <span class="numero-stat">{{ $stats['inscripciones'] ?? 0 }}</span>
-                    <span class="etiqueta-stat">Postulaciones</span>
+            @auth
+                <div class="tarjeta-stat">
+                    <div class="icono-stat azul"><i class="fa-solid fa-file-signature"></i></div>
+                    <div class="info-stat">
+                        <span class="numero-stat">{{ $stats['inscripciones'] ?? 0 }}</span>
+                        <span class="etiqueta-stat">Postulaciones</span>
+                    </div>
                 </div>
-            </div>
-            <div class="tarjeta-stat">
-                <div class="icono-stat rosa"><i class="fa-solid fa-heart"></i></div>
-                <div class="info-stat">
-                    <span class="numero-stat">{{ $stats['favoritos'] ?? 0 }}</span>
-                    <span class="etiqueta-stat">Favoritos</span>
+                <div class="tarjeta-stat">
+                    <div class="icono-stat rosa"><i class="fa-solid fa-heart"></i></div>
+                    <div class="info-stat">
+                        <span class="numero-stat">{{ $stats['favoritos'] ?? 0 }}</span>
+                        <span class="etiqueta-stat">Favoritos</span>
+                    </div>
                 </div>
-            </div>
-            <div class="tarjeta-stat">
-                <div class="icono-stat verde"><i class="fa-solid fa-eye"></i></div>
-                <div class="info-stat">
-                    <span class="numero-stat">{{ $stats['visitas'] ?? 0 }}</span>
-                    <span class="etiqueta-stat">Visitas perfil</span>
+                <div class="tarjeta-stat">
+                    <div class="icono-stat verde"><i class="fa-solid fa-eye"></i></div>
+                    <div class="info-stat">
+                        <span class="numero-stat">{{ $stats['visitas'] ?? 0 }}</span>
+                        <span class="etiqueta-stat">Visitas perfil</span>
+                    </div>
                 </div>
-            </div>
+            @endauth
+            @guest
+                <div class="aviso-vinculo-registro">
+                    <div class="cuerpo-vinculo">
+                        <div class="icono-destacado">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div class="texto-informativo">
+                            <h4 class="titulo-destacado">Potencia tu perfil profesional</h4>
+                            <p class="parrafo-secundario">Regístrate para guardar ofertas, gestionar candidaturas y mejorar tu
+                                visibilidad.</p>
+                        </div>
+                    </div>
+
+                    <div class="grupo-acciones">
+                        <a href="{{ route('login') }}" class="boton-interaccion secundario">Iniciar sesión</a>
+                        <a href="{{ route('register') }}" class="boton-interaccion primario">Crear Cuenta</a>
+                    </div>
+                </div>
+            @endguest
         </div>
 
         {{-- Mapa --}}
@@ -103,7 +124,8 @@
                                         @csrf
                                         <button type="submit" class="btn-fav-corazon" onclick="event.stopPropagation();"
                                             style="background:none; border:none; padding:0; cursor:pointer;">
-                                            <i class="fa-heart {{ (isset($o->es_favorito) && $o->es_favorito) ? 'fa-solid icono-corazon-activo' : 'fa-regular icono-corazon-inactivo' }}"></i>
+                                            <i
+                                                class="fa-heart {{ (isset($o->es_favorito) && $o->es_favorito) ? 'fa-solid icono-corazon-activo' : 'fa-regular icono-corazon-inactivo' }}"></i>
                                         </button>
                                     </form>
                                     <span class="fecha-publicacion">
@@ -115,12 +137,14 @@
                             <h3 class="titulo-oferta">{{ $o->titulo }}</h3>
                             <div class="datos-breves">
                                 <p class="dato-linea"><i class="fa-solid fa-building"></i>
-                                    <strong>{{ $o->datosEmpresa->nombre_empresa ?? 'Empresa no disponible' }}</strong></p>
+                                    <strong>{{ $o->datosEmpresa->nombre_empresa ?? 'Empresa no disponible' }}</strong>
+                                </p>
                                 <p class="dato-linea"><i class="fa-solid fa-location-dot"></i> {{ $o->zona_gijon }}</p>
                                 <p class="dato-linea"><i class="fa-solid fa-money-bill-wave"></i> <span>Salario:
                                         {{ $o->salario ? $o->salario . ' €' : 'A convenir' }}</span></p>
                                 <p class="dato-linea"><i class="fa-solid fa-clock"></i>
-                                    <span>{{ $o->jornada ?? 'No especificada' }}</span></p>
+                                    <span>{{ $o->jornada ?? 'No especificada' }}</span>
+                                </p>
                             </div>
                         </div>
                         <footer class="pie-tarjeta">
@@ -163,14 +187,14 @@
         </div>
     </section>
 
-{{-- Scripts del Mapa --}}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    {{-- Scripts del Mapa --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-    // Esta variable global es la que leerá el archivo JS externo
-    window.DATOS_MAPA_BUSCADOR = @json($puntosMapa ?? []);
-</script>
+    <script>
+        // Esta variable global es la que leerá el archivo JS externo
+        window.DATOS_MAPA_BUSCADOR = @json($puntosMapa ?? []);
+    </script>
 
-<script src="{{ asset('js/mapa_buscador.js') }}"></script>
+    <script src="{{ asset('js/mapa_buscador.js') }}"></script>
 @endsection

@@ -39,75 +39,78 @@ class PerfilController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        $rules = [
+        // 1. Validamos los datos (hemos añadido 'ubicacion')
+        $request->validate([
             'nuevo_nombre' => 'nullable|string|max:255',
             'apellidos'    => 'nullable|string|max:255',
             'ubicacion'    => 'nullable|string|max:255',
             'habilidades_clave' => 'nullable|string',
             'foto'         => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'curriculum'   => 'nullable|mimes:pdf|max:10000'
-        ];
-
-        $request->validate($rules);
+        ]);
 
         try {
             DB::transaction(function () use ($request, $user) {
                 $datosUpdate = [];
 
-                // Buscamos el perfil actual para saber qué archivos borrar
+                // Identificamos el perfil según el tipo de usuario
                 $perfilActual = ($user->tipo_usuario == 'candidato')
                     ? Candidato::where('id_usuario', $user->id)->first()
                     : Empresa::where('id_usuario', $user->id)->first();
 
-                if ($request->filled('ubicacion')) $datosUpdate['ubicacion'] = $request->ubicacion;
-                if ($request->filled('apellidos')) $datosUpdate['apellidos'] = $request->apellidos;
-                if ($request->filled('habilidades_clave')) $datosUpdate['habilidades_clave'] = $request->habilidades_clave;
-
-                // --- GESTIÓN DE FOTO (CON BORRADO) ---
+                // --- GESTIÓN DE FOTO ---
                 if ($request->hasFile('foto')) {
                     if ($perfilActual && $perfilActual->foto) {
-                        $rutaAnterior = public_path('uploads/perfiles/' . $perfilActual->foto);
-                        if (File::exists($rutaAnterior)) {
-                            File::delete($rutaAnterior);
+                        $ruta = public_path('uploads/perfiles/' . $perfilActual->foto);
+                        if (File::exists($ruta)) {
+                            File::delete($ruta);
                         }
                     }
-
-                    // 2. Guardar la nueva
                     $foto = $request->file('foto');
                     $nombreFoto = time() . "_perfil_" . $user->id . "." . $foto->getClientOriginalExtension();
                     $foto->move(public_path('uploads/perfiles'), $nombreFoto);
                     $datosUpdate['foto'] = $nombreFoto;
                 }
 
-                // --- GESTIÓN DE CURRÍCULUM (CON BORRADO) ---
+                // --- GESTIÓN DE CURRÍCULUM ---
                 if ($request->hasFile('curriculum')) {
-                    // 1. Borrar el PDF antiguo si existe
                     if ($perfilActual && $perfilActual->curriculum) {
-                        $rutaCVAnterior = public_path('uploads/curriculums/' . $perfilActual->curriculum);
-                        if (File::exists($rutaCVAnterior)) {
-                            File::delete($rutaCVAnterior);
+                        $rutaCV = public_path('uploads/curriculums/' . $perfilActual->curriculum);
+                        if (File::exists($rutaCV)) {
+                            File::delete($rutaCV);
                         }
                     }
-
-                    // 2. Guardar el nuevo
-                    $file = $request->file('curriculum');
                     $nombre_cv = time() . "_cv_" . $user->id . ".pdf";
-                    $file->move(public_path('uploads/curriculums'), $nombre_cv);
+                    $request->file('curriculum')->move(public_path('uploads/curriculums'), $nombre_cv);
                     $datosUpdate['curriculum'] = $nombre_cv;
                 }
 
+                // --- ACTUALIZACIÓN SEGÚN TIPO ---
                 if ($user->tipo_usuario == 'candidato') {
                     if ($request->filled('nuevo_nombre')) {
                         $datosUpdate['nombre'] = $request->nuevo_nombre;
                         session(['nombre' => $request->nuevo_nombre]);
                     }
+                    if ($request->filled('apellidos')) {
+                        $datosUpdate['apellidos'] = $request->apellidos;
+                    }
+                    if ($request->filled('ubicacion')) {
+                        $datosUpdate['ubicacion'] = $request->ubicacion;
+                    }
+
+                    if ($request->filled('habilidades_clave')) {
+                        $datosUpdate['habilidades_clave'] = $request->habilidades_clave;
+                    }
+
                     Candidato::where('id_usuario', $user->id)->update($datosUpdate);
                 } else {
                     if ($request->filled('nuevo_nombre')) {
                         $datosUpdate['nombre_empresa'] = $request->nuevo_nombre;
                         session(['nombre' => $request->nuevo_nombre]);
                     }
-                    if ($request->filled('sector')) $datosUpdate['sector'] = $request->sector;
+                    if ($request->filled('ubicacion')) {
+                        $datosUpdate['ubicacion'] = $request->ubicacion;
+                    }
 
                     Empresa::where('id_usuario', $user->id)->update($datosUpdate);
                 }

@@ -21,6 +21,7 @@
             
             <nav class="acciones-acceso">
                 <a href="{{ route('login') }}" class="boton-acceso">Iniciar Sesión</a>
+                <a href="{{ route('buscador') }}" class="boton-acceso">Entrar como invitado</a>
                 <a href="{{ route('register') }}" class="enlace-secundario">¿No tienes cuenta? Regístrate gratis</a>
             </nav>
         </section>

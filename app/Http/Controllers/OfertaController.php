@@ -10,9 +10,18 @@ use App\Models\Inscripcion;
 use App\Models\Favorito;
 use App\Models\Candidato;
 use App\Models\Empresa;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class OfertaController extends Controller
+class OfertaController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('auth', except: ['index', 'show']),
+        ];
+    }
+
     /**
      * Buscador de ofertas para el Candidato
      */

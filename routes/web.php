@@ -45,6 +45,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/actualizar-password', 'updatePassword')->name('password.update');
 });
 
+    Route::get('/buscador', [OfertaController::class, 'index'])->name('buscador');
+    Route::get('/oferta/{id}', [OfertaController::class, 'show'])->name('ofertas.show');
+
 /*
 |--------------------------------------------------------------------------
 | Rutas Protegidas (Requieren Login)
@@ -68,10 +71,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // --- RUTAS DE CANDIDATO ---
-
-    // 1. Buscador y Detalles
-    Route::get('/buscador', [OfertaController::class, 'index'])->name('buscador');
-    Route::get('/oferta/{id}', [OfertaController::class, 'show'])->name('ofertas.show');
 
     // 2. Favoritos
     Route::post('/favoritos/toggle/{id}', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');

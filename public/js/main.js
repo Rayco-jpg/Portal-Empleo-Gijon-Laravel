@@ -1,4 +1,4 @@
-// --- FUNCIONES GLOBALES ---
+// 1. --- LA FUNCIÓN QUE YA TENÍAS (Perfecta) ---
 function actualizarIcono(tema) {
     let boton = document.getElementById("btn-tema");
     if (!boton) return;
@@ -13,6 +13,36 @@ function actualizarIcono(tema) {
         icono.classList.add("fa-moon");
     }
 }
+
+// 2. --- EL MOTOR (Lo que le falta a tu archivo) ---
+document.addEventListener("DOMContentLoaded", function () {
+    const botonTema = document.getElementById("btn-tema");
+    const htmlElement = document.documentElement; // Importante para data-tema
+
+    // Cargar el tema guardado al entrar en cualquier página (Buscador, Favoritos...)
+    const temaGuardado = localStorage.getItem("tema") || "claro";
+    
+    // Aplicamos el tema al HTML y al icono
+    htmlElement.setAttribute("data-tema", temaGuardado);
+    document.body.classList.toggle("modo-oscuro", temaGuardado === "oscuro");
+    actualizarIcono(temaGuardado);
+
+    // Escuchar el clic en el botón
+    if (botonTema) {
+        botonTema.addEventListener("click", function () {
+            let temaActual = htmlElement.getAttribute("data-tema");
+            let nuevoTema = (temaActual === "oscuro") ? "claro" : "oscuro";
+
+            // Guardamos la elección para que no se pierda al navegar
+            localStorage.setItem("tema", nuevoTema);
+            
+            // Aplicamos los cambios
+            htmlElement.setAttribute("data-tema", nuevoTema);
+            document.body.classList.toggle("modo-oscuro", nuevoTema === "oscuro");
+            actualizarIcono(nuevoTema);
+        });
+    }
+});
 
 function inicializarMapaBuscador(datosOfertas) {
     let mapaContenedor = document.getElementById("map");
@@ -158,73 +188,6 @@ async function llamarALaIA(datos) {
         },
     );
 }
-
-window.iniciarAnalisisIA = function () {
-    const btn = document.getElementById("btn-ia");
-    const resDiv = document.getElementById("resultado-ia");
-    const textoIA = document.getElementById("texto-ia");
-    const el = document.getElementById("datos-oferta");
-
-    if (!el) return;
-
-    btn.disabled = true;
-    btn.innerHTML =
-        '<i class="fa-solid fa-spinner fa-spin"></i> Analizando compatibilidad...';
-    resDiv.style.display = "block";
-    resDiv.innerHTML =
-        "Cruzando tus habilidades con los requisitos de la empresa...";
-
-    const descripcionOferta = el.dataset.descripcion.toLowerCase();
-    const misHabilidadesRaw = el.dataset.userSkills || "";
-    const misSkills = misHabilidadesRaw
-        .toLowerCase()
-        .split(",")
-        .map((s) => s.trim())
-        .filter((s) => s.length > 0);
-
-    setTimeout(() => {
-        let coincidencias = [];
-        misSkills.forEach((skill) => {
-            if (descripcionOferta.includes(skill) && skill !== "") {
-                coincidencias.push(skill);
-            }
-        });
-
-        let score = 40 + coincidencias.length * 15;
-        if (descripcionOferta.length < 100) score = Math.min(score, 45);
-        if (score > 98) score = 98;
-        if (score < 30) score = 30;
-
-        let color = "#e74c3c";
-        let mensaje =
-            "Tu perfil actual tiene poca afinidad con esta oferta específica.";
-
-        if (score >= 75) {
-            color = "#27ae60";
-            mensaje = `¡Excelente coincidencia! Tu perfil destaca en: <strong>${coincidencias.join(", ")}</strong>.`;
-        } else if (score >= 50) {
-            color = "#f39c12";
-            mensaje =
-                "Tienes aptitudes interesantes, pero la empresa busca requisitos adicionales.";
-        }
-
-        resDiv.innerHTML = `
-            <div style="border-top: 2px solid ${color}; margin-top: 10px; padding-top: 15px; animation: fadeIn 0.6s ease;">
-                <p style="margin-bottom: 5px; font-weight: bold; color: #34495e;">Resultado del Análisis IA:</p>
-                <span style="font-size: 2.2rem; color: ${color}; font-weight: 800;">${score}%</span>
-                <p style="font-size: 0.95rem; color: #2c3e50; margin-top: 10px; line-height: 1.5;">
-                    <i class="fa-solid fa-microchip"></i> ${mensaje}
-                </p>
-                <p style="font-size: 0.8rem; color: #95a5a6; margin-top: 12px; font-style: italic;">
-                    * Basado en el cruce de competencias entre tu perfil y la descripción del puesto.
-                </p>
-            </div>
-        `;
-
-        btn.style.display = "none";
-        textoIA.innerText = "Análisis de afinidad completado.";
-    }, 1500);
-};
 
 document.addEventListener("DOMContentLoaded", function () {
     let btn = document.getElementById("btn-tema");

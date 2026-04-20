@@ -24,56 +24,68 @@
                 </a>
                 <p class="saludo-usuario">Hola,
                     <span class="nombre-destacado">
-                        @if(Auth::user()->tipo_usuario == 'admin')
-                            Administrador
+                        @auth
+                            {{-- Si está logueado, comprobamos el tipo --}}
+                            @if(Auth::user()->tipo_usuario == 'admin')
+                                Administrador
+                            @else
+                                {{ session('nombre') ?? (Auth::user()->name ?? Auth::user()->nombre) }}
+                            @endif
                         @else
-                            {{ session('nombre') ?? (Auth::user()->name ?? Auth::user()->nombre) }}
-                        @endif
+                            Invitado
+                        @endauth
                     </span>
                 </p>
             </div>
 
             <nav class="navegacion-principal">
-                {{-- Rutas para Candidatos --}}
-                @if(Auth::user()->tipo_usuario == 'candidato')
+                {{-- Corregido: Usamos tipo_usuario en lugar de rol --}}
+                @unless(Auth::check() && Auth::user()->tipo_usuario === 'empresa')
                     <a href="{{ route('buscador') }}"
-                        class="enlace-nav {{ request()->routeIs('buscador') ? 'activo' : '' }}">Buscador</a>
-                    <a href="{{ route('favoritos.index') }}"
-                        class="enlace-nav {{ request()->routeIs('favoritos.index') ? 'activo' : '' }}">Mis Favoritos</a>
-                    <a href="{{ route('inscripciones.index') }}"
-                        class="enlace-nav {{ request()->routeIs('inscripciones.index') ? 'activo' : '' }}">Mis
-                        Inscripciones</a>
+                        class="enlace-nav {{ request()->routeIs('buscador') ? 'activo' : '' }}">
+                        Buscador
+                    </a>
+                @endunless
+                @auth
+                    {{-- Solo se ejecuta si el usuario ha iniciado sesión --}}
+                    @if(Auth::user()->tipo_usuario == 'candidato')
+                        <a href="{{ route('favoritos.index') }}"
+                            class="enlace-nav {{ request()->routeIs('favoritos.index') ? 'activo' : '' }}">Mis Favoritos</a>
+                        <a href="{{ route('inscripciones.index') }}"
+                            class="enlace-nav {{ request()->routeIs('inscripciones.index') ? 'activo' : '' }}">Mis
+                            Inscripciones</a>
 
-                    {{-- Rutas para Empresas --}}
-                @elseif(Auth::user()->tipo_usuario == 'empresa')
-                    <a href="{{ route('ofertas.index') }}"
-                        class="enlace-nav {{ request()->routeIs('ofertas.index') ? 'activo' : '' }}">Panel de Ofertas</a>
-                    <a href="{{ route('ofertas.create') }}"
-                        class="enlace-nav {{ request()->routeIs('ofertas.create') ? 'activo' : '' }}">Publicar Oferta</a>
+                    @elseif(Auth::user()->tipo_usuario == 'empresa')
+                        <a href="{{ route('ofertas.index') }}"
+                            class="enlace-nav {{ request()->routeIs('ofertas.index') ? 'activo' : '' }}">Panel de Ofertas</a>
+                        <a href="{{ route('ofertas.create') }}"
+                            class="enlace-nav {{ request()->routeIs('ofertas.create') ? 'activo' : '' }}">Publicar Oferta</a>
 
-                    {{-- Rutas para Administrador --}}
-                @elseif(Auth::user()->tipo_usuario == 'admin')
-                    <a href="{{ route('admin.index') }}"
-                        class="enlace-nav {{ request()->routeIs('admin.index') ? 'activo' : '' }}">Panel de control</a>
-                    <a href="{{ route('admin.usuarios') }}"
-                        class="enlace-nav {{ request()->routeIs('admin.usuarios') ? 'activo' : '' }}">Usuarios</a>
-                    <a href="{{ route('admin.ofertas') }}"
-                        class="enlace-nav {{ request()->routeIs('admin.ofertas') ? 'activo' : '' }}">Ofertas</a>
-                    <a href="{{ route('admin.mensajes') }}"
-                        class="enlace-nav {{ request()->routeIs('admin.mensajes') ? 'activo' : '' }}">Mensajes</a>
-                @endif
+                    @elseif(Auth::user()->tipo_usuario == 'admin')
+                        <a href="{{ route('admin.index') }}"
+                            class="enlace-nav {{ request()->routeIs('admin.index') ? 'activo' : '' }}">Panel de control</a>
+                        <a href="{{ route('admin.usuarios') }}"
+                            class="enlace-nav {{ request()->routeIs('admin.usuarios') ? 'activo' : '' }}">Usuarios</a>
+                        <a href="{{ route('admin.ofertas') }}"
+                            class="enlace-nav {{ request()->routeIs('admin.ofertas') ? 'activo' : '' }}">Ofertas</a>
+                        <a href="{{ route('admin.mensajes') }}"
+                            class="enlace-nav {{ request()->routeIs('admin.mensajes') ? 'activo' : '' }}">Mensajes</a>
+                    @endif
 
-                {{-- El perfil no se muestra para el Administrador --}}
-                @if(Auth::user()->tipo_usuario !== 'admin')
-                    <a href="{{ route('perfil') }}"
-                        class="enlace-nav {{ request()->routeIs('perfil') ? 'activo' : '' }}">Perfil</a>
-                @endif
+                    @if(Auth::user()->tipo_usuario !== 'admin')
+                        <a href="{{ route('perfil') }}"
+                            class="enlace-nav {{ request()->routeIs('perfil') ? 'activo' : '' }}">Perfil</a>
+                    @endif
+
+                    <a href="{{ route('logout') }}" class="enlace-nav enlace-salir">Salir</a>
+                @else
+                    <a href="{{ route('login') }}" class="enlace-nav">Iniciar Sesión</a>
+                    <a href="{{ route('register') }}" class="enlace-nav">Registrarse</a>
+                @endauth
 
                 <button id="btn-tema" class="enlace-nav">
                     <i class="fa-solid fa-moon"></i>
                 </button>
-
-                <a href="{{ route('logout') }}" class="enlace-nav enlace-salir">Salir</a>
             </nav>
         </div>
     </header>
@@ -126,35 +138,37 @@
             <div class="footer-seccion links">
                 <h4>Navegación</h4>
                 <ul>
+                    {{-- Aquí también protegemos con Auth::check() --}}
                     @if(Auth::check())
-                        {{-- RUTAS PARA CANDIDATO --}}
                         @if(Auth::user()->tipo_usuario == 'candidato')
                             <li><a href="{{ route('buscador') }}"><i class="fa-solid fa-angle-right"></i> Buscador de Empleo</a>
                             </li>
                             <li><a href="{{ route('inscripciones.index') }}"><i class="fa-solid fa-angle-right"></i> Mis
                                     Inscripciones</a></li>
                             <li><a href="{{ route('perfil') }}"><i class="fa-solid fa-angle-right"></i> Mi Perfil</a></li>
-
-                            {{-- RUTAS PARA EMPRESA --}}
                         @elseif(Auth::user()->tipo_usuario == 'empresa')
-                            {{-- Añadimos la ruta para crear oferta --}}
-                            <li><a href="{{ route('ofertas.create') }}"><i class="fa-solid fa-angle-right"></i> Publicar
-                                    Oferta</a></li>
-                            <li><a href="{{ route('ofertas.index') }}"><i class="fa-solid fa-angle-right"></i> Gestionar mis
-                                    Ofertas</a></li>
-                            <li><a href="{{ route('perfil') }}"><i class="fa-solid fa-angle-right"></i> Mi Perfil</a></li>
-
-                            {{-- RUTAS PARA ADMIN --}}
+                            <li>
+                                <a href="{{ route('ofertas.index') }}">
+                                    <i class="fa-solid fa-angle-right"></i> Panel de Ofertas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('ofertas.create') }}">
+                                    <i class="fa-solid fa-angle-right"></i> Publicar Oferta
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('perfil') }}">
+                                    <i class="fa-solid fa-angle-right"></i> Mi Perfil de Empresa
+                                </a>
+                            </li>
                         @elseif(Auth::user()->tipo_usuario == 'admin')
-                            <li><a href="{{ route('admin.usuarios') }}"><i class="fa-solid fa-angle-right"></i> Gestionar
-                                    Usuarios</a></li>
-                            <li><a href="{{ route('admin.ofertas') }}"><i class="fa-solid fa-angle-right"></i> Gestionar
-                                    Ofertas</a></li>
-                            <li><a href="{{ route('admin.mensajes') }}"><i class="fa-solid fa-angle-right"></i> Gestionar
-                                    Reportes</a></li>
+                            <li><a href="{{ route('admin.usuarios') }}"><i class="fa-solid fa-angle-right"></i> Usuarios</a>
+                            </li>
+                            <li><a href="{{ route('admin.ofertas') }}"><i class="fa-solid fa-angle-right"></i> Ofertas</a></li>
                         @endif
                     @else
-                        {{-- RUTAS PARA USUARIOS NO LOGUEADOS (Opcional) --}}
+                        <li><a href="{{ route('buscador') }}"><i class="fa-solid fa-angle-right"></i> Ver Ofertas</a></li>
                         <li><a href="{{ route('login') }}"><i class="fa-solid fa-angle-right"></i> Iniciar Sesión</a></li>
                         <li><a href="{{ route('register') }}"><i class="fa-solid fa-angle-right"></i> Registrarse</a></li>
                     @endif
@@ -175,7 +189,9 @@
             <div class="footer-inferior">
                 <p>&copy; 2026 Portal de Empleo Gijón - Proyecto Final de Grado</p>
             </div>
+        </div>
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const alerta = document.getElementById('contenedor-alertas');
@@ -184,7 +200,7 @@
                     alerta.style.transition = "opacity 0.5s ease";
                     alerta.style.opacity = "0";
                     setTimeout(() => alerta.remove(), 500);
-                }, 5000); // 5 segundos
+                }, 5000);
             }
         });
     </script>

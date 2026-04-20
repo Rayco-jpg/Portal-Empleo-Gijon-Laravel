@@ -90,21 +90,6 @@
                     {!! nl2br(e($oferta->descripcion)) !!}
                 </div>
 
-                @if(Auth::user() && Auth::user()->tipo_usuario === 'candidato')
-                    <div class="contenedor-ia-analisis">
-                        <h4 class="titulo-ia"><i class="fa-solid fa-robot"></i> Asistente de IA</h4>
-                        <p id="texto-ia" class="descripcion-ia">¿Quieres saber cuánto encaja tu perfil con esta oferta?</p>
-
-                        <button onclick="iniciarAnalisisIA()" id="btn-ia" class="boton-ia-accion">
-                            Analizar mi compatibilidad
-                        </button>
-
-                        <div id="resultado-ia" class="resultado-ia-oculto"></div>
-                    </div>
-                @endif
-            </article>
-        </div>
-
         <footer class="pie-acciones-oferta">
             @if(Auth::user() && Auth::user()->tipo_usuario === 'candidato')
                 @if($oferta->estado_inscripcion)

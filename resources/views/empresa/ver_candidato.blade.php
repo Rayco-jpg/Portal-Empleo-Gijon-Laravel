@@ -11,18 +11,6 @@
     <p class="subtitulo-pagina">Revisa y gestiona los perfiles inscritos en tu oferta de empleo: <strong>{{ $oferta->titulo }}</strong></p>
 </header>
 
-{{-- Mensajes de Alerta adaptados de tu msg de PHP --}}
-@if(session('success'))
-    <div class="alerta alerta-info">
-        <div class="icono-alerta">
-            <i class="fa-solid fa-circle-info"></i>
-        </div>
-        <p class="texto-alerta">
-            {{ session('success') }}
-        </p>
-    </div>
-@endif
-
 <section class="bloque-candidatos card-shadow">
     <header class="bloque-header">
         <h3 class="subtitulo-seccion">
