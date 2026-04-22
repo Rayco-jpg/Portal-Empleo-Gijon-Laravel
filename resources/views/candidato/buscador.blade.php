@@ -106,7 +106,7 @@
             <h3 class="mapa-titulo">
                 <i class="fa-solid fa-map-location-dot"></i> Ubicación de las ofertas en Gijón
             </h3>
-            <div id="map" style="height: 400px; border-radius: 12px;"></div>
+            <div id="map"></div>
         </div>
 
         {{-- Cuadrícula de Ofertas --}}
@@ -127,6 +127,12 @@
                                             <i
                                                 class="fa-heart {{ (isset($o->es_favorito) && $o->es_favorito) ? 'fa-solid icono-corazon-activo' : 'fa-regular icono-corazon-inactivo' }}"></i>
                                         </button>
+                                        @auth
+                                            <button type="button" class="btn-reportar-oferta"
+                                                onclick="event.preventDefault(); event.stopPropagation(); reportarOferta({{ $o->id }}, '{{ $o->titulo }}')">
+                                                <i class="fa-solid fa-flag"></i>
+                                            </button>
+                                        @endauth
                                     </form>
                                     <span class="fecha-publicacion">
                                         <i class="fa-regular fa-calendar-days"></i>

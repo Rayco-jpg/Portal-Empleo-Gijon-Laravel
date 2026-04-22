@@ -47,6 +47,7 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::get('/buscador', [OfertaController::class, 'index'])->name('buscador');
     Route::get('/oferta/{id}', [OfertaController::class, 'show'])->name('ofertas.show');
+    Route::post('/reportar-oferta', [App\Http\Controllers\ContactoController::class, 'store'])->name('reportar.oferta');
 
 /*
 |--------------------------------------------------------------------------

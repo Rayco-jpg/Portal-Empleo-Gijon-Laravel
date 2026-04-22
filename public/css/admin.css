@@ -209,3 +209,8 @@
     font-size: 13px;
     font-style: italic;
 }
+
+.icono-advertencia {
+    color: #f97316;
+    margin-right: 5px;
+}

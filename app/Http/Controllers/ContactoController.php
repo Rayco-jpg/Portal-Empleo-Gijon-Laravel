@@ -10,20 +10,33 @@ class ContactoController extends Controller
 {
     /**
      * Guarda el reporte enviado por el usuario en la base de datos.
+     * Soporta tanto envíos de formulario normales como peticiones AJAX (banderita).
      */
     public function store(Request $request)
     {
+        // Validamos los datos. 
+        // Nota: El 'asunto' es obligatorio para que tu panel lo clasifique bien.
         $request->validate([
             'asunto' => 'required|string|max:50',
-            'mensaje' => 'required|string|min:10|max:1000',
+            'mensaje' => 'required|string|max:1000',
         ]);
 
+        // Creamos el registro en la tabla 'contactos'
         Contacto::create([
             'user_id' => Auth::id(),
             'asunto' => $request->asunto,
             'mensaje' => $request->mensaje,
         ]);
 
+        // Si la petición viene del JavaScript (fetch/banderita), devolvemos JSON
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true, 
+                'message' => 'Reporte de oferta recibido correctamente.'
+            ]);
+        }
+
+        // Si viene de un formulario normal, redirigimos atrás con mensaje de éxito
         return redirect()->back()->with('success', '¡Gracias! Tu reporte ha sido enviado al equipo técnico.');
     }
 
@@ -32,7 +45,6 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        // Traemos los mensajes con su usuario, ordenados por los más recientes
         $mensajes = Contacto::with('user')->latest()->get();
 
         return view('admin.mensajes', compact('mensajes'));
@@ -43,10 +55,8 @@ class ContactoController extends Controller
      */
     public function marcarLeido($id)
     {
-        // Buscamos el mensaje o lanzamos error 404 si no existe
         $mensaje = Contacto::findOrFail($id);
         
-        // Actualizamos el estado
         $mensaje->update([
             'leido' => true
         ]);

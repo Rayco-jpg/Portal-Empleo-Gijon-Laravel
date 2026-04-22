@@ -472,3 +472,36 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
 }
+
+/* --- Sección de Reportar Oferta (Banderita) --- */
+
+.actions-header-tarjeta {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre el corazón y la bandera */
+}
+
+.btn-reportar-oferta {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #94a3b8; /* Gris suave para que no distraiga */
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Cambio a rojo cuando pasas el ratón */
+.btn-reportar-oferta:hover {
+    color: #ef4444; 
+    transform: scale(1.1);
+}
+
+/* Icono dentro del botón */
+.btn-reportar-oferta i {
+    pointer-events: none; /* Para que el click siempre detecte el botón */
+}

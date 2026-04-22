@@ -106,6 +106,7 @@ class OfertaController extends Controller implements HasMiddleware
                 'lng'     => (float)$o->longitud,
                 'titulo'  => $o->titulo,
                 'empresa' => $o->datosEmpresa->nombre_empresa ?? 'Empresa',
+                'jornada' => $o->jornada, 
                 'salario' => $o->salario ? $o->salario . ' €' : 'A convenir',
             ])->values();
 

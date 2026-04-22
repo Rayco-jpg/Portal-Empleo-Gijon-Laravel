@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Portal Empleo Gijón - @yield('title')</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,6 +13,8 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/alertas.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 </head>
 
@@ -25,7 +28,6 @@
                 <p class="saludo-usuario">Hola,
                     <span class="nombre-destacado">
                         @auth
-                            {{-- Si está logueado, comprobamos el tipo --}}
                             @if(Auth::user()->tipo_usuario == 'admin')
                                 Administrador
                             @else
@@ -39,8 +41,7 @@
             </div>
 
             <nav class="navegacion-principal">
-                {{-- Corregido: Usamos tipo_usuario en lugar de rol --}}
-                @unless(Auth::check() && Auth::user()->tipo_usuario === 'empresa')
+                @unless(Auth::check() && Auth::user()->tipo_usuario === 'empresa' || Auth::user()->tipo_usuario === 'admin')
                     <a href="{{ route('buscador') }}"
                         class="enlace-nav {{ request()->routeIs('buscador') ? 'activo' : '' }}">
                         Buscador
@@ -69,7 +70,7 @@
                         <a href="{{ route('admin.ofertas') }}"
                             class="enlace-nav {{ request()->routeIs('admin.ofertas') ? 'activo' : '' }}">Ofertas</a>
                         <a href="{{ route('admin.mensajes') }}"
-                            class="enlace-nav {{ request()->routeIs('admin.mensajes') ? 'activo' : '' }}">Mensajes</a>
+                            class="enlace-nav {{ request()->routeIs('admin.mensajes') ? 'activo' : '' }}">Buzón de soporte</a>
                     @endif
 
                     @if(Auth::user()->tipo_usuario !== 'admin')
@@ -138,7 +139,6 @@
             <div class="footer-seccion links">
                 <h4>Navegación</h4>
                 <ul>
-                    {{-- Aquí también protegemos con Auth::check() --}}
                     @if(Auth::check())
                         @if(Auth::user()->tipo_usuario == 'candidato')
                             <li><a href="{{ route('buscador') }}"><i class="fa-solid fa-angle-right"></i> Buscador de Empleo</a>
@@ -163,9 +163,26 @@
                                 </a>
                             </li>
                         @elseif(Auth::user()->tipo_usuario == 'admin')
-                            <li><a href="{{ route('admin.usuarios') }}"><i class="fa-solid fa-angle-right"></i> Usuarios</a>
+                            <li>
+                                <a href="{{ route('admin.index') }}">
+                                    <i class="fa-solid fa-angle-right"></i> Panel de Control
+                                </a>
                             </li>
-                            <li><a href="{{ route('admin.ofertas') }}"><i class="fa-solid fa-angle-right"></i> Ofertas</a></li>
+                            <li>
+                                <a href="{{ route('admin.usuarios') }}">
+                                    <i class="fa-solid fa-angle-right"></i> Usuarios
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.ofertas') }}">
+                                    <i class="fa-solid fa-angle-right"></i> Ofertas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.mensajes') }}">
+                                    <i class="fa-solid fa-angle-right"></i> Buzón de soporte
+                                </a>
+                            </li>
                         @endif
                     @else
                         <li><a href="{{ route('buscador') }}"><i class="fa-solid fa-angle-right"></i> Ver Ofertas</a></li>
@@ -181,7 +198,7 @@
                 <p><i class="fa-solid fa-envelope"></i> info@gijonempleo.es</p>
                 <div class="contenedor-enlace-reporte">
                     <a href="{{ route('contacto') }}" class="enlace-reporte">
-                        <i class="fa-solid fa-circle-exclamation"></i> Reportar un error / Contacto
+                        <i class="fa-solid fa-circle-exclamation"></i> Reportar un error o sugerencia
                     </a>
                 </div>
             </div>
@@ -191,19 +208,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const alerta = document.getElementById('contenedor-alertas');
-            if (alerta) {
-                setTimeout(() => {
-                    alerta.style.transition = "opacity 0.5s ease";
-                    alerta.style.opacity = "0";
-                    setTimeout(() => alerta.remove(), 500);
-                }, 5000);
-            }
-        });
-    </script>
 </body>
 
 </html>

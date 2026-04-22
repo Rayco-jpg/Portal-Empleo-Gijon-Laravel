@@ -74,15 +74,13 @@
                                             <i class="fa-solid {{ $icono_estado }}"></i>
                                             {{ ucfirst($estado) }}
                                         </span>
-
-                                        {{-- El botón de cancelar solo aparece si está pendiente --}}
                                         @if($estado == 'pendiente')
-                                            {{-- Quitamos el @method('DELETE') para que coincida con tu web.php --}}
-                                            <form action="{{ route('inscripciones.destroy') }}" method="POST"
-                                                onsubmit="return confirm('¿Retirar candidatura?')">
+                                            <form id="form-retirar-{{ $p->id_oferta }}" action="{{ route('inscripciones.destroy') }}"
+                                                method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id_oferta" value="{{ $p->id_oferta }}">
-                                                <button type="submit" class="btn-cancelar-link" title="Cancelar inscripción"
+                                                <button type="button" class="btn-cancelar-link" title="Cancelar inscripción"
+                                                    onclick="confirmarRetirada('form-retirar-{{ $p->id_oferta }}')"
                                                     style="background:none; border:none; color:red; cursor:pointer;">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
