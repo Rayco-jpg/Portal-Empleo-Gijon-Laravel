@@ -358,3 +358,122 @@
         page-break-after: avoid;
     }
 }
+
+@media (max-width: 768px) {
+    .detalle-oferta.tarjeta-blanca {
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .cabecera-detalle {
+        order: 1 !important;
+        padding: 30px 20px 20px 20px;
+        text-align: center;
+    }
+
+    .nombre-puesto {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .grid-informacion-oferta {
+        order: 2 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr; 
+        gap: 30px;
+        padding: 25px 20px;
+    }
+
+    .columna-descripcion {
+        order: 1 !important;
+    }
+
+    .columna-datos {
+        order: 2 !important;
+        gap: 12px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pie-acciones-oferta, 
+    .contenedor-estado-inscripcion {
+        order: 10 !important; 
+        padding: 30px 20px !important;
+        background: var(--bg-input) !important;
+        border-top: 1px solid var(--borde-input) !important;
+        border-radius: 0 0 12px 12px !important;
+        margin-top: 20px !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .tarjeta-dato {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tarjeta-dato span {
+        font-size: 1rem;
+    }
+
+    .subtitulo-seccion {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .subtitulo-seccion::after {
+        margin: 8px auto;
+    }
+
+    .texto-descripcion {
+        font-size: 1rem;
+        text-align: justify;
+    }
+
+    .boton-primario-accion {
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 1.1rem;
+    }
+
+    .mensaje-info-inscripcion {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 10px !important;
+    }
+
+    .badge-estado {
+        margin-top: 5px;
+    }
+
+    .boton-secundario-borrar {
+        width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    .panel-moderacion-admin {
+        order: 11 !important; 
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .btn-admin-eliminar {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .vista-centrada {
+        padding: 20px 10px;
+    }
+}

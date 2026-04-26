@@ -214,3 +214,119 @@
     color: #f97316;
     margin-right: 5px;
 }
+
+@media (max-width: 768px) {
+    .panel-administracion {
+        padding: 15px !important;
+    }
+
+    .titulo-pagina {
+        font-size: 22px !important;
+        text-align: center;
+    }
+
+    .subtitulo-pagina {
+        font-size: 14px !important;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .menu-navegacion {
+        overflow-x: auto; 
+        white-space: nowrap;
+        padding: 8px !important;
+        gap: 5px !important;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .enlace-menu {
+        padding: 8px 15px !important;
+        font-size: 13px !important;
+    }
+
+    .contenedor-tarjetas-resumen {
+        grid-template-columns: 1fr !important; 
+        gap: 15px !important;
+        margin-bottom: 30px;
+    }
+
+    .tarjeta-estadistica {
+        padding: 15px !important;
+    }
+
+    .valor-tarjeta {
+        font-size: 1.5rem !important;
+    }
+
+    .icono-tarjeta {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.2rem !important;
+    }
+
+    .contenedor-tabla {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .tabla-gestion, 
+    .tabla-gestion thead, 
+    .tabla-gestion tbody, 
+    .tabla-gestion tr, 
+    .tabla-gestion td {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .tabla-gestion thead {
+        display: none !important; 
+    }
+
+    .tabla-gestion tr {
+        background: var(--bg-card) !important;
+        margin-bottom: 15px !important;
+        border-radius: 12px !important;
+        border: 1px solid var(--border-color) !important;
+        padding: 15px !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    .tabla-gestion td {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 0 !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        font-size: 14px !important;
+        text-align: right !important;
+    }
+
+    .tabla-gestion td:last-child {
+        border-bottom: none !important;
+        justify-content: center !important;
+        padding-top: 15px !important;
+    }
+
+    .tabla-gestion td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--text-sub);
+        text-transform: uppercase;
+        font-size: 11px;
+        text-align: left;
+    }
+
+    .boton-ver, .boton-borrar {
+        flex: 1;
+        justify-content: center;
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+
+    .tabla-gestion td:last-child {
+        flex-direction: row !important;
+        gap: 10px;
+    }
+}

@@ -320,3 +320,85 @@ body {
     max-width: 300px;
     margin-bottom: 15px;
 }
+
+@media (max-width: 768px) {
+    .perfil-usuario {
+        margin: 20px 10px;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .contenedor-foto-perfil {
+        width: 110px;
+        height: 110px;
+    }
+
+    .titulo-perfil {
+        font-size: 1.6rem;
+    }
+
+    .contenedor-info-basica {
+        padding: 15px;
+    }
+
+    .dato-perfil {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 15px 0;
+    }
+
+    .dato-perfil i {
+        display: none;
+    }
+
+    .dato-perfil strong {
+        width: 100%;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--celeste-gijon);
+    }
+
+    .dato-perfil span {
+        width: 100%;
+        font-size: 1.05rem;
+        word-break: break-word;
+    }
+
+    .cv-existente {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .enlace-pdf, .boton-borrar {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        border: 1px solid var(--borde-input);
+        border-radius: 8px;
+    }
+
+    .label-personalizado-cv, 
+    .boton-subir-verde-perfil,
+    .btn-editar {
+        width: 100% !important;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .tag-habilidad {
+        padding: 8px 16px;
+        font-size: 0.95rem;
+    }
+
+    .select-personalizado {
+        max-width: 100%;
+    }
+
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+}

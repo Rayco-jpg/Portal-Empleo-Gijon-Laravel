@@ -87,3 +87,45 @@
 .boton-enviar-contacto i {
     font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+    .contenedor-contacto {
+        margin: 20px auto !important;
+        padding: 0 15px !important;
+    }
+
+    .seccion-cabecera-contacto h2 {
+        font-size: 1.6rem !important;
+        line-height: 1.2;
+    }
+
+    .tarjeta-formulario-contacto {
+        padding: 25px 20px !important;
+        border-radius: 12px !important;
+    }
+
+    .grupo-formulario select,
+    .grupo-formulario textarea {
+        font-size: 16px !important; 
+        padding: 14px !important;
+        background-color: var(--bg-card) !important;
+        border: 1.5px solid var(--border-color) !important;
+    }
+
+    .grupo-formulario textarea {
+        min-height: 150px;
+    }
+
+    .boton-enviar-contacto {
+        padding: 16px !important;
+        border-radius: 50px !important;
+        font-size: 1.1rem !important;
+        margin-top: 10px;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    }
+
+    .boton-enviar-contacto:active {
+        transform: scale(0.98);
+        background-color: #1d4ed8 !important;
+    }
+}

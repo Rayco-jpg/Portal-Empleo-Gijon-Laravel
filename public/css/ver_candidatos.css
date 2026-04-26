@@ -171,4 +171,149 @@
     border-left: 6px solid #3498db;
 }
 
+.pie-seccion {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.enlace-volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 25px;
+    background-color: rgba(255, 255, 255, 0.15); 
+    color: #ffffff !important; 
+    text-decoration: none !important;
+    font-weight: 600;
+    border-radius: 50px; 
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.enlace-volver i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.enlace-volver:hover {
+    background-color: #ffffff;
+    color: var(--celeste-gijon, #3498db) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.enlace-volver:hover i {
+    transform: translateX(-5px);
+}
+
 .icono-alerta { font-size: 1.5rem; color: #3498db; }
+
+@media (max-width: 768px) {
+    .cabecera-seccion {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .cabecera-seccion .titulo-pagina {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+    }
+
+    .bloque-candidatos {
+        padding: 20px 15px;
+        margin: 15px 10px;
+        border-radius: 12px;
+    }
+
+    .subtitulo-seccion {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .tabla-gestion, 
+    .tabla-gestion tbody, 
+    .tabla-gestion tr, 
+    .tabla-gestion td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabla-gestion thead {
+        display: none;
+    }
+
+    .tabla-gestion tr {
+        border: 1px solid var(--borde-input);
+        border-radius: 12px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: var(--bg-tarjeta);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tabla-gestion td {
+        border: none;
+        padding: 8px 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .nombre-candidato {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .contenedor-foto {
+        margin: 0 auto;
+    }
+
+    .tabla-gestion td i {
+        margin-right: 0;
+        margin-bottom: 4px;
+    }
+
+    .enlace-pdf, 
+    .select-estado, 
+    .select-estado-mini,
+    .badge-estado {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 5px auto;
+        width: 100%;
+        max-width: 260px;
+        box-sizing: border-box;
+    }
+
+    .form-cambio-estado, 
+    .celda-accion form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pie-seccion {
+        padding: 30px 15px !important;
+        margin-top: 10px;
+    }
+
+    .enlace-volver {
+        width: 100% !important;
+        max-width: 300px; 
+        justify-content: center;
+        padding: 15px !important;
+        font-size: 1.1rem !important;
+    }
+}
