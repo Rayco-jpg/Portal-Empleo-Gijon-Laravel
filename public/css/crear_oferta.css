@@ -229,3 +229,80 @@
     background-color: var(--bg-input);
     z-index: 1;
 }
+
+@media (max-width: 768px) {
+    .seccion-crear-oferta {
+        margin: 15px 10px !important;
+        border-radius: 12px !important;
+    }
+
+    .cabecera-formulario {
+        padding: 20px !important;
+    }
+
+    .icono-cabecera-v {
+        font-size: 2.5rem !important;
+    }
+
+    .contenedor-formulario-oferta {
+        padding: 20px !important;
+    }
+
+    .fila-formulario {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    .col-medio, .col-tercio {
+        width: 100% !important;
+        min-width: unset !important;
+    }
+
+    .input-texto, .input-textarea, .select-estandar {
+        font-size: 16px !important; 
+        padding: 14px 12px !important;
+    }
+
+    #mapa-seleccion {
+        height: 250px !important;
+    }
+
+    .acciones-formulario {
+        flex-direction: column !important; 
+        gap: 12px !important;
+        padding-top: 25px !important;
+    }
+
+    .boton-publicar, .boton-cancelar {
+        width: 100% !important;
+        flex: none !important;
+        padding: 16px !important;
+        border-radius: 50px !important;
+        font-size: 1rem !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        transition: transform 0.2s ease;
+    }
+
+    .boton-publicar {
+        order: 1;
+        box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+    }
+
+    .boton-cancelar {
+        order: 2;
+        background-color: transparent !important;
+        color: #e74c3c !important;
+        border: 1px solid #e74c3c !important;
+    }
+
+    .boton-publicar:active, .boton-cancelar:active {
+        transform: scale(0.98);
+    }
+
+    .instrucciones {
+        text-align: center;
+        line-height: 1.4;
+    }
+}

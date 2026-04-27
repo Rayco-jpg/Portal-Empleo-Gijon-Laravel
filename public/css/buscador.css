@@ -440,7 +440,6 @@
     gap: 12px;
 }
 
-/* Estilos de botones con clases funcionales */
 .boton-interaccion {
     padding: 10px 22px;
     border-radius: 10px;
@@ -473,12 +472,10 @@
     box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
 }
 
-/* --- Sección de Reportar Oferta (Banderita) --- */
-
 .actions-header-tarjeta {
     display: flex;
     align-items: center;
-    gap: 12px; /* Espacio entre el corazón y la bandera */
+    gap: 12px;
 }
 
 .btn-reportar-oferta {
@@ -487,7 +484,7 @@
     padding: 0;
     margin: 0;
     cursor: pointer;
-    color: #94a3b8; /* Gris suave para que no distraiga */
+    color: #94a3b8; 
     font-size: 1.1rem;
     display: flex;
     align-items: center;
@@ -495,13 +492,98 @@
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
-/* Cambio a rojo cuando pasas el ratón */
 .btn-reportar-oferta:hover {
     color: #ef4444; 
     transform: scale(1.1);
 }
 
-/* Icono dentro del botón */
 .btn-reportar-oferta i {
-    pointer-events: none; /* Para que el click siempre detecte el botón */
+    pointer-events: none; 
+}
+
+/* ==========================================================================
+   VERSION MÓVIL: BUSCADOR
+   ========================================================================== */
+@media (max-width: 768px) {
+    .seccion-buscador {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .seccion-buscador .titulo-pagina {
+        font-size: 1.6rem;
+    }
+
+    .form-filtros-empleo {
+        position: relative; 
+        top: 0;
+        padding: 15px;
+    }
+
+    .fila-filtros {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .input-texto, 
+    .select-personalizado, 
+    .boton-buscar-principal {
+        width: 100%; 
+        flex: none;
+    }
+
+    .contenedor-estadisticas {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .tarjeta-stat {
+        padding: 15px;
+    }
+
+    #map {
+        height: 250px;
+        margin-bottom: 30px;
+    }
+
+    .cuadricula-ofertas {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+
+    .tarjeta-oferta {
+        max-width: 100%;
+    }
+
+    .titulo-oferta {
+        font-size: 1.1rem;
+    }
+
+    .aviso-vinculo-registro {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .cuerpo-vinculo {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .grupo-acciones {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .boton-interaccion {
+        width: 100%;
+        text-align: center;
+    }
+
+    .banner-novedades-alerta {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+    }
 }

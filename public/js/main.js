@@ -2,6 +2,23 @@
  * MAIN.JS - Lógica principal de Portal Empleo Gijón
  */
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnMenu = document.getElementById('btn-menu');
+    const menuNav = document.getElementById('menu-navegacion');
+
+    if (btnMenu && menuNav) {
+        btnMenu.addEventListener('click', function() {
+            menuNav.classList.toggle('menu-abierto');
+            
+            // Opcional: Cambiar el icono de barras a una X
+            const icono = btnMenu.querySelector('i');
+            icono.classList.toggle('fa-bars');
+            icono.classList.toggle('fa-xmark');
+        });
+    }
+});
+
 // --- 1. FUNCIONES DE INTERFAZ (TEMA Y APARIENCIA) ---
 
 function actualizarIcono(tema) {

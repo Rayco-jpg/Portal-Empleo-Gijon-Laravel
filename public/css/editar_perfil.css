@@ -1,10 +1,10 @@
 .contenedor-editar-perfil {
     max-width: 600px;
     margin: 40px auto;
-    background: var(--bg-tarjeta); 
+    background: var(--bg-tarjeta);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .titulo-editar {
@@ -47,12 +47,12 @@
     font-weight: 600;
 }
 
-.grupo-input input, 
+.grupo-input input,
 .grupo-input select {
     width: 100%;
     padding: 12px;
-    background-color: var(--bg-input); 
-    color: var(--color-texto);         
+    background-color: var(--bg-input);
+    color: var(--color-texto);
     border: 1px solid var(--borde-input);
     border-radius: 8px;
     font-size: 1rem;
@@ -68,7 +68,7 @@
 .seccion-foto-edicion {
     text-align: center;
     margin-bottom: 25px;
-    background: var(--bg-input); 
+    background: var(--bg-input);
     padding: 20px;
     border-radius: 12px;
 }
@@ -129,8 +129,12 @@
     transition: background 0.3s;
 }
 
-.btn-guardar:hover { background-color: #219150; }
-.btn-cancelar:hover { background-color: #ad1706; }
+.btn-guardar:hover {
+    background-color: #219150;
+}
+.btn-cancelar:hover {
+    background-color: #ad1706;
+}
 
 .ayuda-input {
     margin-top: 8px;
@@ -179,4 +183,71 @@
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 5px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* ==========================================================================
+   VERSION MÓVIL: EDITAR PERFIL
+   ========================================================================= */
+@media (max-width: 768px) {
+    .contenedor-editar-perfil {
+        margin: 20px 10px;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .titulo-editar {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .seccion-foto-edicion {
+        padding: 15px;
+    }
+
+    .preview-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .grupo-input input,
+    .grupo-input select,
+    .grupo-input textarea {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .botones-form {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-guardar,
+    .btn-cancelar {
+        width: 100%;
+        flex: none;
+        padding: 14px;
+        font-size: 1rem;
+        order: 1;
+    }
+
+    .btn-cancelar {
+        order: 2;
+        background-color: transparent;
+        color: var(--color-texto-secundario);
+        border: 1px solid var(--borde-input);
+    }
+
+    .ayuda-input {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .seccion-habilidades-perfil {
+        padding: 15px;
+    }
+
+    .tag-habilidad {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
 }

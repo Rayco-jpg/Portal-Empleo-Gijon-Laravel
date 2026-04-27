@@ -206,3 +206,145 @@
 [data-tema="oscuro"] .subtitulo-pagina {
     color: var(--color-texto);
 }
+
+@media (max-width: 768px) {
+    .seccion-mis-postulaciones {
+        padding: 1rem 10px !important;
+    }
+
+    .cabecera-seccion {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .titulo-pagina {
+        font-size: 1.8rem !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .contenedor-tabla-postulaciones {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .tabla-gestion, 
+    .tabla-gestion thead, 
+    .tabla-gestion tbody, 
+    .tabla-gestion tr, 
+    .tabla-gestion td {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .tabla-gestion thead {
+        display: none !important;
+    }
+
+    .fila-postulacion, tr {
+        background: var(--bg-tarjeta) !important;
+        border: 1px solid var(--borde-input) !important;
+        border-radius: 12px !important;
+        padding: 20px 15px !important;
+        margin-bottom: 20px !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; 
+    }
+
+    .tabla-gestion td {
+        padding: 10px 0 !important;
+        border: none !important;
+        text-align: center !important;
+        background: transparent !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .titulo-oferta-link, .nombre-candidato strong {
+        font-size: 1.25rem !important;
+        font-weight: 700 !important;
+        color: var(--celeste-gijon) !important;
+        text-align: center !important;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .detalle-ubicacion-mini, .celda-empresa, .nombre-candidato {
+        font-size: 0.95rem;
+        color: var(--color-texto);
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px;
+    }
+
+    .lista-condiciones-mini {
+        background: var(--bg-input);
+        padding: 12px;
+        border-radius: 8px;
+        margin: 10px 0;
+        font-size: 0.9rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .lista-condiciones-mini span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin: 0 !important;
+    }
+
+    .celda-empresa::before, 
+    .celda-fecha::before {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: var(--color-texto-secundario);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        text-align: center;
+    }
+
+    .celda-estado {
+        margin-top: 10px !important;
+        padding-top: 15px !important;
+        border-top: 1px solid var(--borde-input) !important;
+        width: 100%;
+    }
+
+    .contenedor-acciones-estado {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 12px;
+    }
+
+    .badge-estado-candidato, .select-estado, .select-estado-mini {
+        width: 100% !important;
+        max-width: 250px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .btn-cancelar-link {
+        margin: 0 auto !important;
+    }
+
+    .icono-v, .fa-solid, .fa-regular {
+        width: auto;
+        margin-bottom: 2px;
+    }
+}

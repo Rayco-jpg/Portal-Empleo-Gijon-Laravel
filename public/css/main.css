@@ -2,142 +2,142 @@
    CONFIGURACIÓN GENERAL Y VARIABLES
    ========================================================================== */
 :root {
-  --azul-gijon: #2c3e50;
-  --celeste-gijon: #3498db;
-  --azul-footer: #1e293b;
-  --blanco: #ffffff;
-  --gris-suave: #f4f7f6;
-  --gris-texto: #94a3b8;
+    --azul-gijon: #2c3e50;
+    --celeste-gijon: #3498db;
+    --azul-footer: #1e293b;
+    --blanco: #ffffff;
+    --gris-suave: #f4f7f6;
+    --gris-texto: #94a3b8;
 
-  /* Variables de Aplicación (Modo Claro) */
-  --bg-body: var(--celeste-gijon);
-  --bg-cabecera: var(--azul-gijon);
-  --bg-footer: var(--azul-footer);
-  --bg-tarjeta: var(--blanco);
-  --color-texto: #333333;
-  --color-texto-secundario: var(--gris-texto);
-  --borde-inferior: #334155;
-  --bg-input: #ffffff;
-  --borde-input: #cccccc;
+    /* Variables de Aplicación (Modo Claro) */
+    --bg-body: var(--celeste-gijon);
+    --bg-cabecera: var(--azul-gijon);
+    --bg-footer: var(--azul-footer);
+    --bg-tarjeta: var(--blanco);
+    --color-texto: #333333;
+    --color-texto-secundario: var(--gris-texto);
+    --borde-inferior: #334155;
+    --bg-input: #ffffff;
+    --borde-input: #cccccc;
 }
 
 [data-tema="oscuro"] {
-  --bg-body: #0f172a;
-  --bg-cabecera: #1e293b;
-  --bg-footer: #020617;
-  --bg-tarjeta: #1e293b;
-  --color-texto: #f1f5f9;
-  --color-texto-secundario: #94a3b8;
-  --blanco: #1e293b;
-  --borde-inferior: #1e293b;
-  --bg-input: #0f172a;
-  --borde-input: #334155; 
+    --bg-body: #0f172a;
+    --bg-cabecera: #1e293b;
+    --bg-footer: #020617;
+    --bg-tarjeta: #1e293b;
+    --color-texto: #f1f5f9;
+    --color-texto-secundario: #94a3b8;
+    --blanco: #1e293b;
+    --borde-inferior: #1e293b;
+    --bg-input: #0f172a;
+    --borde-input: #334155;
 }
 
 body {
-  background-color: var(--bg-body);
-  color: var(--color-texto);
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color: var(--bg-body);
+    color: var(--color-texto);
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 main {
-  flex: 1;
+    flex: 1;
 }
 
 .logo-cabecera {
-  height: 45px;
-  width: auto;
+    height: 45px;
+    width: auto;
 }
 
 /* ==========================================================================
    CABECERA PROFESIONAL
    ========================================================================== */
 .cabecera-principal {
-  background-color: var(--bg-cabecera);
-  color: white;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
+    background-color: var(--bg-cabecera);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 
 .contenedor-header {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nombre-destacado {
-  color: #f1c40f;
-  font-weight: bold;
+    color: #f1c40f;
+    font-weight: bold;
 }
 
 .navegacion-principal {
-  display: flex;
-  gap: 20px;
-  align-items: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .enlace-nav {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: 0.3s;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: 0.3s;
 }
 
 .enlace-nav:hover {
-  background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .enlace-nav.activo {
-  background: var(--celeste-gijon);
+    background: var(--celeste-gijon);
 }
 
 .enlace-salir {
-  background-color: #e74c3c;
+    background-color: #e74c3c;
 }
 
 #btn-tema {
-  font-size: 1.1rem;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
+    font-size: 1.1rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 #btn-tema:hover {
-  color: #f1c40f;
-  transform: scale(1.1);
+    color: #f1c40f;
+    transform: scale(1.1);
 }
 
 /* ==========================================================================
    CONTENEDOR DE CONTENIDO
    ========================================================================== */
 .contenedor-principal {
-  max-width: 1200px;
-  margin: 2rem auto;
-  width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    width: 90%;
 }
 
 .tarjeta-oferta,
 .tarjeta-perfil,
 .contenedor-blanco,
 table {
-  background-color: var(--bg-tarjeta);
-  color: var(--color-texto);
-  border-radius: 8px;
-  padding: 20px;
-  transition: background-color 0.3s ease;
+    background-color: var(--bg-tarjeta);
+    color: var(--color-texto);
+    border-radius: 8px;
+    padding: 20px;
+    transition: background-color 0.3s ease;
 }
 
 input[type="text"],
@@ -146,88 +146,187 @@ input[type="password"],
 input[type="number"],
 select,
 textarea {
-  background-color: var(--bg-input);
-  color: var(--color-texto);
-  border: 1px solid var(--borde-input);
-  padding: 10px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+    background-color: var(--bg-input);
+    color: var(--color-texto);
+    border: 1px solid var(--borde-input);
+    padding: 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 input:focus,
 select:focus {
-  outline: none;
-  border-color: var(--celeste-gijon);
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+    border-color: var(--celeste-gijon);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 th {
-  border-bottom: 2px solid var(--borde-input);
-  padding: 10px;
-  text-align: left;
+    border-bottom: 2px solid var(--borde-input);
+    padding: 10px;
+    text-align: left;
 }
 
 td {
-  border-bottom: 1px solid var(--borde-input);
-  padding: 10px;
+    border-bottom: 1px solid var(--borde-input);
+    padding: 10px;
 }
 
 /* ==========================================================================
    FOOTER GLOBAL 
    ========================================================================== */
 .footer-global {
-  background-color: var(--bg-footer);
-  color: white;
-  padding: 60px 0 20px 0;
-  margin-top: auto;
-  width: 100%;
+    background-color: var(--bg-footer);
+    color: white;
+    padding: 60px 0 20px 0;
+    margin-top: auto;
+    width: 100%;
 }
 
 .footer-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 40px;
-  padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    padding: 0 5%;
 }
 
 .footer-logo span {
-  color: var(--celeste-gijon);
-  font-weight: 800;
+    color: var(--celeste-gijon);
+    font-weight: 800;
 }
 
 .footer-seccion p {
-  color: var(--gris-texto);
+    color: var(--gris-texto);
 }
 
 .footer-seccion h4::after {
-  content: "";
-  display: block;
-  width: 30px;
-  height: 2px;
-  background: var(--celeste-gijon);
-  margin-top: 8px;
+    content: "";
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--celeste-gijon);
+    margin-top: 8px;
 }
 
 .footer-links a {
-  color: var(--gris-texto);
-  text-decoration: none;
+    color: var(--gris-texto);
+    text-decoration: none;
 }
 
 .footer-inferior {
-  border-top: 1px solid var(--borde-inferior);
-  margin-top: 40px;
-  padding: 20px 0;
-  text-align: center;
+    border-top: 1px solid var(--borde-inferior);
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
 }
 
 .footer-inferior p {
-  color: #64748b;
+    color: #64748b;
 }
 
+.menu-hamburguesa {
+    display: none; 
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .cabecera-principal {
+        position: relative !important;
+        z-index: 1000;
+    }
+
+    .contenedor-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    .menu-hamburguesa {
+        display: block !important;
+    }
+
+    .menu-hamburguesa i {
+        color: white;
+        font-size: 2rem;
+    }
+
+    .navegacion-principal {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+
+        background-color: #243447;
+        z-index: 9999 !important; 
+        padding: 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .navegacion-principal.menu-abierto {
+        display: flex !important;
+    }
+
+    .enlace-nav {
+        color: white !important;
+        padding: 18px; 
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: block;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .enlace-nav:last-child {
+        border-bottom: none;
+    }
+
+    .footer-contenido {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+
+    .footer-seccion {
+        width: 100%;
+    }
+
+    .footer-seccion ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .footer-seccion ul li {
+        margin: 12px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-seccion.contacto p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footer-inferior {
+        margin-top: 20px;
+        padding: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}

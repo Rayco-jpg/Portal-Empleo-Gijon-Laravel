@@ -312,3 +312,65 @@ body.cuerpo-acceso {
     width: 120px; 
     margin-bottom: 1rem;
 }
+
+@media (max-width: 768px) {
+    .cuerpo-acceso {
+        padding: 10px;
+    }
+
+    .tarjeta-acceso {
+        width: 100%; 
+        max-width: 480px;
+        padding: 30px 20px; 
+        border-radius: 12px; 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    }
+
+    .cabecera-landing {
+        margin-bottom: 25px;
+    }
+
+    .logo-acceso {
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .titulo-principal {
+        font-size: 2rem;
+        margin-top: 5px;
+    }
+
+    .subtitulo-landing {
+        font-size: 1.3rem; 
+        line-height: 1.3;
+        margin-bottom: 15px;
+    }
+
+    .descripcion-landing {
+        font-size: 1rem; 
+        margin-bottom: 30px;
+        color: #666; 
+    }
+
+    .acciones-acceso {
+        gap: 15px;
+    }
+
+    .boton-acceso {
+        font-size: 1.1rem;
+        padding: 15px 20px;
+        border-radius: 8px;
+    }
+
+    .enlace-secundario {
+        font-size: 0.95rem; 
+        margin-top: 15px;
+        display: block; 
+        text-align: center;
+    }
+
+    .pie-tarjeta-acceso {
+        margin-top: 30px;
+        font-size: 0.85rem;
+    }
+}

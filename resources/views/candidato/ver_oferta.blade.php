@@ -89,6 +89,8 @@
                 <div class="texto-descripcion">
                     {!! nl2br(e($oferta->descripcion)) !!}
                 </div>
+            </article>
+        </div>
 
         <footer class="pie-acciones-oferta">
             @if(Auth::user() && Auth::user()->tipo_usuario === 'candidato')
