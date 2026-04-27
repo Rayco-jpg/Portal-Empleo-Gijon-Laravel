@@ -41,7 +41,7 @@
             </div>
 
             <nav class="navegacion-principal">
-                @unless(Auth::check() && Auth::user()->tipo_usuario === 'empresa' || Auth::user()->tipo_usuario === 'admin')
+                @unless(Auth::user()?->tipo_usuario === 'empresa' || Auth::user()?->tipo_usuario === 'admin')
                     <a href="{{ route('buscador') }}"
                         class="enlace-nav {{ request()->routeIs('buscador') ? 'activo' : '' }}">
                         Buscador
