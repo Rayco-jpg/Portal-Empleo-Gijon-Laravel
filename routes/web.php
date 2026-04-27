@@ -91,7 +91,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/crear-oferta', [OfertaController::class, 'create'])->name('ofertas.create');
 
         Route::post('/guardar-oferta', [OfertaController::class, 'store'])->name('ofertas.store');
-
+        Route::get('/perfil-candidato/{id}', [PerfilController::class, 'verPerfilPublico'])->name('perfil.candidato');
         // Gestión de candidatos e inscripciones
         Route::get('/oferta/{id}/candidatos', [OfertaController::class, 'verCandidatos'])->name('ofertas.candidatos');
         Route::post('/candidato/actualizar-estado', [PostulacionController::class, 'actualizarEstado'])->name('inscripciones.actualizar_estado');

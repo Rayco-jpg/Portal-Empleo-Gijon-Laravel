@@ -30,15 +30,30 @@
 }
 
 .enlace-volver {
-    color: var(--color-texto-secundario);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background-color: #007cf8;
+    color: #007bff;
     text-decoration: none;
-    font-size: 0.9rem;
+    border-radius: 50px; 
     font-weight: 600;
-    transition: 0.3s;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
 }
 
 .enlace-volver:hover {
-    color: #3498db;
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #007bff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.enlace-volver i {
+    font-size: 16px;
 }
 
 .nombre-puesto {
@@ -190,8 +205,8 @@
 }
 
 .estado-pendiente { 
-    background: #fffaf0; 
-    color: #dd6b20; 
+    background: #e6b046; 
+    color: #eeeeee; 
     border: 1px solid #fbd38d; 
 }
 
@@ -261,7 +276,6 @@
     animation: fadeIn 0.5s ease-out;
 }
 
-/* Panel de Moderación en Ver Oferta */
 .panel-moderacion-admin {
     margin-top: 30px;
     padding: 20px;
@@ -289,7 +303,6 @@
     font-size: 0.9rem;
 }
 
-/* Botón de borrado específico del panel */
 .btn-admin-eliminar {
     background-color: #e53e3e;
     color: white;

@@ -1,4 +1,4 @@
-function reportarOferta(id, titulo) {
+window.reportarOferta = function(id, titulo) {
     Swal.fire({
         title: "Reportar oferta",
         text: `¿Por qué quieres reportar la oferta "${titulo}"?`,
@@ -37,12 +37,12 @@ function reportarOferta(id, titulo) {
             });
         }
     });
-}
+};
 
 window.confirmarRetirada = function(idFormulario) {
     Swal.fire({
         title: '¿Retirar candidatura?',
-        text: "Esta acción no se puede deshacer.",
+        text: "Esta acción no se puede deshacer y dejarás de participar en el proceso.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -57,9 +57,6 @@ window.confirmarRetirada = function(idFormulario) {
     });
 };
 
-/**
- * Confirmación para que la empresa elimine una oferta publicada
- */
 window.confirmarBorradoEmpresa = function(idFormulario, tituloOferta) {
     Swal.fire({
         title: '¿Eliminar oferta?',

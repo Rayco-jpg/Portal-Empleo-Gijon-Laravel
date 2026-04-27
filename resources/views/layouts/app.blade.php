@@ -8,14 +8,9 @@
     <title>Portal Empleo Gijón - @yield('title')</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/alertas.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 
 <body>
@@ -37,17 +32,12 @@
                 </p>
             </div>
 
-<<<<<<< HEAD
-            <nav class="navegacion-principal">
-                @unless(Auth::user()?->tipo_usuario === 'empresa' || Auth::user()?->tipo_usuario === 'admin')
-=======
-            <button class="menu-hamburguesa" id="btn-menu" aria-label="Abrir menú">
+            <button id="btn-menu" class="boton-menu-movil" aria-label="Abrir menú">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
-            <nav class="navegacion-principal" id="menu-navegacion">
-                @unless(Auth::check() && Auth::user()->tipo_usuario === 'empresa' || Auth::user()->tipo_usuario === 'admin')
->>>>>>> 319a96b1803439ef7f5926a286270bcc034a5794
+            <nav id="menu-navegacion" class="navegacion-principal">
+                @unless(Auth::user()?->tipo_usuario === 'empresa' || Auth::user()?->tipo_usuario === 'admin')
                     <a href="{{ route('buscador') }}"
                         class="enlace-nav {{ request()->routeIs('buscador') ? 'activo' : '' }}">Buscador</a>
                 @endunless
@@ -70,11 +60,9 @@
                         <a href="{{ route('admin.usuarios') }}"
                             class="enlace-nav {{ request()->routeIs('admin.usuarios') ? 'activo' : '' }}">Usuarios</a>
                         <a href="{{ route('admin.ofertas') }}"
-                            class="enlace-nav {{ request()->routeIs('admin.ofertas') ? 'activo' : '' }}"> Ofertas
-                        </a>
+                            class="enlace-nav {{ request()->routeIs('admin.ofertas') ? 'activo' : '' }}"> Ofertas</a>
                         <a href="{{ route('admin.mensajes') }}"
-                            class="enlace-nav {{ request()->routeIs('admin.mensajes') ? 'activo' : '' }}"> Buzón de soporte
-                        </a>
+                            class="enlace-nav {{ request()->routeIs('admin.mensajes') ? 'activo' : '' }}"> Buzón</a>
                     @endif
 
                     @if(Auth::user()->tipo_usuario !== 'admin')
@@ -87,7 +75,7 @@
                     <a href="{{ route('register') }}" class="enlace-nav">Registrarse</a>
                 @endauth
 
-                <button id="btn-tema" class="enlace-nav">
+                <button id="btn-tema" class="enlace-nav" aria-label="Cambiar tema">
                     <i class="fa-solid fa-moon"></i>
                 </button>
             </nav>
@@ -150,60 +138,39 @@
                                     Inscripciones</a></li>
                             <li><a href="{{ route('perfil') }}"><i class="fa-solid fa-angle-right"></i> Mi Perfil</a></li>
                         @elseif(Auth::user()->tipo_usuario == 'empresa')
-                            <li>
-                                <a href="{{ route('ofertas.index') }}">
-                                    <i class="fa-solid fa-angle-right"></i> Panel de Ofertas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('ofertas.create') }}">
-                                    <i class="fa-solid fa-angle-right"></i> Publicar Oferta
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('perfil') }}">
-                                    <i class="fa-solid fa-angle-right"></i> Mi Perfil de Empresa
-                                </a>
+                            <li><a href="{{ route('ofertas.index') }}"><i class="fa-solid fa-angle-right"></i> Panel de mis
+                                    Ofertas</a></li>
+                            <li><a href="{{ route('ofertas.create') }}"><i class="fa-solid fa-plus"></i> Publicar Nueva
+                                    Oferta</a></li>
+                            <li><a href="{{ route('perfil') }}"><i class="fa-solid fa-angle-right"></i> Perfil de Empresa</a>
                             </li>
                         @elseif(Auth::user()->tipo_usuario == 'admin')
-                            <li>
-                                <a href="{{ route('admin.index') }}">
-                                    <i class="fa-solid fa-angle-right"></i> Panel de Control
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.usuarios') }}">
-                                    <i class="fa-solid fa-angle-right"></i> Usuarios
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.ofertas') }}">
-                                    <i class="fa-solid fa-angle-right"></i> Ofertas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.mensajes') }}">
-                                    <i class="fa-solid fa-angle-right"></i> Buzón de soporte
-                                </a>
-                            </li>
+                            <li><a href="{{ route('admin.index') }}"><i class="fa-solid fa-angle-right"></i> Panel de
+                                    Control</a></li>
+                            <li><a href="{{ route('admin.usuarios') }}"><i class="fa-solid fa-angle-right"></i> Gestión de
+                                    Usuarios</a></li>
+                            <li><a href="{{ route('admin.ofertas') }}"><i class="fa-solid fa-angle-right"></i> Gestión de
+                                    Ofertas</a></li>
+                            <li><a href="{{ route('admin.mensajes') }}"><i class="fa-solid fa-angle-right"></i> Buzón de
+                                    Mensajes</a></li>
                         @endif
+
                     @else
-                        <li><a href="{{ route('buscador') }}"><i class="fa-solid fa-angle-right"></i> Ver Ofertas</a></li>
                         <li><a href="{{ route('login') }}"><i class="fa-solid fa-angle-right"></i> Iniciar Sesión</a></li>
                         <li><a href="{{ route('register') }}"><i class="fa-solid fa-angle-right"></i> Registrarse</a></li>
                     @endif
                 </ul>
             </div>
-
             <div class="footer-seccion contacto">
                 <h4>Contacto</h4>
                 <p><i class="fa-solid fa-location-dot"></i> Gijón, Asturias</p>
                 <p><i class="fa-solid fa-envelope"></i> info@gijonempleo.es</p>
+
                 @auth
                     @if(Auth::user()->tipo_usuario !== 'admin')
                         <div class="contenedor-enlace-reporte">
                             <a href="{{ route('contacto') }}" class="enlace-reporte">
-                                <i class="fa-solid fa-circle-exclamation"></i> Reportar un error o sugerencia
+                                <i class="fa-solid fa-circle-exclamation"></i> Reportar un error
                             </a>
                         </div>
                     @endif
@@ -215,6 +182,12 @@
             </div>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/alertas.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

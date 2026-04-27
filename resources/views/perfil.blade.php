@@ -40,7 +40,35 @@
             </div>
 
             @if($user->tipo_usuario == 'candidato')
-                {{-- SECCIÓN HABILIDADES --}}
+                <div class="dato-perfil">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <strong>Miembro desde:</strong>
+                    <span>{{ $user->created_at ? $user->created_at->format('M Y') : date('M Y') }}</span>
+                </div>
+                @if($user->tipo_usuario == 'candidato')
+                    <div class="dato-perfil">
+                        <i
+                            class="fa-solid fa-circle-dot {{ ($perfil->disponible ?? 1) == 1 ? 'text-success' : 'text-danger' }}"></i>
+                        <strong>Estado:</strong>
+                        <span class="badge-estado {{ ($perfil->disponible ?? 1) == 1 ? 'bg-success' : 'bg-danger' }}">
+                            {{ ($perfil->disponible ?? 1) == 1 ? 'Disponible para trabajar' : 'No disponible' }}
+                        </span>
+                    </div>
+                @endif
+                <div class="seccion-perfil-bloque">
+                    <h3 class="subtitulo-cv"><i class="fa-solid fa-user-tag"></i> Sobre mí</h3>
+                    <div class="cuadro-biografia">
+                        @if(!empty($perfil->biografia))
+                            <p class="texto-biografia">{{ $perfil->biografia }}</p>
+                        @else
+                            <p class="texto-informativo">
+                                <i class="fa-solid fa-circle-info"></i>
+                                Aún no has escrito una descripción profesional. Pulsa en "Editar Perfil" para presentarte a las
+                                empresas.
+                            </p>
+                        @endif
+                    </div>
+                </div>
                 <div class="seccion-habilidades-perfil">
                     <h3 class="subtitulo-cv"><i class="fa-solid fa-brain"></i> Tus Aptitudes</h3>
                     <div class="contenedor-tags-habilidades">
@@ -55,7 +83,6 @@
                     </div>
                 </div>
 
-                {{-- SECCIÓN CV --}}
                 <div class="seccion-cv">
                     <h3 class="subtitulo-cv"><i class="fa-solid fa-file-lines"></i> Tu Curriculum Vitae</h3>
                     <div class="estado-cv">
@@ -65,7 +92,6 @@
                                     class="enlace-pdf">
                                     <i class="fa-solid fa-file-pdf"></i> Ver PDF actual
                                 </a>
-                                {{-- Aquí podrías añadir un formulario pequeño para borrarlo si quieres --}}
                             </div>
                         @else
                             <div class="alerta-sin-cv">
@@ -75,7 +101,6 @@
                         @endif
                     </div>
 
-                    {{-- Formulario de subida rápida --}}
                     <div class="formulario-subida-custom">
                         <form action="{{ route('perfil.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf

@@ -38,13 +38,13 @@ class PerfilController extends Controller
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
-
-        // 1. Validamos los datos (hemos añadido 'ubicacion')
         $request->validate([
             'nuevo_nombre' => 'nullable|string|max:255',
             'apellidos'    => 'nullable|string|max:255',
             'ubicacion'    => 'nullable|string|max:255',
+            'biografia'         => 'nullable|string',
             'habilidades_clave' => 'nullable|string',
+            'disponible'        => 'nullable|integer|in:0,1',
             'foto'         => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'curriculum'   => 'nullable|mimes:pdf|max:10000'
         ]);
@@ -53,12 +53,10 @@ class PerfilController extends Controller
             DB::transaction(function () use ($request, $user) {
                 $datosUpdate = [];
 
-                // Identificamos el perfil según el tipo de usuario
                 $perfilActual = ($user->tipo_usuario == 'candidato')
                     ? Candidato::where('id_usuario', $user->id)->first()
                     : Empresa::where('id_usuario', $user->id)->first();
 
-                // --- GESTIÓN DE FOTO ---
                 if ($request->hasFile('foto')) {
                     if ($perfilActual && $perfilActual->foto) {
                         $ruta = public_path('uploads/perfiles/' . $perfilActual->foto);
@@ -72,7 +70,6 @@ class PerfilController extends Controller
                     $datosUpdate['foto'] = $nombreFoto;
                 }
 
-                // --- GESTIÓN DE CURRÍCULUM ---
                 if ($request->hasFile('curriculum')) {
                     if ($perfilActual && $perfilActual->curriculum) {
                         $rutaCV = public_path('uploads/curriculums/' . $perfilActual->curriculum);
@@ -85,7 +82,6 @@ class PerfilController extends Controller
                     $datosUpdate['curriculum'] = $nombre_cv;
                 }
 
-                // --- ACTUALIZACIÓN SEGÚN TIPO ---
                 if ($user->tipo_usuario == 'candidato') {
                     if ($request->filled('nuevo_nombre')) {
                         $datosUpdate['nombre'] = $request->nuevo_nombre;
@@ -97,9 +93,15 @@ class PerfilController extends Controller
                     if ($request->filled('ubicacion')) {
                         $datosUpdate['ubicacion'] = $request->ubicacion;
                     }
-
+                    if ($request->has('biografia')) {
+                        $datosUpdate['biografia'] = $request->biografia;
+                    }
                     if ($request->filled('habilidades_clave')) {
                         $datosUpdate['habilidades_clave'] = $request->habilidades_clave;
+                    }
+
+                    if ($request->has('disponible')) {
+                        $datosUpdate['disponible'] = $request->disponible;
                     }
 
                     Candidato::where('id_usuario', $user->id)->update($datosUpdate);
@@ -110,6 +112,9 @@ class PerfilController extends Controller
                     }
                     if ($request->filled('ubicacion')) {
                         $datosUpdate['ubicacion'] = $request->ubicacion;
+                    }
+                    if ($request->filled('sector')) {
+                        $datosUpdate['sector'] = $request->sector;
                     }
 
                     Empresa::where('id_usuario', $user->id)->update($datosUpdate);
@@ -136,5 +141,20 @@ class PerfilController extends Controller
             );
         }
         return back()->with('success', 'Configuración de alertas actualizada.');
+    }
+
+    public function verPerfilPublico($id)
+    {
+        $usuario = \App\Models\User::findOrFail($id);
+
+        $perfil = Candidato::where('id_usuario', $id)->first();
+        if (Auth::user()->tipo_usuario === 'empresa') {
+            DB::table('visitas_perfil')->insert([
+                'id_candidato' => $id,
+                'id_empresa'   => Auth::id(),
+                'fecha_visita' => now()
+            ]);
+        }
+        return view('perfil_publico_candidato', compact('usuario', 'perfil'));
     }
 }

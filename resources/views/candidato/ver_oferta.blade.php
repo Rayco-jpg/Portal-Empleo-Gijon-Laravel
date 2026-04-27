@@ -105,11 +105,12 @@
                         </div>
 
                         @if($estado_slug == 'pendiente')
-                            <form action="{{ route('inscripciones.destroy') }}" method="POST" class="form-cancelar"
-                                onsubmit="return confirm('¿Retirar candidatura?')">
+                            <form id="form-cancelar-inscripcion" action="{{ route('inscripciones.destroy') }}" method="POST"
+                                class="form-cancelar">
                                 @csrf
                                 <input type="hidden" name="id_oferta" value="{{ $oferta->id }}">
-                                <button type="submit" class="boton-secundario-borrar">
+                                <button type="button" class="boton-secundario-borrar"
+                                    onclick="confirmarRetirada('form-cancelar-inscripcion')">
                                     <i class="fa-solid fa-trash-can"></i> Cancelar inscripción
                                 </button>
                             </form>
@@ -139,11 +140,11 @@
                 <p>Como administrador, tienes permisos para eliminar esta oferta si incumple las normas.</p>
             </div>
 
-            <form action="{{ route('admin.ofertas.destroy', $oferta->id) }}" method="POST"
-                onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta oferta permanentemente?')">
+            <form id="form-eliminar-admin" action="{{ route('admin.ofertas.destroy', $oferta->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn-admin-eliminar">
+                <button type="button" class="btn-admin-eliminar"
+                    onclick="confirmarBorradoEmpresa('form-eliminar-admin', '{{ $oferta->titulo }}')">
                     <i class="fa-solid fa-trash-can"></i> Eliminar Oferta
                 </button>
             </form>

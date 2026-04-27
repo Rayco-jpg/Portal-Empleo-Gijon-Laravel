@@ -185,9 +185,39 @@
     box-shadow: 0 5px 12px rgba(52, 152, 219, 0.3);
 }
 
-/* ==========================================================================
-   VERSION MÓVIL: EDITAR PERFIL
-   ========================================================================= */
+.grupo-input textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.ayuda-input {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Estilo para el selector de disponibilidad */
+.control-formulario {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.ayuda-input {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+    font-style: italic;
+}
+
 @media (max-width: 768px) {
     .contenedor-editar-perfil {
         margin: 20px 10px;
@@ -249,5 +279,14 @@
     .tag-habilidad {
         padding: 8px 12px;
         font-size: 0.85rem;
+    }
+
+    .grupo-input textarea#biografia {
+        font-size: 16px;
+    }
+
+    .control-formulario {
+        padding: 12px;
+        font-size: 16px; 
     }
 }
