@@ -161,6 +161,16 @@
                     @endif
                 </ul>
             </div>
+            <div class="footer-seccion legal">
+                <h4>Información Legal</h4>
+                <ul>
+                    <li><a href="{{ route('cookies') }}"><i class="fa-solid fa-cookie"></i> Política de Cookies</a></li>
+                    <li><a href="{{ route('privacidad') }}"><i class="fa-solid fa-shield-halved"></i> Privacidad</a>
+                    </li>
+                    <li><a href="{{ route('accesibilidad') }}"><i class="fa-solid fa-universal-access"></i>
+                            Accesibilidad</a></li>
+                </ul>
+            </div>
             <div class="footer-seccion contacto">
                 <h4>Contacto</h4>
                 <p><i class="fa-solid fa-location-dot"></i> Gijón, Asturias</p>
@@ -176,7 +186,6 @@
                     @endif
                 @endauth
             </div>
-
             <div class="footer-inferior">
                 <p>&copy; 2026 Portal de Empleo Gijón - Proyecto Final de Grado</p>
             </div>

@@ -13,13 +13,9 @@ return new class extends Migration
     {
         Schema::create('alertas', function (Blueprint $table) {
             $table->id('id_alerta');
-
-            // CAMBIO AQUÍ: Apuntamos a 'usuarios' en vez de 'users'
             $table->foreignId('id_usuario')
                   ->constrained('usuarios')
                   ->onDelete('cascade');
-
-            // Relación con la categoría (esta ya estaba bien)
             $table->foreignId('id_categoria')
                   ->constrained('categorias', 'id_categoria')
                   ->onDelete('cascade');

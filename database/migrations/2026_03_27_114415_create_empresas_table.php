@@ -6,30 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
+        Schema::dropIfExists('empresas'); 
+        
         Schema::create('empresas', function (Blueprint $table) {
-            $table->id('id_empresa');
+            $table->id();
+            $table->foreignId('id_usuario')->constrained('users')->onDelete('cascade');
             
-            // CAMBIO CLAVE: Apuntamos a 'usuarios', no a 'users'
-            $table->foreignId('id_usuario')
-                  ->constrained('usuarios') 
-                  ->onDelete('cascade');
-                  
             $table->string('nombre_empresa');
-            $table->string('logo')->nullable();
-            $table->string('sector')->nullable(); // Añadida porque tu controlador la usa
+            $table->string('sector')->nullable();
+            $table->string('tamano')->nullable();
+            $table->string('ubicacion')->nullable();
+            $table->string('sitio_web')->nullable();
+            $table->string('twitter')->nullable();
             $table->text('descripcion')->nullable();
+            $table->string('logo')->nullable(); 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('empresas');

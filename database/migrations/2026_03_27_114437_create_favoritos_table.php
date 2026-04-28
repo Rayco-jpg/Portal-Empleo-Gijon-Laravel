@@ -13,18 +13,12 @@ return new class extends Migration
     {
         Schema::create('favoritos', function (Blueprint $table) {
             $table->id();
-            
-            // Relación con tu tabla 'usuarios'
             $table->foreignId('id_usuario')
                   ->constrained('usuarios') 
                   ->onDelete('cascade');
-
-            // Relación con la tabla 'ofertas'
             $table->foreignId('id_oferta')
                   ->constrained('ofertas')
                   ->onDelete('cascade');
-
-            // Añadimos esta columna para que tu controlador NO de error al ordenar
             $table->timestamp('fecha_guardado')->useCurrent(); 
 
             $table->timestamps(); 

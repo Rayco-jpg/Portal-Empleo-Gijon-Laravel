@@ -143,6 +143,57 @@
                     <strong>Sector:</strong>
                     <span>{{ $perfil->sector ?? 'No definido' }}</span>
                 </div>
+
+                @if($perfil->sitio_web)
+                    <div class="dato-perfil">
+                        <i class="fa-solid fa-globe"></i>
+                        <strong>Web:</strong>
+                        <a href="{{ $perfil->sitio_web }}" target="_blank" class="enlace-perfil-link">
+                            {{ str_replace(['http://', 'https://'], '', $perfil->sitio_web) }}
+                        </a>
+                    </div>
+                @endif
+
+                @if($perfil->twitter)
+                    <div class="dato-perfil">
+                        <i class="fa-brands fa-x-twitter"></i>
+                        <strong>Twitter:</strong>
+                        <span class="text-primary">{{ $perfil->twitter }}</span>
+                    </div>
+                @endif
+
+                @if($perfil->facebook)
+                    <a href="{{ $perfil->facebook }}" target="_blank" class="icono-red-social">
+                        <i class="fa-brands fa-facebook fa-2x" style="color: #1877F2;"></i>
+                    </a>
+                @endif
+
+                @if($perfil->instagram)
+                    <a href="{{ $perfil->instagram }}" target="_blank" class="icono-red-social">
+                        <i class="fa-brands fa-instagram fa-2x" style="color: #E4405F;"></i>
+                    </a>
+                @endif
+
+                @if($perfil->whatsapp)
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $perfil->whatsapp) }}" target="_blank"
+                        class="icono-red-social">
+                        <i class="fa-brands fa-whatsapp fa-2x" style="color: #25D366;"></i>
+                    </a>
+                @endif
+
+                <div class="seccion-perfil-bloque" style="width: 100%; margin-top: 20px;">
+                    <h3 class="subtitulo-cv"><i class="fa-solid fa-building-user"></i> Sobre nosotros</h3>
+                    <div class="cuadro-biografia">
+                        @if(!empty($perfil->descripcion))
+                            <p class="texto-biografia">{{ $perfil->descripcion }}</p>
+                        @else
+                            <p class="texto-informativo">
+                                <i class="fa-solid fa-circle-info"></i>
+                                Esta empresa aún no ha añadido una descripción.
+                            </p>
+                        @endif
+                    </div>
+                </div>
             @endif
         </div>
 

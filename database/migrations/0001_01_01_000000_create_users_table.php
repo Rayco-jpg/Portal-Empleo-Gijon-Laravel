@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Cambiamos 'users' por 'usuarios' y añadimos tus columnas personalizadas
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id(); 
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('tipo_usuario'); // Candidato o Empresa
-            $table->timestamp('fecha')->useCurrent(); // La columna que pedía tu error
+            $table->string('tipo_usuario'); 
+            $table->timestamp('fecha')->useCurrent(); 
             $table->rememberToken();
             $table->timestamps();
         });

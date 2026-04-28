@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('candidatos', function (Blueprint $table) {
             $table->id('id_candidato');
-            
-            // CAMBIO AQUÍ: Cambiamos 'users' por 'usuarios'
             $table->foreignId('id_usuario')
-                  ->constrained('usuarios') 
-                  ->onDelete('cascade');
-                  
+                ->constrained('usuarios')
+                ->onDelete('cascade');
+
             $table->string('nombre');
             $table->string('apellidos');
+            $table->string('ubicacion')->nullable();
             $table->string('foto')->nullable();
             $table->string('curriculum')->nullable();
+            $table->text('biografia')->nullable();
             $table->text('habilidades_clave')->nullable();
+            $table->boolean('disponible')->default(1);
             $table->timestamps();
         });
     }

@@ -218,8 +218,8 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr; 
+    gap: 30px;
     padding: 0 5%;
 }
 
@@ -230,6 +230,7 @@ main {
 
 .footer-seccion p {
     color: var(--gris-texto);
+    line-height: 1.6;
 }
 
 .footer-seccion h4::after {
@@ -246,6 +247,7 @@ main {
     margin-top: 40px;
     padding: 20px 0;
     text-align: center;
+    width: 100%;
 }
 
 @media (max-width: 768px) {

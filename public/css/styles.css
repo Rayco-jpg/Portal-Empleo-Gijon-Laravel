@@ -12,3 +12,6 @@
 @import url('admin.css');
 @import url('contacto.css');
 @import url('perfil_publico_candidato.css');
+@import url('perfil_publico_empresa.css');
+@import url(errors.css);
+@import url('legal.css');

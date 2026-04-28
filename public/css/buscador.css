@@ -501,6 +501,16 @@
     pointer-events: none; 
 }
 
+.link-empresa-fake {
+    color: #3498db;
+    cursor: pointer;
+    position: relative;
+    z-index: 10; 
+}
+.link-empresa-fake:hover {
+    text-decoration: underline;
+}
+
 /* ==========================================================================
    VERSION MÓVIL: BUSCADOR
    ========================================================================== */

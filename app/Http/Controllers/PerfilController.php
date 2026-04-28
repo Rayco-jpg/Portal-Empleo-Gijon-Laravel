@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidato;
 use App\Models\Empresa;
+use App\Models\Oferta;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -38,13 +40,22 @@ class PerfilController extends Controller
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
+
         $request->validate([
             'nuevo_nombre' => 'nullable|string|max:255',
             'apellidos'    => 'nullable|string|max:255',
             'ubicacion'    => 'nullable|string|max:255',
-            'biografia'         => 'nullable|string',
+            'sector'       => 'nullable|string|max:255',
+            'tamano'       => 'nullable|string|max:255',
+            'sitio_web'    => 'nullable|string|max:255',
+            'descripcion'  => 'nullable|string',
+            'twitter'      => 'nullable|string|max:255',
+            'facebook'  => 'nullable|string|max:255',
+            'instagram' => 'nullable|string|max:255',
+            'whatsapp'  => 'nullable|string|max:255',
+            'biografia'    => 'nullable|string',
             'habilidades_clave' => 'nullable|string',
-            'disponible'        => 'nullable|integer|in:0,1',
+            'disponible'   => 'nullable|integer|in:0,1',
             'foto'         => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'curriculum'   => 'nullable|mimes:pdf|max:10000'
         ]);
@@ -67,10 +78,11 @@ class PerfilController extends Controller
                     $foto = $request->file('foto');
                     $nombreFoto = time() . "_perfil_" . $user->id . "." . $foto->getClientOriginalExtension();
                     $foto->move(public_path('uploads/perfiles'), $nombreFoto);
+
                     $datosUpdate['foto'] = $nombreFoto;
                 }
 
-                if ($request->hasFile('curriculum')) {
+                if ($request->hasFile('curriculum') && $user->tipo_usuario == 'candidato') {
                     if ($perfilActual && $perfilActual->curriculum) {
                         $rutaCV = public_path('uploads/curriculums/' . $perfilActual->curriculum);
                         if (File::exists($rutaCV)) {
@@ -83,41 +95,33 @@ class PerfilController extends Controller
                 }
 
                 if ($user->tipo_usuario == 'candidato') {
-                    if ($request->filled('nuevo_nombre')) {
-                        $datosUpdate['nombre'] = $request->nuevo_nombre;
-                        session(['nombre' => $request->nuevo_nombre]);
-                    }
-                    if ($request->filled('apellidos')) {
-                        $datosUpdate['apellidos'] = $request->apellidos;
-                    }
-                    if ($request->filled('ubicacion')) {
-                        $datosUpdate['ubicacion'] = $request->ubicacion;
-                    }
-                    if ($request->has('biografia')) {
-                        $datosUpdate['biografia'] = $request->biografia;
-                    }
-                    if ($request->filled('habilidades_clave')) {
-                        $datosUpdate['habilidades_clave'] = $request->habilidades_clave;
-                    }
-
-                    if ($request->has('disponible')) {
-                        $datosUpdate['disponible'] = $request->disponible;
-                    }
+                    if ($request->filled('nuevo_nombre')) $datosUpdate['nombre'] = $request->nuevo_nombre;
+                    if ($request->filled('apellidos')) $datosUpdate['apellidos'] = $request->apellidos;
+                    if ($request->filled('ubicacion')) $datosUpdate['ubicacion'] = $request->ubicacion;
+                    if ($request->has('biografia')) $datosUpdate['biografia'] = $request->biografia;
+                    if ($request->filled('habilidades_clave')) $datosUpdate['habilidades_clave'] = $request->habilidades_clave;
+                    if ($request->has('disponible')) $datosUpdate['disponible'] = $request->disponible;
 
                     Candidato::where('id_usuario', $user->id)->update($datosUpdate);
                 } else {
-                    if ($request->filled('nuevo_nombre')) {
-                        $datosUpdate['nombre_empresa'] = $request->nuevo_nombre;
-                        session(['nombre' => $request->nuevo_nombre]);
-                    }
-                    if ($request->filled('ubicacion')) {
-                        $datosUpdate['ubicacion'] = $request->ubicacion;
-                    }
-                    if ($request->filled('sector')) {
-                        $datosUpdate['sector'] = $request->sector;
+                    if ($request->filled('nuevo_nombre')) $datosUpdate['nombre_empresa'] = $request->nuevo_nombre;
+                    if ($request->filled('ubicacion')) $datosUpdate['ubicacion'] = $request->ubicacion;
+                    if ($request->filled('sector')) $datosUpdate['sector'] = $request->sector;
+                    if ($request->filled('tamano')) $datosUpdate['tamano'] = $request->tamano;
+                    if ($request->filled('sitio_web')) $datosUpdate['sitio_web'] = $request->sitio_web;
+                    if ($request->filled('twitter')) $datosUpdate['twitter'] = $request->twitter;
+                    if ($request->filled('facebook')) $datosUpdate['facebook'] = $request->facebook;
+                    if ($request->filled('instagram')) $datosUpdate['instagram'] = $request->instagram;
+                    if ($request->filled('whatsapp')) $datosUpdate['whatsapp'] = $request->whatsapp;
+                    if ($request->has('descripcion')) {
+                        $datosUpdate['descripcion'] = $request->descripcion;
                     }
 
                     Empresa::where('id_usuario', $user->id)->update($datosUpdate);
+                }
+
+                if ($request->filled('nuevo_nombre')) {
+                    session(['nombre' => $request->nuevo_nombre]);
                 }
             });
 
@@ -145,10 +149,10 @@ class PerfilController extends Controller
 
     public function verPerfilPublico($id)
     {
-        $usuario = \App\Models\User::findOrFail($id);
-
+        $usuario = User::findOrFail($id);
         $perfil = Candidato::where('id_usuario', $id)->first();
-        if (Auth::user()->tipo_usuario === 'empresa') {
+
+        if (Auth::check() && Auth::user()->tipo_usuario === 'empresa') {
             DB::table('visitas_perfil')->insert([
                 'id_candidato' => $id,
                 'id_empresa'   => Auth::id(),
@@ -156,5 +160,12 @@ class PerfilController extends Controller
             ]);
         }
         return view('perfil_publico_candidato', compact('usuario', 'perfil'));
+    }
+
+    public function verPerfilEmpresa($id)
+    {
+        $empresa = \App\Models\Empresa::where('id_usuario', $id)->firstOrFail();
+        $ofertas = \App\Models\Oferta::where('id_empresa', $empresa->id_empresa)->get();
+        return view('perfil_publico_empresa', compact('empresa', 'ofertas'));
     }
 }

@@ -10,7 +10,7 @@ class Oferta extends Model
     use HasFactory;
 
     protected $table = 'ofertas';
-    public $timestamps = false; 
+    public $timestamps = false;
     protected $primaryKey = 'id';
 
     protected $casts = [
@@ -20,7 +20,7 @@ class Oferta extends Model
     ];
 
     protected $fillable = [
-        'id_usuario',   
+        'id_usuario',
         'id_empresa',
         'id_categoria',
         'titulo',

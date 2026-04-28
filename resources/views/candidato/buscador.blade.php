@@ -142,8 +142,18 @@
                             </div>
                             <h3 class="titulo-oferta">{{ $o->titulo }}</h3>
                             <div class="datos-breves">
-                                <p class="dato-linea"><i class="fa-solid fa-building"></i>
-                                    <strong>{{ $o->datosEmpresa->nombre_empresa ?? 'Empresa no disponible' }}</strong>
+                                <p class="dato-linea">
+                                    <i class="fa-solid fa-building"></i>
+                                    <strong>
+                                        @if($o->datosEmpresa)
+                                            <span class="link-empresa-fake"
+                                                onclick="event.preventDefault(); event.stopPropagation(); window.location.href='{{ route('empresa.detalle', $o->datosEmpresa->id_usuario) }}';">
+                                                {{ $o->datosEmpresa->nombre_empresa }}
+                                            </span>
+                                        @else
+                                            <span class="text-muted">Empresa no disponible</span>
+                                        @endif
+                                    </strong>
                                 </p>
                                 <p class="dato-linea"><i class="fa-solid fa-location-dot"></i> {{ $o->zona_gijon }}</p>
                                 <p class="dato-linea"><i class="fa-solid fa-money-bill-wave"></i> <span>Salario:

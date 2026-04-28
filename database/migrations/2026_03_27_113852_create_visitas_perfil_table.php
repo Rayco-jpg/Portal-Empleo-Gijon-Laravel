@@ -13,13 +13,9 @@ return new class extends Migration
     {
         Schema::create('visitas_perfil', function (Blueprint $table) {
             $table->id();
-            
-            // 1. Relación con candidatos (Ya estaba bien)
             $table->foreignId('id_candidato')
                   ->constrained('candidatos', 'id_candidato')
                   ->onDelete('cascade');
-            
-            // 2. CAMBIO CLAVE: Apuntamos a 'usuarios' (que es donde están las empresas)
             $table->foreignId('id_empresa')
                   ->constrained('usuarios') 
                   ->onDelete('cascade');

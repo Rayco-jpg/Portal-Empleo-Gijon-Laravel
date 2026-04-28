@@ -45,9 +45,16 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/actualizar-password', 'updatePassword')->name('password.update');
 });
 
-    Route::get('/buscador', [OfertaController::class, 'index'])->name('buscador');
-    Route::get('/oferta/{id}', [OfertaController::class, 'show'])->name('ofertas.show');
-    Route::post('/reportar-oferta', [App\Http\Controllers\ContactoController::class, 'store'])->name('reportar.oferta');
+Route::get('/buscador', [OfertaController::class, 'index'])->name('buscador');
+Route::view('/cookies', 'cookies')->name('cookies');
+Route::view('/privacidad', 'privacidad')->name('privacidad');
+Route::view('/accesibilidad', 'accesibilidad')->name('accesibilidad');
+Route::get('/oferta/{id}', [OfertaController::class, 'show'])->name('ofertas.show');
+Route::get('/empresa/detalle/{id}', [PerfilController::class, 'verPerfilEmpresa'])->name('empresa.detalle');
+Route::post('/reportar-oferta', [App\Http\Controllers\ContactoController::class, 'store'])->name('reportar.oferta');
+// Rutas de desarrollo - Comentar antes de entregar
+// Route::get('/error404', function () { return view('errors.404'); });
+// Route::get('/error405', function () { return view('errors.405'); });
 
 /*
 |--------------------------------------------------------------------------

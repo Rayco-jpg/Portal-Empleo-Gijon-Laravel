@@ -12,8 +12,6 @@ return new class extends Migration
      */
 public function up()
 {
-    // Esto es necesario si usas campos ENUM, si es un STRING normal no hace falta, 
-    // pero te aseguras de que el sistema acepte 'admin'.
     DB::statement("ALTER TABLE usuarios MODIFY COLUMN tipo_usuario ENUM('candidato', 'empresa', 'admin') NOT NULL");
 }
 

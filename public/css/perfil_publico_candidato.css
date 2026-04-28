@@ -1,3 +1,42 @@
+body.modo-oscuro {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+body.modo-oscuro .tarjeta-perfil-header,
+body.modo-oscuro .seccion-blanca,
+body.modo-oscuro .card-informacion {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.modo-oscuro .texto-cabecera h1,
+body.modo-oscuro .seccion-blanca h3,
+body.modo-oscuro .card-informacion h4 {
+    color: #ffffff !important;
+    border-bottom-color: #333 !important;
+}
+
+body.modo-oscuro .dato-perfil strong {
+    color: #3498db !important;
+}
+
+body.modo-oscuro .dato-perfil span:not(.badge-estado),
+body.modo-oscuro .ubicacion,
+body.modo-oscuro .texto-biografia {
+    color: #b0b0b0 !important;
+}
+
+body.modo-oscuro .dato-perfil {
+    border-bottom-color: #333 !important;
+}
+
+body.modo-oscuro .tag-habilidad {
+    background-color: #2c3e50 !important;
+    color: #5dade2 !important;
+}
+
 .contenedor-perfil-publico {
     max-width: 1000px;
     margin: 2rem auto;
@@ -52,8 +91,8 @@
     color: #3498db;
 }
 .badge-habilidad {
-    background: #fef9e7;
-    color: #f1c40f;
+    background: #e8f4fd;
+    color: #3498db;
 }
 
 .rejilla-perfil {

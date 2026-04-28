@@ -12,14 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ofertas', function (Blueprint $table) {
-            $table->id(); // Este es el id_oferta
+            $table->id(); 
             $table->string('titulo');
             $table->text('descripcion');
-            
-            // 1. Relación con categorías (Esta ya estaba bien)
             $table->foreignId('id_categoria')->constrained('categorias', 'id_categoria');
-            
-            // 2. CAMBIO CLAVE: Apuntamos a 'usuarios' (que es donde están las empresas)
             $table->foreignId('id_empresa')
                   ->constrained('usuarios') 
                   ->onDelete('cascade');

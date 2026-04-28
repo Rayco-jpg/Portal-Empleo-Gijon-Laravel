@@ -156,6 +156,7 @@ class OfertaController extends Controller implements HasMiddleware
             'descripcion'  => $request->descripcion,
             'id_categoria' => $request->id_categoria,
             'id_empresa'   => $perfilEmpresa->id_empresa,
+            'id_usuario'   => Auth::id(),
             'zona_gijon'   => $request->zona_gijon,
             'salario'      => $request->salario,
             'jornada'      => $request->jornada,

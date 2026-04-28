@@ -14,11 +14,17 @@ class Empresa extends Model
         'id_usuario',
         'nombre_empresa',
         'sector',
+        'tamano',
         'ubicacion',
-        'foto'
+        'foto',
+        'sitio_web',
+        'twitter',
+        'facebook',
+        'instagram',
+        'whatsapp',
+        'descripcion',
     ];
 
-    // Una empresa tiene muchas ofertas
     public function ofertas()
     {
         return $this->hasMany(Oferta::class, 'id_empresa', 'id_empresa');

@@ -12,7 +12,6 @@ return new class extends Migration
     public function up()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            // Añadimos los campos necesarios para la recuperación
             $table->string('reset_token')->nullable()->after('password');
             $table->datetime('token_expira')->nullable()->after('reset_token');
         });
