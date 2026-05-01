@@ -9,6 +9,8 @@ use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\PostulacionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\PagoController;
+use App\Http\Controllers\PremiumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +64,17 @@ Route::post('/reportar-oferta', [App\Http\Controllers\ContactoController::class,
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
+    Route::controller(PagoController::class)->group(function () {
+        Route::get('/checkout-premium', 'checkout')->name('checkout');
+        Route::get('/pago-exito', 'exito')->name('pago.exito');
+        Route::get('/pago-cancelado', 'cancelado')->name('pago.cancelado');
+        Route::post('/premium/cancelar', 'cancelarSuscripcion')->name('premium.cancelar');
+    });
+
+    Route::controller(PremiumController::class)->group(function () {
+        Route::get('/premium', 'index')->name('premium.index'); 
+        Route::get('/premium/facturacion', 'facturacion')->name('premium.facturacion');
+    });
 
     // 1. RUTAS DE CONTACTO
     Route::get('/contacto', function () {

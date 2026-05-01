@@ -394,6 +394,90 @@ body {
 .text-success { color: #28a745; }
 .text-danger { color: #dc3545; }
 
+.tarjeta-premium {
+    width: 100%;
+    margin-top: 30px;
+    border: 2px solid #f1c40f;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fffdf5;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.cabecera-premium {
+    color: #b8860b;
+    border-bottom: 2px solid #f1c40f;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.texto-info-premium {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.fecha-validez {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.acciones-premium {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-premium-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+}
+
+.btn-premium-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-facturas {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-facturas:hover {
+    background-color: #2980b9;
+}
+
+.btn-cancelar-premium {
+    background-color: #e74c3c;
+    border: 1px solid #c0392b;
+    color: white;
+}
+
+.btn-cancelar-premium:hover {
+    background-color: #c0392b;
+}
+
+.form-cancelar {
+    margin: 0;
+    width: 100%;
+}
+
 @media (max-width: 768px) {
     .perfil-usuario {
         margin: 20px 10px;
@@ -506,5 +590,31 @@ body {
     .dato-perfil i {
         width: 20px;
         text-align: center;
+    }
+
+    .tarjeta-premium {
+        padding: 15px; 
+        margin-top: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .cabecera-premium {
+        font-size: 1.2rem; 
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        gap: 5px;
+    }
+
+    .texto-info-premium {
+        font-size: 0.95rem;
+    }
+
+    .btn-cancelar-premium {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 1rem;
     }
 }

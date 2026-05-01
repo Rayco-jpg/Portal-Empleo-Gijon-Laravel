@@ -197,6 +197,33 @@
             @endif
         </div>
 
+        @if(Auth::user()->es_premium)
+            <div class="seccion-perfil-bloque tarjeta-premium">
+                <div class="cabecera-premium">
+                    <i class="fa-solid fa-crown"></i> Gestión de Suscripción Premium
+                </div>
+
+                <p class="texto-info-premium">Tu cuenta tiene acceso a todas las ventajas exclusivas.</p>
+
+                <p class="fecha-validez">
+                    <strong>Válido hasta:</strong>
+                    {{ \Carbon\Carbon::parse(Auth::user()->premium_hasta)->format('d/m/Y') }}
+                </p>
+
+                <div class="acciones-premium">
+                    <a href="{{ route('premium.facturacion') }}" class="btn-premium-action btn-facturas">
+                        <i class="fa-solid fa-file-invoice"></i> Mis Facturas
+                    </a>
+
+                    <form action="{{ route('premium.cancelar') }}" method="POST" class="form-cancelar">
+                        @csrf
+                        <button type="submit" class="btn-premium-action btn-cancelar-premium">
+                            <i class="fa-solid fa-xmark"></i> Cancelar Suscripción
+                        </button>
+                    </form>
+                </div>
+            </div>
+        @endif
         <div class="acciones-finales-perfil">
             <a href="{{ route('perfil.edit') }}" class="btn-editar">
                 <i class="fa-solid fa-user-pen"></i> Editar Perfil

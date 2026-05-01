@@ -9,27 +9,18 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
-    // 1. Nombre de la tabla (coincide con tu migración y código anterior)
     protected $table = 'usuarios';
-
-    // 2. Activamos timestamps porque la nueva migración los incluye ($table->timestamps())
-    // Si prefieres no usarlos, tendrías que quitarlos de la migración también.
     public $timestamps = false;
 
-    /**
-     * Atributos que se pueden asignar masivamente.
-     */
-/**
-     * Atributos que se pueden asignar masivamente.
-     */
     protected $fillable = [
         'email',
         'password',
         'tipo_usuario', 
         'fecha',
-        'reset_token',  // <-- AÑADE ESTA
-        'token_expira', // <-- AÑADE ESTA
+        'reset_token',  
+        'token_expira',
+        'es_premium',   
+        'premium_hasta', 
     ];
 
     protected $hidden = [
@@ -44,28 +35,25 @@ class User extends Authenticatable
     {
         return [
             'password' => 'hashed',
-            'fecha'    => 'datetime', // Para que Laravel lo trate como objeto Carbon
-            'token_expira' => 'datetime', // <-- AÑADE ESTO para evitar errores de formato
+            'fecha'    => 'datetime', 
+            'token_expira' => 'datetime',
+            'es_premium' => 'boolean',     
+            'premium_hasta' => 'datetime', 
         ];
     }
 
-    // --- RELACIONES PARA TU TFG ---
+    public function esUsuarioPremium()
+    {
+        return $this->es_premium && ($this->premium_hasta === null || $this->premium_hasta->isFuture());
+    }
 
-    /**
-     * Relación con la tabla candidatos.
-     */
     public function candidato()
     {
-        // 'id_usuario' es la FK en la tabla candidatos
         return $this->hasOne(Candidato::class, 'id_usuario');
     }
 
-    /**
-     * Relación con la tabla empresas.
-     */
     public function empresa()
     {
-        // 'id_usuario' es la FK en la tabla empresas
         return $this->hasOne(Empresa::class, 'id_usuario');
     }
 }

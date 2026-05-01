@@ -1,0 +1,251 @@
+.tarjeta-premium {
+    background: var(--bg-tarjeta);
+    max-width: 650px;
+    margin: 50px auto 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 1px solid var(--borde-input);
+}
+
+.cabecera-premium {
+    background: #f1c40f;
+    background: linear-gradient(135deg, #f1c40f 0%, #d4ac0d 100%);
+    padding: 35px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #1a1a1a;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.circulo-icono {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.texto-cabecera h1 {
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.subtitulo-premium {
+    font-size: 0.95rem;
+    margin: 5px 0 0;
+    opacity: 0.9;
+}
+
+.cuerpo-premium {
+    padding: 35px;
+}
+
+.info-principal h2 {
+    color: var(--color-texto);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.grid-beneficios {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.card-beneficio {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-input);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--borde-input);
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-box.gold { background: rgba(241, 196, 15, 0.1); color: #d4ac0d; }
+.icon-box.purple { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+.icon-box.blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+.icon-box.green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+
+.btn-checkout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2d3748;
+    color: white !important;
+    padding: 18px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    width: 100%;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.btn-checkout:hover {
+    background: #1a202c;
+}
+
+.nota-pago {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+    margin-top: 15px;
+}
+
+.status-badge {
+    background: #e8f8f0;
+    color: #27ae60;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 25px;
+    border: 1px solid rgba(39, 174, 96, 0.2);
+}
+
+.info-activa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.dato-suscripcion {
+    background: var(--bg-input);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--borde-input);
+    text-align: center;
+}
+
+.dato-suscripcion span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 5px;
+}
+
+.text-premium {
+    color: #d4ac0d !important;
+}
+
+.botones-gestion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-gestion {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    border: 1px solid var(--borde-input);
+    cursor: pointer;
+    transition: 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.gestion-facturas {
+    background: #3498db; 
+    color: white !important;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.gestion-facturas:hover {
+    background: #2980b9; 
+    filter: none; 
+}
+
+.gestion-facturas i {
+    color: white; 
+}
+
+.gestion-cancelacion {
+    background: #e53e3e; 
+    color: white !important; 
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(229, 62, 62, 0.1);
+}
+
+.gestion-cancelacion:hover {
+    background: #c53030; 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+    filter: none;
+}
+
+.gestion-cancelacion i {
+    color: white;
+}
+.link-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 50px;
+}
+
+.link-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.15); 
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 50px; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.link-footer a i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.link-footer a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.link-footer a:hover i {
+    transform: translateX(-5px); 
+}
+
+@media (max-width: 768px) {
+    .info-activa-grid { grid-template-columns: 1fr; }
+    .cabecera-premium { flex-direction: column; text-align: center; padding: 25px; }
+}

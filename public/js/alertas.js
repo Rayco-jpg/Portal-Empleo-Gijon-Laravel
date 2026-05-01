@@ -74,3 +74,22 @@ window.confirmarBorradoEmpresa = function(idFormulario, tituloOferta) {
         }
     });
 };
+
+window.confirmarCancelacionPremium = function(idFormulario) {
+    Swal.fire({
+        title: '¿Confirmas la cancelación?',
+        text: "Perderás tu distintivo de usuario Premium y el acceso a las ventajas exclusivas inmediatamente.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, cancelar suscripción',
+        cancelButtonText: 'No, mantenerla',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si el usuario confirma, enviamos el formulario recibido por ID
+            document.getElementById(idFormulario).submit();
+        }
+    });
+};

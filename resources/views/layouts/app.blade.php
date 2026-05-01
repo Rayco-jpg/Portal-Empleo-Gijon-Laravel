@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Portal Empleo Gijón - @yield('title')</title>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/alertas.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -23,10 +28,17 @@
                 <p class="saludo-usuario">Hola,
                     <span class="nombre-destacado">
                         @auth
-                            @if(Auth::user()->tipo_usuario == 'admin') Administrador
-                            @else {{ session('nombre') ?? (Auth::user()->name ?? Auth::user()->nombre) }}
+                            @if(Auth::user()->tipo_usuario == 'admin')
+                                Administrador
+                            @else
+                                {{ session('nombre') ?? (Auth::user()->name ?? Auth::user()->nombre) }}
+                                @if(Auth::user()->es_premium)
+                                    <i class="fa-solid fa-crown" style="color: #f1c40f; font-size: 0.8em;"
+                                        title="Usuario Premium"></i>
+                                @endif
                             @endif
-                        @else Invitado
+                        @else
+                            Invitado
                         @endauth
                     </span>
                 </p>
@@ -49,27 +61,32 @@
                         <a href="{{ route('inscripciones.index') }}"
                             class="enlace-nav {{ request()->routeIs('inscripciones.index') ? 'activo' : '' }}">Mis
                             Inscripciones</a>
+
                     @elseif(Auth::user()->tipo_usuario == 'empresa')
                         <a href="{{ route('ofertas.index') }}"
                             class="enlace-nav {{ request()->routeIs('ofertas.index') ? 'activo' : '' }}">Panel de Ofertas</a>
                         <a href="{{ route('ofertas.create') }}"
                             class="enlace-nav {{ request()->routeIs('ofertas.create') ? 'activo' : '' }}">Publicar Oferta</a>
+
                     @elseif(Auth::user()->tipo_usuario == 'admin')
                         <a href="{{ route('admin.index') }}"
                             class="enlace-nav {{ request()->routeIs('admin.index') ? 'activo' : '' }}">Panel de control</a>
                         <a href="{{ route('admin.usuarios') }}"
                             class="enlace-nav {{ request()->routeIs('admin.usuarios') ? 'activo' : '' }}">Usuarios</a>
                         <a href="{{ route('admin.ofertas') }}"
-                            class="enlace-nav {{ request()->routeIs('admin.ofertas') ? 'activo' : '' }}"> Ofertas</a>
-                        <a href="{{ route('admin.mensajes') }}"
-                            class="enlace-nav {{ request()->routeIs('admin.mensajes') ? 'activo' : '' }}"> Buzón</a>
+                            class="enlace-nav {{ request()->routeIs('admin.ofertas') ? 'activo' : '' }}">Ofertas</a>
                     @endif
-
-                    @if(Auth::user()->tipo_usuario !== 'admin')
+                    @if(in_array(Auth::user()->tipo_usuario, ['candidato', 'empresa']))
+                        <a href="{{ route('premium.index') }}"
+                            class="enlace-nav {{ Auth::user()->es_premium ? 'enlace-mi-suscripcion' : 'enlace-hazte-premium' }} {{ request()->routeIs('premium.index') ? 'activo' : '' }}">
+                            <i class="fa-solid {{ Auth::user()->es_premium ? 'fa-gem' : 'fa-crown' }}"></i>
+                            {{ Auth::user()->es_premium ? 'Mi Suscripción' : 'Hazte Premium' }}
+                        </a>
                         <a href="{{ route('perfil') }}"
                             class="enlace-nav {{ request()->routeIs('perfil') ? 'activo' : '' }}">Perfil</a>
                     @endif
                     <a href="{{ route('logout') }}" class="enlace-nav enlace-salir">Salir</a>
+
                 @else
                     <a href="{{ route('login') }}" class="enlace-nav">Iniciar Sesión</a>
                     <a href="{{ route('register') }}" class="enlace-nav">Registrarse</a>
@@ -191,12 +208,6 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/alertas.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

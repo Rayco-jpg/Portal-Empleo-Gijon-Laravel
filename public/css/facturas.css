@@ -1,0 +1,147 @@
+.tarjeta-premium {
+    background-color: var(--bg-tarjeta);
+    width: 100%;
+    max-width: 850px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    border: 1px solid var(--borde-input);
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecera-facturas {
+    background-color: #3498db;
+    padding: 30px;
+    text-align: center;
+    color: white;
+}
+
+.cabecera-facturas h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-weight: 700;
+}
+
+.cuerpo-premium {
+    padding: 20px 40px;
+    background-color: var(--bg-tarjeta);
+}
+
+.contenedor-tabla {
+    background-color: var(--bg-input);
+    border: 1px solid var(--borde-input);
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.tabla-facturas {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.tabla-facturas th {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--color-texto-secundario);
+    padding: 15px;
+    text-align: left;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--borde-input);
+}
+
+.tabla-facturas td {
+    padding: 15px;
+    border-bottom: 1px solid var(--borde-input);
+    color: var(--color-texto);
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.tabla-facturas tr:last-child td {
+    border-bottom: none;
+}
+
+.ref-factura {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.badge-estado {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    border-width: 2px;
+}
+
+.badge-estado.pagado {
+    background-color: #27ae60;
+    color: white;
+    border: 1px solid #1e8449;
+    box-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
+}
+
+.badge-estado.pendiente {
+    background-color: #f39c12;
+    color: white;
+    border: 1px solid #d68910;
+    box-shadow: 0 2px 4px rgba(243, 156, 18, 0.3);
+}
+
+.badge-estado.cancelado {
+    background-color: #e74c3c;
+    color: white;
+    border: 1px solid #c0392b;
+    box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+}
+
+.pie-facturacion {
+    padding: 25px;
+    text-align: center;
+    background-color: var(--bg-tarjeta);
+    border-top: 1px solid var(--borde-input);
+    margin-top: auto;
+}
+
+.boton-volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 30px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--borde-input);
+    transition: all 0.3s ease;
+}
+
+.boton-volver:hover {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+@media (max-width: 768px) {
+    .tarjeta-premium {
+        margin: 15px;
+        width: auto;
+    }
+    .cuerpo-premium {
+        padding: 10px;
+    }
+}
