@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Inscripcion;
 use App\Models\Candidato;
 use App\Models\Oferta;
 use Carbon\Carbon;
 use App\Models\Empresa;
+use App\Mail\EstadoCandidaturaMailable;
+use App\Mail\NuevaInscripcionEmpresa;
+use Illuminate\Support\Facades\Mail;
 
 class PostulacionController extends Controller
 {
@@ -52,7 +56,6 @@ class PostulacionController extends Controller
 
         $id_oferta = $request->input('id_oferta');
 
-        // Usamos updateOrCreate o un simple check para evitar duplicados
         $existe = Inscripcion::where('id_oferta', $id_oferta)
             ->where('id_candidato', $candidato->id_candidato)
             ->exists();
@@ -61,14 +64,27 @@ class PostulacionController extends Controller
             return back()->with('info', 'Ya estás inscrito en esta oferta.');
         }
 
-        Inscripcion::create([
+        $inscripcion = Inscripcion::create([
             'id_oferta' => $id_oferta,
             'id_candidato' => $candidato->id_candidato,
             'fecha_inscripcion' => Carbon::now(),
             'estado' => 'pendiente'
         ]);
 
-        return back()->with('success', '¡Te has inscrito correctamente!');
+        try {
+            $oferta = Oferta::with('datosEmpresa.usuario')->find($id_oferta);
+            $perfilCandidato = \App\Models\Candidato::where('id_usuario', Auth::id())->first();
+
+            if ($oferta && $oferta->datosEmpresa && $oferta->datosEmpresa->usuario) {
+                Mail::to($oferta->datosEmpresa->usuario->email)->send(
+                    new NuevaInscripcionEmpresa($perfilCandidato, $oferta)
+                );
+            }
+            return back()->with('success', '¡Te has inscrito correctamente y hemos avisado a la empresa!');
+        } catch (\Exception $e) {
+            Log::error("Error enviando correo a empresa: " . $e->getMessage());
+            return back()->with('success', '¡Te has inscrito correctamente! (Nota: Hubo un problema temporal con la notificación a la empresa).');
+        }
     }
 
     /**
@@ -84,7 +100,6 @@ class PostulacionController extends Controller
             return back()->with('error', 'No se pudo verificar tu identidad de candidato.');
         }
 
-        // Borramos la inscripción específica de este candidato para esta oferta
         $borrado = Inscripcion::where('id_oferta', $id_oferta)
             ->where('id_candidato', $candidato->id_candidato)
             ->delete();
@@ -96,19 +111,14 @@ class PostulacionController extends Controller
         return back()->with('error', 'No se pudo cancelar la inscripción o ya no existe.');
     }
 
-    /**
-     * Actualiza el estado de una inscripción (Acción de la Empresa)
-     * He añadido validación de propiedad para seguridad.
-     */
     public function actualizarEstado(Request $request)
     {
         $request->validate([
             'id_inscripcion' => 'required|exists:inscripciones,id',
-            // Añadimos todos los estados que usas en tu select de la vista
             'nuevo_estado' => 'required|string|in:pendiente,revision,finalista,aceptado,rechazado'
         ]);
 
-        $inscripcion = Inscripcion::with('oferta')->findOrFail($request->id_inscripcion);
+        $inscripcion = Inscripcion::with(['oferta', 'candidato.usuario'])->findOrFail($request->id_inscripcion);
 
         $perfilEmpresa = Empresa::where('id_usuario', Auth::id())->first();
 
@@ -119,6 +129,17 @@ class PostulacionController extends Controller
         $inscripcion->estado = $request->nuevo_estado;
         $inscripcion->save();
 
-        return back()->with('success', 'Estado actualizado a: ' . ucfirst($request->nuevo_estado));
+        try {
+            Mail::to($inscripcion->candidato->usuario->email)->send(
+                new EstadoCandidaturaMailable(
+                    $inscripcion->candidato->usuario,
+                    $inscripcion->oferta,
+                    $inscripcion->estado
+                )
+            );
+        } catch (\Exception $e) {
+            return back()->with('success', 'Estado actualizado, pero hubo un problema enviando el email.');
+        }
+        return back()->with('success', 'Estado actualizado a: ' . ucfirst($request->nuevo_estado) . ' y candidato notificado.');
     }
 }

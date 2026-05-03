@@ -1,6 +1,3 @@
-/* ==========================================================================
-   CONFIGURACIÓN GENERAL Y VARIABLES
-   ========================================================================== */
 :root {
     --azul-gijon: #2c3e50;
     --celeste-gijon: #3498db;
@@ -8,8 +5,6 @@
     --blanco: #ffffff;
     --gris-suave: #f4f7f6;
     --gris-texto: #94a3b8;
-
-    /* Variables de Aplicación (Modo Claro) */
     --bg-body: var(--celeste-gijon);
     --bg-cabecera: var(--azul-gijon);
     --bg-footer: var(--azul-footer);
@@ -54,9 +49,6 @@ main {
     width: auto;
 }
 
-/* ==========================================================================
-   CABECERA PROFESIONAL
-   ========================================================================== */
 .cabecera-principal {
     background-color: var(--bg-cabecera);
     color: white;
@@ -106,9 +98,8 @@ main {
     background-color: #e74c3c;
 }
 
-/* --- BOTÓN MENÚ HAMBURGUESA (MÓVIL) --- */
 #btn-menu {
-    display: none; /* Oculto en escritorio */
+    display: none; 
     background: none;
     border: none;
     cursor: pointer;
@@ -120,7 +111,6 @@ main {
     font-size: 1.8rem;
 }
 
-/* --- BOTÓN TEMA --- */
 #btn-tema {
     font-size: 1.1rem;
     color: white;
@@ -135,9 +125,6 @@ main {
     transform: scale(1.1);
 }
 
-/* ==========================================================================
-   CONTENEDOR DE CONTENIDO
-   ========================================================================== */
 .contenedor-principal {
     max-width: 1200px;
     margin: 2rem auto;
@@ -152,23 +139,20 @@ main {
     transition: background-color 0.3s ease;
 }
 
-/* ==========================================================================
-   RESPONSIVE - MÓVIL (768px o menos)
-   ========================================================================== */
 @media (max-width: 768px) {
     
     #btn-menu {
-        display: block; /* Aparece el botón */
+        display: block; 
     }
 
     .navegacion-principal {
-        display: none; /* Se oculta el menú normal */
+        display: none;
         flex-direction: column;
         position: absolute;
-        top: 100%; /* Justo debajo de la cabecera */
+        top: 100%; 
         left: 0;
         width: 100%;
-        background-color: var(--bg-cabecera); /* Se adapta al color de la cabecera */
+        background-color: var(--bg-cabecera); 
         padding: 10px 0;
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         z-index: 1000;
@@ -176,7 +160,7 @@ main {
     }
 
     .navegacion-principal.menu-abierto {
-        display: flex; /* Se muestra al hacer click */
+        display: flex;
     }
 
     .enlace-nav {
@@ -192,7 +176,6 @@ main {
         padding: 15px 0;
     }
 
-    /* Ajuste Footer */
     .footer-contenido {
         grid-template-columns: 1fr;
         text-align: center;
@@ -203,9 +186,6 @@ main {
     }
 }
 
-/* ==========================================================================
-   FOOTER GLOBAL 
-   ========================================================================== */
 .footer-global {
     background-color: var(--bg-footer);
     color: white;

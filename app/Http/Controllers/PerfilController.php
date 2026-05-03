@@ -153,12 +153,17 @@ class PerfilController extends Controller
         $perfil = Candidato::where('id_usuario', $id)->first();
 
         if (Auth::check() && Auth::user()->tipo_usuario === 'empresa') {
-            DB::table('visitas_perfil')->insert([
-                'id_candidato' => $id,
-                'id_empresa'   => Auth::id(),
-                'fecha_visita' => now()
-            ]);
+            DB::table('visitas_perfil')->updateOrInsert(
+                [
+                    'id_candidato' => $id,           
+                    'id_empresa'   => Auth::id(),    
+                ],
+                [
+                    'fecha_visita' => now()           
+                ]
+            );
         }
+
         return view('perfil_publico_candidato', compact('usuario', 'perfil'));
     }
 
@@ -167,5 +172,18 @@ class PerfilController extends Controller
         $empresa = \App\Models\Empresa::where('id_usuario', $id)->firstOrFail();
         $ofertas = \App\Models\Oferta::where('id_empresa', $empresa->id_empresa)->get();
         return view('perfil_publico_empresa', compact('empresa', 'ofertas'));
+    }
+
+    public function verVisitas()
+    {
+        $id_usuario = Auth::id();
+        $visitas = DB::table('visitas_perfil')
+            ->join('empresas', 'visitas_perfil.id_empresa', '=', 'empresas.id_usuario')
+            ->where('visitas_perfil.id_candidato', $id_usuario)
+            ->select('empresas.nombre_empresa', 'empresas.id_usuario', 'visitas_perfil.fecha_visita')
+            ->orderBy('visitas_perfil.fecha_visita', 'desc')
+            ->get();
+
+        return view('candidato.visitas', compact('visitas'));
     }
 }

@@ -6,8 +6,6 @@
             <h2 class="titulo-pagina">Panel de Gestión de Ofertas</h2>
             <p class="subtitulo-pagina">Administra tus publicaciones y revisa los candidatos inscritos en Gijón.</p>
         </header>
-
-        {{-- Lógica de estadísticas --}}
         @php
             $total_ofertas = $ofertas->count();
             $total_inscritos = $ofertas->sum('inscripciones_count');
@@ -24,16 +22,17 @@
                     <span class="etiqueta-est">Ofertas Activas</span>
                 </div>
             </div>
-
-            <div class="tarjeta-est">
-                <div class="icono-est rojo">
-                    <i class="fa-solid fa-users"></i>
+            <a href="{{ route('empresa.todos-los-candidatos') }}" class="tarjeta-est-link">
+                <div class="tarjeta-est">
+                    <div class="icono-est rojo">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="info-est">
+                        <span class="cifra-est">{{ $total_inscritos }}</span>
+                        <span class="etiqueta-est">Candidatos Totales</span>
+                    </div>
                 </div>
-                <div class="info-est">
-                    <span class="cifra-est">{{ $total_inscritos }}</span>
-                    <span class="etiqueta-est">Candidatos Totales</span>
-                </div>
-            </div>
+            </a>
 
             <div class="tarjeta-est">
                 <div class="icono-est verde">

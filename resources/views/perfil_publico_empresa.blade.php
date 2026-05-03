@@ -6,11 +6,18 @@
             <div class="contenido-perfil">
                 <div class="row align-items-end header-perfil">
                     <div class="col-auto">
-                        <img src="{{ $empresa->logo ? asset('uploads/perfiles/' . $empresa->logo) : asset('img/default-empresa.png') }}"
-                            class="logo-empresa-img">
+                        <img src="{{ $empresa->logo ? asset('storage/' . $empresa->logo) : asset('images/default-logo.png') }}"
+                            class="logo-empresa-img" alt="Logo">
                     </div>
                     <div class="col info-principal">
-                        <h1 class="nombre-empresa">{{ $empresa->nombre_empresa }}</h1>
+                        <h1 class="nombre-empresa">
+                            {{ $empresa->nombre_empresa }}
+                            @if($empresa->usuario && $empresa->usuario->es_premium)
+                                <span class="badge-premium">
+                                    <i class="fa-solid fa-crown"></i> PREMIUM
+                                </span>
+                            @endif
+                        </h1>
                         <p class="sector-empresa"><i class="fa-solid fa-briefcase"></i>
                             {{ $empresa->sector ?? 'Sector no definido' }}</p>
                         <p class="ubicacion-empresa"><i class="fa-solid fa-location-dot"></i>

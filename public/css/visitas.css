@@ -1,0 +1,158 @@
+#seccion-visitas {
+    padding: 2rem 1rem;
+    min-height: 70vh;
+}
+
+#seccion-visitas .contenedor-visitas {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#seccion-visitas .tarjeta-visitas {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+#seccion-visitas .cabecera-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+#seccion-visitas .titulo-pagina {
+    font-size: 1.8rem;
+    color: #2d3748 !important;
+    margin: 0;
+    font-weight: 700;
+}
+
+#seccion-visitas .subtitulo-pagina {
+    color: #718096;
+    font-size: 1rem;
+}
+
+#seccion-visitas .boton-azul-volver {
+    background-color: #3182ce;
+    color: white !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+#seccion-visitas .boton-azul-volver:hover {
+    background-color: #2c5282;
+}
+
+#seccion-visitas .tabla-responsiva {
+    overflow-x: auto;
+}
+
+#seccion-visitas .tabla-visitas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+#seccion-visitas .tabla-visitas thead th {
+    background: #f8fafc;
+    color: #718096;
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+#seccion-visitas .tabla-visitas tbody td {
+    padding: 1.5rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #edf2f7;
+    background: #ffffff;
+}
+
+#seccion-visitas .nombre-empresa-texto {
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 1.05rem;
+}
+
+#seccion-visitas .fecha-wrapper {
+    color: #718096;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#seccion-visitas .btn-ver {
+    background-color: #3182ce;
+    color: white !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+#seccion-visitas .btn-ver:hover {
+    background-color: #2b6cb0;
+    box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+}
+
+#seccion-visitas .tabla-vacia {
+    text-align: center;
+    padding: 3rem !important;
+    color: #a0aec0;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    #seccion-visitas .cabecera-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #seccion-visitas .boton-azul-volver {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #seccion-visitas .tabla-visitas thead {
+        display: none;
+    }
+
+    #seccion-visitas .tabla-visitas tbody tr {
+        display: block;
+        border-bottom: 2px solid #edf2f7;
+        margin-bottom: 1rem;
+    }
+
+    #seccion-visitas .tabla-visitas tbody td {
+        display: block;
+        text-align: right;
+        padding: 0.8rem 1rem;
+        border: none;
+    }
+
+    #seccion-visitas .tabla-visitas tbody td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: #4a5568;
+    }
+
+    #seccion-visitas .fecha-wrapper {
+        justify-content: flex-end;
+    }
+}

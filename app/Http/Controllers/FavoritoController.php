@@ -18,7 +18,6 @@ class FavoritoController extends Controller
             ->join('categorias as c', 'o.id_categoria', '=', 'c.id_categoria')
             ->where('f.id_usuario', $id_usuario)
             ->select('o.*', 'e.nombre_empresa', 'c.nombre_categoria')
-            // Cambiado a created_at o la fecha que uses, por si acaso
             ->orderBy('f.id', 'DESC') 
             ->get();
 
@@ -36,7 +35,6 @@ class FavoritoController extends Controller
             ->first();
 
         if ($existe) {
-            // Borrado seguro por combinación de claves
             DB::table('favoritos')
                 ->where('id_usuario', $id_usuario)
                 ->where('id_oferta', $id_oferta)

@@ -58,14 +58,12 @@ class OfertaController extends Controller implements HasMiddleware
             }
         }
 
-        // 2. Estadísticas
         $stats = [
             'inscripciones' => $id_candidato ? Inscripcion::where('id_candidato', $id_candidato)->count() : 0,
             'favoritos'     => $id_usuario ? Favorito::where('id_usuario', $id_usuario)->count() : 0,
             'visitas'       => $id_candidato ? DB::table('visitas_perfil')->where('id_candidato', $id_candidato)->count() : 0,
         ];
 
-        // 3. Consulta Principal
         $query = Oferta::with(['datosEmpresa', 'categoriaRelacion'])
             ->addSelect([
                 'es_favorito' => Favorito::whereColumn('id_oferta', 'ofertas.id')
@@ -77,7 +75,6 @@ class OfertaController extends Controller implements HasMiddleware
                     ->limit(1)
             ]);
 
-        // Filtros
         if ($request->filled('puestos')) {
             $q = $request->puestos;
             $query->where(function ($s) use ($q) {
@@ -97,8 +94,6 @@ class OfertaController extends Controller implements HasMiddleware
         }
 
         $ofertas = $query->orderBy('fecha_oferta', 'DESC')->get();
-
-        // 4. Datos para el Mapa
         $puntosMapa = $ofertas->filter(fn($o) => (float)$o->latitud != 0)
             ->map(fn($o) => [
                 'id'      => $o->id,
@@ -106,7 +101,7 @@ class OfertaController extends Controller implements HasMiddleware
                 'lng'     => (float)$o->longitud,
                 'titulo'  => $o->titulo,
                 'empresa' => $o->datosEmpresa->nombre_empresa ?? 'Empresa',
-                'jornada' => $o->jornada, 
+                'jornada' => $o->jornada,
                 'salario' => $o->salario ? $o->salario . ' €' : 'A convenir',
             ])->values();
 
@@ -133,7 +128,6 @@ class OfertaController extends Controller implements HasMiddleware
      */
     public function create()
     {
-        // Obtenemos las categorías para que la empresa pueda seleccionarlas en el formulario
         $categorias = DB::table('categorias')->get();
         return view('empresa.crear_oferta', compact('categorias'));
     }
@@ -220,13 +214,23 @@ class OfertaController extends Controller implements HasMiddleware
         $oferta = Oferta::where('id', $id)
             ->where('id_empresa', $perfilEmpresa->id_empresa)
             ->firstOrFail();
-
-        // 2. Obtenemos las inscripciones junto con los datos de los candidatos
-        // Asegúrate de que el modelo Inscripcion tenga la relación 'candidato' definida
         $inscripciones = Inscripcion::with('candidato.usuario')
             ->where('id_oferta', $id)
             ->get();
 
         return view('empresa.ver_candidato', compact('oferta', 'inscripciones'));
+    }
+
+    public function candidatosTotales()
+    {
+        $id_usuario = \Illuminate\Support\Facades\Auth::id();
+        $perfilEmpresa = Empresa::where('id_usuario', $id_usuario)->firstOrFail();
+        $ofertasIds = Oferta::where('id_empresa', $perfilEmpresa->id_empresa)->pluck('id');
+        $todosInscritos = Inscripcion::whereIn('id_oferta', $ofertasIds)
+            ->with(['candidato.usuario', 'oferta'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('empresa.candidatos_totales', compact('todosInscritos'));
     }
 }

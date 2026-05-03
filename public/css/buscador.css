@@ -207,12 +207,15 @@
     font-weight: 500;
 }
 
-.titulo-oferta {
-    color: var(--color-texto); 
-    font-size: 1.2rem;
+.seccion-buscador .titulo-oferta {
+    text-align: left !important; 
+    margin-left: 0;
+    padding-left: 0;
+    display: block;
+    width: 100%;
+    color: #2d3748;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 15px;
-    line-height: 1.3;
 }
 
 .datos-breves .dato-linea {

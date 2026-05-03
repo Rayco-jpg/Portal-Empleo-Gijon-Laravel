@@ -65,20 +65,23 @@
                         <span class="etiqueta-stat">Postulaciones</span>
                     </div>
                 </div>
-                <div class="tarjeta-stat">
+                <!-- Tarjeta de Favoritos -->
+                <a href="{{ route('favoritos.index') }}" class="tarjeta-stat tarjeta-clicable">
                     <div class="icono-stat rosa"><i class="fa-solid fa-heart"></i></div>
                     <div class="info-stat">
                         <span class="numero-stat">{{ $stats['favoritos'] ?? 0 }}</span>
                         <span class="etiqueta-stat">Favoritos</span>
                     </div>
-                </div>
-                <div class="tarjeta-stat">
+                </a>
+
+                <!-- Tarjeta de Visitas al Perfil -->
+                <a href="{{ route('candidato.visitas') }}" class="tarjeta-stat tarjeta-clicable">
                     <div class="icono-stat verde"><i class="fa-solid fa-eye"></i></div>
                     <div class="info-stat">
                         <span class="numero-stat">{{ $stats['visitas'] ?? 0 }}</span>
                         <span class="etiqueta-stat">Visitas perfil</span>
                     </div>
-                </div>
+                </a>
             @endauth
             @guest
                 <div class="aviso-vinculo-registro">
@@ -145,9 +148,9 @@
                                 <p class="dato-linea">
                                     <i class="fa-solid fa-building"></i>
                                     <strong>
-                                        @if($o->datosEmpresa)
+                                        @if(isset($o->datosEmpresa) && $o->datosEmpresa->nombre_empresa)
                                             <span class="link-empresa-fake"
-                                                onclick="event.preventDefault(); event.stopPropagation(); window.location.href='{{ route('empresa.detalle', $o->datosEmpresa->id_usuario) }}';">
+                                                onclick="event.preventDefault(); event.stopPropagation(); window.location.href='{{ route('perfil.empresa.publico', $o->id_usuario) }}'">
                                                 {{ $o->datosEmpresa->nombre_empresa }}
                                             </span>
                                         @else

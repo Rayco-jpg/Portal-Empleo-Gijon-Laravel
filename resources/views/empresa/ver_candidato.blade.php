@@ -9,7 +9,8 @@
     <header class="cabecera-seccion">
         <h2 class="titulo-pagina"><i class="fa-solid fa-users-gear"></i> Gestión de Candidatos</h2>
         <p class="subtitulo-pagina">Revisa y gestiona los perfiles inscritos en tu oferta de empleo:
-            <strong>{{ $oferta->titulo }}</strong></p>
+            <strong>{{ $oferta->titulo }}</strong>
+        </p>
     </header>
 
     <section class="bloque-candidatos card-shadow">
@@ -43,10 +44,14 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <strong>{{ $p->candidato->nombre ?? 'Usuario' }}
-                                        {{ $p->candidato->apellidos ?? '' }}</strong>
+                                    <strong class="{{ ($p->candidato->usuario->es_premium ?? false) ? 'nombre-premium' : '' }}">
+                                        @if($p->candidato->usuario->es_premium ?? false)
+                                            <i class="fa-solid fa-crown icono-premium-tabla"></i>
+                                        @endif
+                                        {{ $p->candidato->nombre ?? 'Usuario' }} {{ $p->candidato->apellidos ?? '' }}
+                                    </strong>
                                     <br>
-                                    <a href="{{ route('perfil.candidato', $p->candidato->id_usuario ?? $p->id_usuario) }}"
+                                    <a href="{{ route('perfil.candidato', $p->candidato->id_usuario) }}"
                                         class="enlace-ver-perfil">
                                         <i class="fa-solid fa-eye"></i> Ver Perfil Completo
                                     </a>
@@ -120,10 +125,17 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <strong>{{ $g->candidato->nombre ?? 'Usuario' }}
-                                        {{ $g->candidato->apellidos ?? '' }}</strong>
+                                    <strong class="{{ ($g->candidato->usuario->es_premium ?? false) ? 'nombre-premium' : '' }}">
+                                        @if($g->candidato->usuario->es_premium ?? false)
+                                            <i class="fa-solid fa-crown icono-premium-tabla"></i>
+                                        @endif
+
+                                        {{ $g->candidato->nombre ?? 'Usuario' }}
+                                        {{ $g->candidato->apellidos ?? '' }}
+                                    </strong>
                                     <br>
-                                    <a href="{{ route('perfil.candidato', $g->id_usuario) }}" class="enlace-ver-perfil">
+                                    <a href="{{ route('perfil.candidato', $g->candidato->id_usuario) }}"
+                                        class="enlace-ver-perfil">
                                         <i class="fa-solid fa-eye"></i> Ver Perfil Completo
                                     </a>
                                 </div>
@@ -133,8 +145,10 @@
                                     {{ ucfirst($g->estado) }}
                                 </span>
                             </td>
-                            <td><i class="fa-solid fa-clock-rotate-left"></i>
-                                {{ $g->updated_at ? $g->updated_at->format('d/m/Y H:i') : 'Sin fecha' }}</td>
+                            <td>
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                {{ $g->fecha_apuntado ? $g->fecha_apuntado->format('d/m/Y H:i') : 'N/A' }}
+                            </td>
                             <td class="celda-accion">
                                 <form action="{{ route('inscripciones.actualizar_estado') }}" method="POST">
                                     @csrf
@@ -168,27 +182,4 @@
             <i class="fa-solid fa-arrow-left"></i> Volver a mis ofertas
         </a>
     </footer>
-
-    <style>
-        /* Estilos para el nuevo enlace */
-        .enlace-ver-perfil {
-            font-size: 0.85rem;
-            color: #3498db;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 5px;
-            transition: color 0.3s;
-        }
-
-        .enlace-ver-perfil:hover {
-            color: #2c3e50;
-            text-decoration: underline;
-        }
-
-        .nombre-candidato {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-    </style>
 @endsection

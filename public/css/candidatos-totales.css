@@ -1,0 +1,343 @@
+[data-tema="oscuro"] {
+    --bg-body: #0f172a;
+    --bg-cabecera: #1e293b;
+    --bg-footer: #020617;
+    --bg-tarjeta: #1e293b;
+    --color-texto: #f1f5f9;
+    --color-texto-secundario: #94a3b8;
+    --blanco: #1e293b;
+    --borde-inferior: #1e293b;
+    --bg-input: #0f172a;
+    --borde-input: #334155;
+}
+
+body {
+    background-color: #3182ce;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+[data-tema="oscuro"] body {
+    background-color: var(--bg-body);
+}
+
+.contenedor {
+    padding: 3rem 1rem;
+}
+
+.tarjeta {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem;
+}
+
+[data-tema="oscuro"] .tarjeta {
+    background: var(--bg-tarjeta);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.tarjeta-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.titulo {
+    color: #000000; 
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+[data-tema="oscuro"] .titulo {
+    color: var(--color-texto);
+}
+
+.subtitulo {
+    color: #4a5568; 
+    font-size: 1rem;
+    margin-top: 4px;
+    display: block;
+}
+
+[data-tema="oscuro"] .subtitulo {
+    color: var(--color-texto-secundario);
+}
+
+.boton-volver {
+    background-color: #3182ce;
+    color: white !important;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+}
+
+.boton-volver:hover {
+    background-color: #2c5282;
+    text-decoration: none;
+}
+
+.contenedor-tabla {
+    margin-top: 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+[data-tema="oscuro"] .contenedor-tabla {
+    border-color: var(--borde-input);
+}
+
+.tabla-personalizada {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+[data-tema="oscuro"] .tabla-personalizada {
+    background-color: var(--bg-tarjeta);
+}
+
+.tabla-personalizada thead th {
+    background-color: #f8fafc;
+    color: #64748b;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+[data-tema="oscuro"] .tabla-personalizada thead th {
+    background-color: var(--bg-body);
+    color: var(--color-texto-secundario);
+    border-bottom-color: var(--borde-input);
+}
+
+.tabla-personalizada tbody td {
+    padding: 1.2rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #edf2f7;
+    color: #2d3748; 
+}
+
+[data-tema="oscuro"] .tabla-personalizada tbody td {
+    border-bottom-color: var(--borde-input);
+    color: var(--color-texto);
+}
+
+.info-usuario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nombre-usuario {
+    display: block;
+    font-weight: 700;
+    color: #2d3748; 
+    font-size: 1rem;
+}
+
+[data-tema="oscuro"] .nombre-usuario {
+    color: var(--color-texto);
+}
+
+.email-usuario {
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+[data-tema="oscuro"] .email-usuario {
+    color: var(--color-texto-secundario);
+}
+
+.avatar-inicial {
+    width: 42px;
+    height: 42px;
+    background-color: #3182ce;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.titulo-oferta {
+    color: #2d3748;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+}
+
+[data-tema="oscuro"] .titulo-oferta {
+    color: var(--color-texto);
+}
+
+.info-fecha {
+    color: #4a5568;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+[data-tema="oscuro"] .info-fecha {
+    color: var(--color-texto-secundario);
+}
+
+.info-fecha i {
+    color: #3182ce;
+    margin-right: 5px;
+}
+
+.etiqueta-estado {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
+}
+
+.estado-pendiente { background-color: #fef3c7; color: #92400e; }
+.estado-aceptado { background-color: #c6f6d5; color: #276749; }
+.estado-rechazado { background-color: #fed7d7; color: #c53030; }
+.estado-finalista { background-color: #e9d8fd; color: #6b46c1; }
+
+.boton-ver-perfil {
+    background-color: #3182ce;
+    color: white !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.boton-ver-perfil:hover {
+    background-color: #2c5282;
+    text-decoration: none;
+}
+
+@media (max-width: 992px) {
+    .tarjeta {
+        padding: 1.5rem 1rem;
+    }
+
+    .tarjeta-cabecera {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+
+    .boton-volver {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .tabla-personalizada thead {
+        display: none;
+    }
+
+    .tabla-personalizada tbody tr {
+        display: block;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        padding: 1.5rem 1rem;
+        background: #ffffff;
+    }
+
+    [data-tema="oscuro"] .tabla-personalizada tbody tr {
+        background: var(--bg-body);
+        border-color: var(--borde-input);
+    }
+
+    .tabla-personalizada tbody td {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0.5rem;
+        border-bottom: 1px solid #f7fafc;
+        text-align: center;
+    }
+
+    [data-tema="oscuro"] .tabla-personalizada tbody td {
+        border-bottom-color: var(--borde-inferior);
+    }
+
+    .tabla-personalizada tbody td:first-child {
+        padding-top: 0;
+    }
+
+    .tabla-personalizada tbody td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .tabla-personalizada td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #718096;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    [data-tema="oscuro"] .tabla-personalizada td::before {
+        color: var(--color-texto-secundario);
+    }
+
+    .info-usuario {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nombre-usuario {
+        order: 1;
+        font-size: 1.1rem;
+    }
+
+    .avatar-inicial {
+        order: 2;
+        width: 50px;
+        height: 50px;
+    }
+
+    .email-usuario {
+        order: 3;
+    }
+
+    .titulo-oferta, 
+    .info-fecha, 
+    .etiqueta-estado {
+        margin: 0 !important;
+        font-size: 1rem;
+    }
+
+    .boton-ver-perfil {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem;
+        margin-top: 0.5rem !important;
+    }
+}

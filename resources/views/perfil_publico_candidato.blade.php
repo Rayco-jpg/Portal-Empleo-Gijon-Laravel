@@ -15,12 +15,18 @@
                     @endif
                 </div>
                 <div class="texto-cabecera">
-                    {{-- CORRECCIÓN AQUÍ: Usamos perfil->nombre primero --}}
-                    <h1>{{ $perfil->nombre ?? $usuario->name }} {{ $perfil->apellidos ?? '' }}</h1>
-                    
+                    <h1>
+                        {{ $perfil->nombre ?? $usuario->name }} {{ $perfil->apellidos ?? '' }}
+                        @if($usuario->es_premium)
+                            <span class="badge-premium" title="Usuario Premium">
+                                <i class="fa-solid fa-crown"></i> Premium
+                            </span>
+                        @endif
+                    </h1>
+
                     <p class="ubicacion"><i class="fa-solid fa-location-dot"></i>
                         {{ $perfil->ubicacion ?? 'Gijón, Asturias' }}</p>
-                    
+
                     <div class="etiquetas-perfil">
                         <span class="badge-tipo"><i class="fa-solid fa-user-tie"></i> Candidato</span>
                         @if($perfil && $perfil->habilidades_clave)
@@ -84,7 +90,8 @@
                     </div>
 
                     <div class="dato-perfil">
-                        <i class="fa-solid fa-circle-dot {{ ($perfil->disponible ?? 1) == 1 ? 'text-success' : 'text-danger' }}"></i>
+                        <i
+                            class="fa-solid fa-circle-dot {{ ($perfil->disponible ?? 1) == 1 ? 'text-success' : 'text-danger' }}"></i>
                         <strong>Estado:</strong>
                         <span class="badge-estado {{ ($perfil->disponible ?? 1) == 1 ? 'bg-success' : 'bg-danger' }}">
                             {{ ($perfil->disponible ?? 1) == 1 ? 'Disponible para trabajar' : 'No disponible' }}
