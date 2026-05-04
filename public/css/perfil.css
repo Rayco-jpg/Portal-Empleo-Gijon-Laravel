@@ -96,6 +96,41 @@ body {
     font-size: 1rem;
 }
 
+.contenedor-redes-sociales {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.iconos-fila {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 20px;
+}
+
+.icono-red-social {
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.icono-red-social:hover {
+    transform: translateY(-3px); 
+}
+
+.icono-red-social i {
+    font-size: 1.8rem;
+}
+
+.twitter i { color: #000000; }
+.facebook i { color: #1877F2; }
+.instagram i { color: #E4405F; }
+.whatsapp i { color: #25D366; }
+
 .seccion-cv {
     margin-top: 35px;
     padding: 25px;

@@ -144,42 +144,35 @@
                     <span>{{ $perfil->sector ?? 'No definido' }}</span>
                 </div>
 
-                @if($perfil->sitio_web)
-                    <div class="dato-perfil">
-                        <i class="fa-solid fa-globe"></i>
-                        <strong>Web:</strong>
-                        <a href="{{ $perfil->sitio_web }}" target="_blank" class="enlace-perfil-link">
-                            {{ str_replace(['http://', 'https://'], '', $perfil->sitio_web) }}
-                        </a>
+                <div class="contenedor-redes-sociales">
+                    <strong>Redes Sociales:</strong>
+                    <div class="iconos-fila">
+                        @if($perfil->twitter)
+                            <a href="{{ $perfil->twitter }}" target="_blank" class="icono-red-social twitter">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                        @endif
+
+                        @if($perfil->facebook)
+                            <a href="{{ $perfil->facebook }}" target="_blank" class="icono-red-social facebook">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                        @endif
+
+                        @if($perfil->instagram)
+                            <a href="{{ $perfil->instagram }}" target="_blank" class="icono-red-social instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        @endif
+
+                        @if($perfil->whatsapp)
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $perfil->whatsapp) }}" target="_blank"
+                                class="icono-red-social whatsapp">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        @endif
                     </div>
-                @endif
-
-                @if($perfil->twitter)
-                    <div class="dato-perfil">
-                        <i class="fa-brands fa-x-twitter"></i>
-                        <strong>Twitter:</strong>
-                        <span class="text-primary">{{ $perfil->twitter }}</span>
-                    </div>
-                @endif
-
-                @if($perfil->facebook)
-                    <a href="{{ $perfil->facebook }}" target="_blank" class="icono-red-social">
-                        <i class="fa-brands fa-facebook fa-2x" style="color: #1877F2;"></i>
-                    </a>
-                @endif
-
-                @if($perfil->instagram)
-                    <a href="{{ $perfil->instagram }}" target="_blank" class="icono-red-social">
-                        <i class="fa-brands fa-instagram fa-2x" style="color: #E4405F;"></i>
-                    </a>
-                @endif
-
-                @if($perfil->whatsapp)
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $perfil->whatsapp) }}" target="_blank"
-                        class="icono-red-social">
-                        <i class="fa-brands fa-whatsapp fa-2x" style="color: #25D366;"></i>
-                    </a>
-                @endif
+                </div>
 
                 <div class="seccion-perfil-bloque" style="width: 100%; margin-top: 20px;">
                     <h3 class="subtitulo-cv"><i class="fa-solid fa-building-user"></i> Sobre nosotros</h3>
