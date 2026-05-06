@@ -71,8 +71,18 @@
 
                             <div class="dato-clave">
                                 <label>Tamaño de la empresa</label>
-                                <span><i class="fa-solid fa-users"></i> {{ $empresa->tamano ?? 'No especificado' }}
-                                    empleados</span>
+                                <span>
+                                    <i class="fa-solid fa-users"></i>
+                                    {{ $empresa->tamano ?? 'No especificado' }}
+
+                                    @if($empresa->tamano == 'Pequeña')
+                                        (1-10 empleados)
+                                    @elseif($empresa->tamano == 'Mediana')
+                                        (11-50 empleados)
+                                    @elseif($empresa->tamano == 'Grande')
+                                        (+50 empleados)
+                                    @endif
+                                </span>
                             </div>
 
                             <div class="dato-clave">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Crear Oferta')
 @section('content')
 <section class="seccion-crear-oferta">
     <header class="cabecera-formulario">

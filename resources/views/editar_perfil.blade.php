@@ -84,6 +84,14 @@
                     <label for="biografia">Sobre mí (Descripción profesional):</label>
                     <textarea id="biografia" name="biografia" rows="5">{{ old('biografia', $perfil->biografia) }}</textarea>
                 </div>
+
+
+                <div class="grupo-input">
+                    <label for="habilidades_clave"><i class="fa-solid fa-tags"></i> Tus Aptitudes:</label>
+                    <input type="text" id="habilidades_clave" name="habilidades_clave"
+                        value="{{ old('habilidades_clave', $perfil->habilidades_clave) }}"
+                        placeholder="Ej: camarero, servicial...">
+                </div>
             @else
                 <div class="grupo-input">
                     <label for="descripcion">Sobre nosotros (Descripción de la empresa):</label>

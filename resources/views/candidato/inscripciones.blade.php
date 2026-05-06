@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Mis Inscripciones')
 @section('content')
     <section class="seccion-mis-postulaciones">
         <header class="cabecera-seccion">

@@ -1,5 +1,5 @@
 @extends('layouts.error_layout')
-
+@section('title', 'Error 404 - Página no encontrada')
 @section('content')
     <div class="contenedor-error">
         <div class="contenido-error">

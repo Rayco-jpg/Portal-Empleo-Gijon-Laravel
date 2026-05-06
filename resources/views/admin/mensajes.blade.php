@@ -1,8 +1,6 @@
 @extends('layouts.app')
-
+@section('title', 'Moderación de Ofertas')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/admin_mensaje.css') }}">
-
     <div class="contenedor-admin">
         <div class="admin-header">
             <h2><i class="fas fa-envelope-open-text"></i> Buzón de Soporte</h2>

@@ -17,8 +17,6 @@
                 <h1>Crear Cuenta</h1>
                 <p>Únete al portal de empleo de tu ciudad</p>
             </header>
-
-            {{-- Mensajes de éxito o error estilo Laravel --}}
             @if(session('exito'))
                 <section class="alerta alerta-exito" role="alert">
                     <p>{{ session('exito') }} <a href="{{ route('login') }}">Ir al Login</a></p>
@@ -30,8 +28,6 @@
                     <p>{{ session('error') }}</p>
                 </section>
             @endif
-
-            {{-- El formulario apunta a la ruta de Laravel --}}
             <form action="{{ route('registrar') }}" method="POST" enctype="multipart/form-data" class="formulario-estandar">
                 @csrf
 
@@ -58,8 +54,6 @@
                         <option value="empresa" {{ old('tipo_usuario') == 'empresa' ? 'selected' : '' }}>Soy Empresa (ofrezco empleo)</option>
                     </select>
                 </section>
-
-                {{-- Sección Candidato --}}
                 <div id="seccion_candidato">
                     <section class="grupo-input">
                         <label for="nombre_candidato">Nombre:</label>
@@ -79,8 +73,6 @@
                         </label>
                     </section>
                 </div>
-
-                {{-- Sección Empresa --}}
                 <div id="seccion_empresa" style="display: none;">
                     <section class="grupo-input">
                         <label for="nombre_empresa">Nombre de la Empresa:</label>

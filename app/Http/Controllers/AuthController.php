@@ -15,8 +15,6 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    // --- REGISTRO ---
-
     public function showRegistro() { return view('auth.registro'); }
 
     public function registrar(Request $request)
@@ -63,8 +61,6 @@ class AuthController extends Controller
         }
     }
 
-    // --- LOGIN / LOGOUT ---
-
     public function showLogin() { return view('auth.login'); }
 
     public function login(Request $request)
@@ -77,8 +73,6 @@ class AuthController extends Controller
         if (Auth::attempt($credenciales)) {
             $request->session()->regenerate();
             $user = Auth::user();
-
-            // Guardamos datos básicos en sesión para no consultar la DB en cada vista
             if ($user->tipo_usuario == 'empresa') {
                 $perfil = Empresa::where('id_usuario', $user->id)->first();
                 session(['id_perfil' => $perfil->id_empresa, 'nombre' => $perfil->nombre_empresa, 'tipo' => 'empresa']);
@@ -105,8 +99,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/login');
     }
-
-    // --- RECUPERACIÓN DE PASSWORD ---
 
     public function showOlvido() { return view('auth.olvido_password'); }
 

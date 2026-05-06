@@ -1,8 +1,7 @@
 @extends('layouts.app')
-
+@section('title', 'Detalle de Oferta')
 @section('content')
     @php
-        // Lógica para el icono de estado de la inscripción
         $estado_slug = strtolower($oferta->estado_inscripcion ?? '');
         $iconos = [
             'aceptada' => 'fa-circle-check',
@@ -25,12 +24,10 @@
         <header class="cabecera-detalle">
             <div class="navegacion-superior">
                 @if(Auth::check() && Auth::user()->tipo_usuario == 'admin')
-                    {{-- Si es admin, vuelve a su panel de control --}}
                     <a href="{{ route('admin.ofertas') }}" class="enlace-volver">
                         <i class="fa-solid fa-arrow-left"></i> Volver a Gestión de Ofertas
                     </a>
                 @else
-                    {{-- Si es candidato o invitado, vuelve al buscador --}}
                     <a href="{{ route('buscador') }}" class="enlace-volver">
                         <i class="fa-solid fa-arrow-left"></i> Volver al buscador
                     </a>
@@ -50,7 +47,6 @@
                 <div class="tarjeta-dato">
                     <i class="fa-solid fa-building icono-v"></i>
                     <strong>Empresa:</strong>
-                    {{-- CAMBIO CLAVE: Nombre de la empresa corregido --}}
                     <span>{{ $oferta->datosEmpresa->nombre_empresa ?? 'Empresa no disponible' }}</span>
                 </div>
                 <div class="tarjeta-dato">

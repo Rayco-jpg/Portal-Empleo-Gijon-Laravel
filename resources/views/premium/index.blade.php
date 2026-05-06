@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Sección Premium')
 @section('content')
 <div class="tarjeta-premium">
     <div class="cabecera-premium">
@@ -68,7 +68,6 @@
                 </div>
             </div>
         @else
-            {{-- VISTA: USUARIO PREMIUM ACTIVO --}}
             <div class="seccion-activa">
                 <div class="status-badge">
                     <i class="fa-solid fa-check-double"></i> Plan Activo

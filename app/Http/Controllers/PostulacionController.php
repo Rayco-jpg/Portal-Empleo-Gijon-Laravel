@@ -16,21 +16,14 @@ use Illuminate\Support\Facades\Mail;
 
 class PostulacionController extends Controller
 {
-    /**
-     * Muestra la lista de inscripciones del candidato
-     */
     public function index()
     {
-        // 1. Buscamos el perfil del candidato asociado al usuario logueado
-        // Es vital usar first() para obtener el objeto y luego acceder a su id_candidato
         $candidato = Candidato::where('id_usuario', Auth::id())->first();
 
         if (!$candidato) {
             return redirect()->route('buscador')->with('error', 'Debes completar tu perfil de candidato para ver tus postulaciones.');
         }
 
-        // 2. Cargamos las inscripciones usando el id_candidato de la tabla candidatos
-        // Usamos with() para cargar la oferta y la empresa de forma eficiente (Eager Loading)
         $postulaciones = Inscripcion::with(['oferta.datosEmpresa'])
             ->where('id_candidato', $candidato->id_candidato)
             ->orderBy('fecha_inscripcion', 'DESC')
@@ -39,9 +32,6 @@ class PostulacionController extends Controller
         return view('candidato.inscripciones', compact('postulaciones'));
     }
 
-    /**
-     * Crea una nueva inscripción (Postularse)
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -87,9 +77,6 @@ class PostulacionController extends Controller
         }
     }
 
-    /**
-     * Cancela una inscripción (Candidato)
-     */
     public function destroy(Request $request)
     {
         $id_usuario = Auth::id();

@@ -1,7 +1,3 @@
-/**
- * MAIN.JS - Lógica principal de Portal Empleo Gijón
- */
-
 document.addEventListener("DOMContentLoaded", function () {
     const btnMenu = document.getElementById("btn-menu");
     const menuNav = document.getElementById("menu-navegacion");
@@ -9,16 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (btnMenu && menuNav) {
         btnMenu.addEventListener("click", function () {
             menuNav.classList.toggle("menu-abierto");
-
-            // Opcional: Cambiar el icono de barras a una X
             const icono = btnMenu.querySelector("i");
             icono.classList.toggle("fa-bars");
             icono.classList.toggle("fa-xmark");
         });
     }
 });
-
-// --- 1. FUNCIONES DE INTERFAZ (TEMA Y APARIENCIA) ---
 
 function actualizarIcono(tema) {
     let boton = document.getElementById("btn-tema");
@@ -35,10 +27,7 @@ function actualizarIcono(tema) {
     }
 }
 
-// --- 2. MOTOR PRINCIPAL (DOM CONTENT LOADED) ---
-
 document.addEventListener("DOMContentLoaded", function () {
-    // Gestión de Tema (Oscuro/Claro)
     const botonTema = document.getElementById("btn-tema");
     const htmlElement = document.documentElement;
     const temaGuardado = localStorage.getItem("tema") || "claro";
@@ -62,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Filtro de búsqueda en tablas (Puestos)
     let inputFiltro = document.getElementById("filtroPuesto");
     if (inputFiltro) {
         inputFiltro.addEventListener("keyup", function () {
@@ -88,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Adaptación dinámica del formulario de Registro
     let selectorTipo = document.getElementById("tipo_usuario");
     if (selectorTipo) {
         let seccionCandidato = document.getElementById("seccion_candidato");
@@ -112,7 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
         selectorTipo.onchange = adaptarFormulario;
     }
 
-    // Previsualización de Foto de Perfil
     let inputFoto = document.getElementById("foto");
     let imgPreview = document.getElementById("img-preview");
     if (inputFoto && imgPreview) {
@@ -127,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // Validación de archivo Curriculum (Solo PDF)
     let inputCV = document.getElementById("curriculum");
     let textoArchivo = document.getElementById("nombre-archivo-pdf");
     let botonSubir = document.querySelector(".boton-subir-verde-perfil");
@@ -153,8 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 });
-
-// --- 3. FUNCIONES DE MAPA (LEAFLET) ---
 
 function inicializarMapaBuscador(datosOfertas) {
     let mapaContenedor = document.getElementById("map");
@@ -188,39 +171,26 @@ function inicializarMapaBuscador(datosOfertas) {
 function prepararPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-
-    // 1. CAPTURA DE DATOS (MÉTODO ULTRA-SEGURO)
     const tituloPuesto = document.querySelector('.nombre-puesto')?.innerText || 'OFERTA DE EMPLEO';
     const descripcion = document.querySelector('.texto-descripcion')?.innerText || 'Sin descripción disponible.';
-    
-    // Buscamos todas las tarjetas (da igual cómo se llamen las clases internas)
     const tarjetasCuerpo = Array.from(document.querySelectorAll('.tarjeta-dato'));
     const infoCards = tarjetasCuerpo.map(tarjeta => {
         const fuerte = tarjeta.querySelector('strong')?.innerText || "";
         const textoNormal = tarjeta.querySelector('span')?.innerText || "";
         return { label: fuerte, value: textoNormal };
     });
-
-    // 2. DISEÑO DEL PDF
-    // Cabecera azul
-    doc.setFillColor(52, 152, 219); // El azul #3498db de tu CSS
+    doc.setFillColor(52, 152, 219); 
     doc.rect(0, 0, 210, 40, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(22);
     doc.setFont("helvetica", "bold");
     doc.text("PORTAL DE EMPLEO GIJÓN", 20, 25);
-
-    // Título de la oferta
     doc.setTextColor(44, 62, 80);
     doc.setFontSize(18);
     doc.text(tituloPuesto.toUpperCase(), 20, 55);
-    
-    // Línea decorativa
     doc.setDrawColor(52, 152, 219);
     doc.setLineWidth(1);
     doc.line(20, 60, 100, 60);
-
-    // SECCIÓN DE DETALLES (Empresa, Ubicación, etc.)
     let y = 75;
     doc.setFontSize(11);
     
@@ -237,7 +207,6 @@ function prepararPDF() {
         }
     });
 
-    // SECCIÓN DE DESCRIPCIÓN
     y += 10;
     doc.setFont("helvetica", "bold");
     doc.setTextColor(52, 152, 219);
@@ -249,16 +218,10 @@ function prepararPDF() {
     doc.setFont("helvetica", "normal");
     doc.setTextColor(60, 60, 60);
     y += 12;
-    
-    // Ajuste de texto automático
     const lineasDesc = doc.splitTextToSize(descripcion, 170);
     doc.text(lineasDesc, 20, y);
-
-    // Pie de página
     doc.setFontSize(9);
     doc.setTextColor(150, 150, 150);
     doc.text("Proyecto TFG - Portal de Empleo Gijón 2026", 105, 285, { align: "center" });
-
-    // 3. DESCARGA
     doc.save(`Ficha_Oferta_${tituloPuesto.replace(/\s+/g, '_')}.pdf`);
 }

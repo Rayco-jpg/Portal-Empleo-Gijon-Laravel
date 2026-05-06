@@ -144,6 +144,21 @@
                     <span>{{ $perfil->sector ?? 'No definido' }}</span>
                 </div>
 
+                <div class="dato-perfil">
+                    <i class="fa-solid fa-users-viewfinder"></i>
+                    <strong>Tamaño:</strong>
+                    <span>
+                        {{ $perfil->tamano ?? 'No especificado' }}
+                        @if($perfil->tamano == 'Pequeña')
+                            (1-10 empleados)
+                        @elseif($perfil->tamano == 'Mediana')
+                            (11-50 empleados)
+                        @elseif($perfil->tamano == 'Grande')
+                            (+50 empleados)
+                        @endif
+                    </span>
+                </div>
+
                 <div class="contenedor-redes-sociales">
                     <strong>Redes Sociales:</strong>
                     <div class="iconos-fila">

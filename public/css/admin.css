@@ -1,6 +1,4 @@
-/* 1. VARIABLES DE COLOR (SISTEMA DINÁMICO) */
 :root {
-    /* Modo Claro */
     --bg-panel: #f4f7f6;
     --bg-card: #ffffff;
     --bg-nav: #ffffff;
@@ -15,7 +13,6 @@
 }
 
 [data-tema="oscuro"] {
-    /* Modo Oscuro */
     --bg-panel: #0f172a;
     --bg-card: #1e293b;
     --bg-nav: #1e293b;
@@ -29,7 +26,6 @@
     --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.5);
 }
 
-/* 2. CONFIGURACIÓN GENERAL */
 .panel-administracion {
     font-family: 'Inter', 'Segoe UI', sans-serif;
     background-color: var(--bg-panel);
@@ -52,7 +48,6 @@
     margin-bottom: 30px;
 }
 
-/* 3. MENÚ DE NAVEGACIÓN SECUNDARIO */
 .menu-navegacion {
     background: var(--bg-nav);
     padding: 12px 20px;
@@ -83,7 +78,6 @@
     color: #ffffff;
 }
 
-/* 4. TARJETAS DE RESUMEN (DASHBOARD) */
 .contenedor-tarjetas-resumen {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -135,7 +129,6 @@
     font-weight: 500;
 }
 
-/* 5. TABLA DE GESTIÓN */
 .contenedor-tabla {
     background: var(--bg-card);
     border-radius: 15px;
@@ -172,7 +165,6 @@
     background-color: var(--table-row-hover);
 }
 
-/* 6. COMPONENTES (BOTONES Y ETIQUETAS) */
 .etiqueta {
     padding: 4px 12px;
     border-radius: 6px;

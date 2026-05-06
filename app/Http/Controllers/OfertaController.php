@@ -22,9 +22,6 @@ class OfertaController extends Controller implements HasMiddleware
         ];
     }
 
-    /**
-     * Buscador de ofertas para el Candidato
-     */
     public function index(Request $request)
     {
         $id_usuario = Auth::id();
@@ -108,9 +105,6 @@ class OfertaController extends Controller implements HasMiddleware
         return view('candidato.buscador', compact('ofertas', 'hay_novedades', 'conteo_nuevas', 'nombre_cat_alerta', 'stats', 'puntosMapa'));
     }
 
-    /**
-     * Mis Ofertas (Vista Empresa)
-     */
     public function misOfertas()
     {
         $perfilEmpresa = Empresa::where('id_usuario', Auth::id())->firstOrFail();
@@ -123,18 +117,12 @@ class OfertaController extends Controller implements HasMiddleware
         return view('empresa.mis_ofertas', compact('ofertas'));
     }
 
-    /**
-     * Muestra el formulario para crear una nueva oferta (AÑADIDO)
-     */
     public function create()
     {
         $categorias = DB::table('categorias')->get();
         return view('empresa.crear_oferta', compact('categorias'));
     }
 
-    /**
-     * Guarda la nueva oferta en la base de datos
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -161,13 +149,9 @@ class OfertaController extends Controller implements HasMiddleware
             'estado'       => 'activa'
         ]);
 
-        // Redirige al listado de ofertas de la empresa (ruta definida en web.php)
         return redirect()->route('ofertas.index')->with('success', 'Oferta publicada correctamente.');
     }
 
-    /**
-     * Eliminar Oferta
-     */
     public function destroy($id)
     {
         $perfilEmpresa = Empresa::where('id_usuario', Auth::id())->firstOrFail();
@@ -180,9 +164,6 @@ class OfertaController extends Controller implements HasMiddleware
         return back()->with('success', 'Oferta eliminada.');
     }
 
-    /**
-     * Ver Detalle de oferta para el Candidato
-     */
     public function show($id)
     {
         $id_usuario = Auth::id();
@@ -203,12 +184,8 @@ class OfertaController extends Controller implements HasMiddleware
         return view('candidato.ver_oferta', compact('oferta', 'mis_habilidades'));
     }
 
-    /**
-     * Muestra los candidatos inscritos a una oferta específica.
-     */
     public function verCandidatos($id)
     {
-        // 1. Verificamos que la oferta pertenezca a la empresa identificada
         $perfilEmpresa = Empresa::where('id_usuario', Auth::id())->firstOrFail();
 
         $oferta = Oferta::where('id', $id)

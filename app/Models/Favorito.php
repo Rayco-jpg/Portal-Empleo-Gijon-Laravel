@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Favorito extends Model
 {
     protected $table = 'favoritos';
-    // En tu captura no veo timestamps, así que los desactivamos
     public $timestamps = false;
 
     protected $fillable = [
@@ -15,7 +14,6 @@ class Favorito extends Model
         'id_oferta'
     ];
 
-    // Relaciones para el TFG (opcionales pero recomendadas)
     public function usuario() {
         return $this->belongsTo(User::class, 'id_usuario');
     }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Gestión de Candidatos')
 @section('content')
     @php
         $pendientes = $inscripciones->filter(fn($i) => strtolower($i->estado ?? '') == 'pendiente');

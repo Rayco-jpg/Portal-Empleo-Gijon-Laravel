@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Gestión de Ofertas')
 @section('content')
     <section class="seccion-panel">
         <header class="cabecera-panel">

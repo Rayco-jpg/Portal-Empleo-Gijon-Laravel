@@ -19,8 +19,6 @@
                         <div class="cuerpo-tarjeta">
                             <div class="fila-superior">
                                 <span class="etiqueta-categoria">{{ $o->nombre_categoria }}</span>
-                                
-                                {{-- Botón para quitar de favoritos --}}
                                 <div class="btn-fav-corazon" 
                                      onclick="event.preventDefault(); event.stopPropagation(); window.location.href='{{ route('favoritos.toggle', $o->id) }}';">
                                     <i class="fa-solid fa-heart icono-corazon-activo"></i>

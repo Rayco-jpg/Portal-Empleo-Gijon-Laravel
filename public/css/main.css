@@ -139,53 +139,6 @@ main {
     transition: background-color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    
-    #btn-menu {
-        display: block; 
-    }
-
-    .navegacion-principal {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%; 
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-cabecera); 
-        padding: 10px 0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        z-index: 1000;
-        gap: 0;
-    }
-
-    .navegacion-principal.menu-abierto {
-        display: flex;
-    }
-
-    .enlace-nav {
-        width: 100%;
-        text-align: center;
-        padding: 15px 0;
-        border-radius: 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    #btn-tema {
-        width: 100%;
-        padding: 15px 0;
-    }
-
-    .footer-contenido {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .footer-seccion h4::after {
-        margin: 8px auto 0;
-    }
-}
-
 .footer-global {
     background-color: var(--bg-footer);
     color: white;
@@ -231,7 +184,7 @@ main {
 }
 
 @media (max-width: 768px) {
-    .cabecera-principal {
+        .cabecera-principal {
         position: relative !important;
         z-index: 1000;
     }
@@ -320,5 +273,49 @@ main {
         margin-top: 20px;
         padding: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #btn-menu {
+        display: block; 
+    }
+
+    .navegacion-principal {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-cabecera); 
+        padding: 10px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        z-index: 1000;
+        gap: 0;
+    }
+
+    .navegacion-principal.menu-abierto {
+        display: flex;
+    }
+
+    .enlace-nav {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    #btn-tema {
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-seccion h4::after {
+        margin: 8px auto 0;
     }
 }

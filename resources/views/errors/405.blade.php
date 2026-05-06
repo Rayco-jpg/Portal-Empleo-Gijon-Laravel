@@ -1,5 +1,5 @@
 @extends('layouts.error_layout')
-
+@section('title', 'Error 405 - Acceso no permitido')
 @section('content')
 <div class="contenedor-error">
     <div class="contenido-error">

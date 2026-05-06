@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Moderación de Ofertas')
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
@@ -10,13 +10,8 @@
         </header>
 
         <nav class="menu-navegacion">
-            {{-- Botón para volver al Dashboard de estadísticas --}}
             <a href="{{ route('admin.index') }}" class="enlace-menu">Inicio</a>
-            
-            {{-- Enlace a la gestión de usuarios --}}
             <a href="{{ route('admin.usuarios') }}" class="enlace-menu">Usuarios</a>
-            
-            {{-- Este es el botón activo en esta vista --}}
             <a href="{{ route('admin.ofertas') }}" class="enlace-menu activo">Ofertas de Trabajo</a>
         </nav>
 
@@ -64,7 +59,7 @@
             </table>
 
             @if($ofertas->isEmpty())
-                <div class="mensaje-vacio" style="padding: 40px; text-align: center; color: #666;">
+                <div class="mensaje-vacio">
                     <i class="fa-solid fa-folder-open"></i> Actualmente no hay ofertas publicadas para moderar.
                 </div>
             @endif

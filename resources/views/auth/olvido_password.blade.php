@@ -15,8 +15,6 @@
                 <h1>¿Olvidaste tu clave?</h1>
                 <p>Introduce tu correo y te enviaremos las instrucciones.</p>
             </header>
-
-            {{-- Mensaje de éxito de Laravel --}}
             @if (session('enviado'))
                 <div class="alerta alerta-exito">
                     <p><i class="fa-solid fa-circle-check"></i> {{ session('enviado') }}</p>

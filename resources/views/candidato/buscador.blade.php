@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Buscador de Empleo')
 @section('content')
     <section class="seccion-buscador">
         <header class="cabecera-buscador">
@@ -30,8 +30,6 @@
                 </div>
             </form>
         </header>
-
-        {{-- Banner de Novedades --}}
         @if(isset($hay_novedades) && $hay_novedades)
             <div class="banner-novedades-alerta {{ request('ver_novedades') ? 'filtro-activo' : '' }}" id="bannerAlerta">
                 <div class="contenido-banner" onclick="window.location.href='{{ route('buscador', ['ver_novedades' => 1]) }}';">
@@ -54,8 +52,6 @@
                 </button>
             </div>
         @endif
-
-        {{-- Tarjetas de Estadísticas --}}
         <div class="contenedor-estadisticas">
             @auth
                 <div class="tarjeta-stat">
@@ -65,7 +61,6 @@
                         <span class="etiqueta-stat">Postulaciones</span>
                     </div>
                 </div>
-                <!-- Tarjeta de Favoritos -->
                 <a href="{{ route('favoritos.index') }}" class="tarjeta-stat tarjeta-clicable">
                     <div class="icono-stat rosa"><i class="fa-solid fa-heart"></i></div>
                     <div class="info-stat">
@@ -73,8 +68,6 @@
                         <span class="etiqueta-stat">Favoritos</span>
                     </div>
                 </a>
-
-                <!-- Tarjeta de Visitas al Perfil -->
                 <a href="{{ route('candidato.visitas') }}" class="tarjeta-stat tarjeta-clicable">
                     <div class="icono-stat verde"><i class="fa-solid fa-eye"></i></div>
                     <div class="info-stat">
@@ -103,16 +96,12 @@
                 </div>
             @endguest
         </div>
-
-        {{-- Mapa --}}
         <div class="mapa-buscador-container">
             <h3 class="mapa-titulo">
                 <i class="fa-solid fa-map-location-dot"></i> Ubicación de las ofertas en Gijón
             </h3>
             <div id="map"></div>
         </div>
-
-        {{-- Cuadrícula de Ofertas --}}
         <div class="cuadricula-ofertas">
             @forelse($ofertas as $o)
                 <a href="{{ route('ofertas.show', $o->id) }}" class="tarjeta-link-wrapper">

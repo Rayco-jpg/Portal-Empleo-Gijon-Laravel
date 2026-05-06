@@ -88,7 +88,6 @@ window.confirmarCancelacionPremium = function(idFormulario) {
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            // Si el usuario confirma, enviamos el formulario recibido por ID
             document.getElementById(idFormulario).submit();
         }
     });

@@ -13,10 +13,7 @@ class Contacto extends Model
         'mensaje',
         'leido'
     ];
-
-    /**
-     * Relación: Un contacto pertenece a un usuario.
-     */
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id')->withDefault([

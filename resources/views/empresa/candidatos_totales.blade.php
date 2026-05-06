@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Candidatos Totales')
 @section('content')
     <div class="contenedor">
         <div class="fila">

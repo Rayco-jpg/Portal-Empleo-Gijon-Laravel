@@ -12,18 +12,12 @@ use Carbon\Carbon;
 
 class PagoController extends Controller
 {
-    /**
-     * Muestra la página principal de gestión de suscripción
-     */
     public function index()
     {
         $user = Auth::user();
         return view('premium.index', compact('user'));
     }
 
-    /**
-     * Crea la sesión de pago y redirige a Stripe
-     */
     public function checkout()
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -69,18 +63,11 @@ public function exito()
 
     return view('premium.exito', compact('facturas'));
 }
-
-    /**
-     * Si el usuario cancela el proceso en Stripe
-     */
     public function cancelado()
     {
         return redirect()->route('premium.index')->with('error', 'Has cancelado el proceso de pago.');
     }
-
-    /**
-     * Cancela la suscripción actual
-     */
+    
     public function cancelarSuscripcion()
     {
         /** @var \App\Models\User $user */
